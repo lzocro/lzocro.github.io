@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-#gem "libv8-node", "~> 16.10"
-
 
 group :jekyll_plugins do
     #gem 'wdm', '>=0.1.0'
