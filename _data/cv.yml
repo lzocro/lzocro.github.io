@@ -13,7 +13,7 @@
   contents:
     - title: PhD (Expected)
       institution: Université Paris Dauphine-PSL; Criteo AI Lab
-      year: 2023
+      year: 2020-2023
       description:
         - Description 1.
         - Description 2.
@@ -23,10 +23,15 @@
             - Sub-description 2.
     - title: "M2 Masters: MVA"
       institution: ENS Paris-Saclay
-      year: 2019
+      year: 2018-2019
       description:
         - Description 1.
         - Description 2.
+    - title: "Msci Masters: Mathematics & statistics"
+      institution: University of Lancaster
+      year: 2014-2018
+      description:
+        - "Masters thesis on Multi-Armed Bandits (supervised by Azadeh Khaleghi)
 
 # - title: Experience
 #   type: time_table
