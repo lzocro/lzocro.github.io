@@ -4,7 +4,7 @@ permalink: /publications/
 title: Publications
 description: 
 
-years: [1967, 1956, 1950, 1935, 1905]
+years: [2022, 2021, 2020]
 nav: true
 nav_order: 1
 ---
