@@ -13,86 +13,53 @@
   contents:
     - title: PhD (Expected)
       institution: Université Paris Dauphine-PSL; Criteo AI Lab
-      year: 2020-2023
+      year: 2020-23
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Approximation of pure-jump processes by diffusions. Error bounds in terms of value and control, numerical resolution methods, in finite horizon and ergodic settings.
+        - Application to real-time bidding in online ad auctions.
+        - title: Publications
+          contents: 
+            - paper 1.
+            - paper 2.
+        - Leveraging continuous time stochastic control theory in Exploration-Exploitation dilemmas in RL.
+        - title: Publications
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: M2 Masters - MVA
+            - WIP paper
+    - title: M2 Masters - MVA (Très Bien)
       institution: ENS Paris-Saclay
-      year: 2018-2019
+      year: 2018-19
       description:
-        - Description 1.
-        - Description 2.
-    - title: Msci Masters in Mathematics & statistics
+        - Summer research interneship at Criteo AI Lab, focused on online learning in auctions.
+        - Courses in Game Theory, Bandits, RL, etc.
+    - title: Msci Masters in Mathematics & statistics (First Class Honours)
       institution: University of Lancaster
-      year: 2014-2018
+      year: 2014-18
       description:
         - Masters thesis on Multi-Armed Bandits (supervised by Azadeh Khaleghi)
-        - Study Abroad third year at University of Waterloo, Canada.
+        - Third year abroad at University of Waterloo, Canada.
 
-# - title: Experience
-#   type: time_table
-#   contents:
-#     - title: Professor of Theoretical Physics
-#       institution: Institute for Advanced Study, Princeton University
-#       year: 1933 - 1955
-#       description:
-#         - Description 1.
-#         - Description 2.
-#         - title: Description 3.
-#           contents:
-#             - Sub-description 1.
-#             - Sub-description 2.
-#     - title: Visiting Professor
-#       institution: California Institute of Technology, Pasadena, California, US
-#       year: 1933
-#       description:
-#         - Description 1.
-#         - Description 2.
+- title: Experience
+  type: time_table
+  contents:
+    - title: Researcher
+      institution: Criteo AI Lab
+      year: 2019-2020
+      description:
+        - Focused on real-time pricing and bidding in online second price auctions.
+        - Smoothed gradient based methods for online learning under gradient bias (discontinuous empirical objective), highlighting a bias-variance trade-off. Extension to non-stationary regret.
+        - title: Publications
+          contents:
+            - paper 1.
 
-#     - title: Director
-#       institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-#       year: 1917-1933
-
-#     - title: Professor of Theoretical Physics
-#       institution: Karl-Ferdinand University, Prague, Czechoslovakia
-#       year: 1911 - 1917
-#       description:
-
-#     - title: Associate Professor of Theoretical Physics
-#       institution: University of Zurich, Zurich, Switzerland
-#       year: 1909 - 1911
-
-# - title: Open Source Projects
-#   type: time_table
-#   contents:
-#     - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-#       year: 2015-now
-#       description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
-# - title: Honors and Awards
-#   type: time_table
-#   contents:
-#     - year: 1921
-#       items: 
-#         - Nobel Prize in Physics 
-#         - Matteucci Medal
-#     - year: 2029
-#       items: 
-#         - Max Planck Medal
 
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Control Theory
+    - title: Stochastic Control Theory
       items: 
         - Description 1.
         - Description 2.
-    - title: Machine Learning.
+    - title: Reinforcement Learning
       items:
         - Description 1.
         - Description 2.
@@ -100,4 +67,5 @@
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Hobbies:</u> Bouldering, photography.
+    - <u>Interests:</u> Tea, cooking, music.
