@@ -2,13 +2,13 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title:  # the website title (if blank, full name will be used instead)
+title: Lorenzo Croissant
 first_name: Lorenzo
 middle_name: 
 last_name: Croissant
 email: mailto:croissant@ceremade.dauphine.fr
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A modest Ph.D. Student
+  Lorenzo Croissant's Homepage
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
@@ -16,7 +16,7 @@ footer_text: >
 keywords: jekyll, jekyll-theme, academic-website, portfolio-website  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: sh3l5xkj.bmp # ⚛️  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: 🥐 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://lzocro.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/
@@ -67,11 +67,11 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 # Social integration
 # -----------------------------------------------------------------------------
 
-github_username: # your GitHub user name
+github_username: lzocro # your GitHub user name
 gitlab_username: # your GitLab user name
-twitter_username: # your Twitter handle
-linkedin_username: # your LinkedIn user name
-scholar_userid: # your Google Scholar ID
+twitter_username: lzocro # your Twitter handle
+linkedin_username: lorenzo-croissant # your LinkedIn user name
+scholar_userid: YsHVy-IAAAAJ # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID
 orcid_id: # your ORCID ID
 medium_username: # your Medium username
