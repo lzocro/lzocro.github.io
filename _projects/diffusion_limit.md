@@ -6,6 +6,7 @@ img: assets/img/12.jpg
 importance: 7
 category: work
 ---
+
 <div style="display:none">
   \(
     %\newcommand{\CB}{\mathbb{C}}
@@ -14,6 +15,7 @@ category: work
     %
     \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
+    \def\x{\times}
     %
     %% Blackboard Bolds %%
     \def\Ab{\mathbb{A}}
@@ -269,9 +271,17 @@ Below I will detail in what precise sense the answer to both is yes, but first I
 
 ## Setting
 
-In what follows we will consider that the evolution times follow a Poisson process, although it could be interesting to look at extensions to other cases. Let $$\Omega:=\mathbb{D}_{[0,T]}$$ be the Skorohod space on $$[0,T]$$, $$T>0$$, and consider a random measure $$N$$ on $$\mathbb{R}^{d'}\times\mathbb{R}_+$$ and a measure $$\mathbb{P}$$ on $$\Omega$$ such that $$N$$ is a $$\mathbb{P}$$-Poisson process. Denote $$\mathbb{F}$$ the augmentation of natural filtration of the Poisson Process. For some $$x\in\mathbb{R}^d$$, $$\alpha\in\mathcal{A}$$
+In what follows we will consider that the evolution times follow a Poisson process, although it could be interesting to look at extensions to other cases. Let $\Omega:=\Db_{[0,T]}$ be the Skorohod space on $[0,T]$, for $T>0$ possibly infinite, and consider a random measure $N$ on $\Rb^{d'}\times[0,T]$ and a measure $\Pb$ on $\Omega$ such that $N$ is a $\Pb$-Poisson process with compensator $\eta\nu(\de e)\de t$, for $\eta>0$ and $\nu$ a probability measure on $\Rb^{d'}$. Denote $\Fb$ the augmentation of the natural filtration of the (marked) Poisson process. For some $x\in\Rb^d$, $\alpha\in\Ac$ the set of admissible controls, $b$ measurable, let $X^{x,\alpha}$ denote the solution to the SDE
 
-$$ X_\cdot = x + \int_0^\cdot\int b(X_{s-}^{x,\alpha}, \alpha_s, e) N(\de e,\de s) $$
+\\[ X_\cdot^{x,\alpha} = x + \int_0^\cdot\int_{\Rb^{d'}} b(s,X_{s-}^{x,\alpha}, \alpha_s, e) N(\de e,\de s)\,.\\]
+
+For some instantaneous gain function $r:[0,T]\x\Rb^d\x\Ab \mapsto \Rb$, we can define the cost functional
+
+$$\begin{align}
+ J(t,x;\alpha):&[0,T]\x\Rb^d\x\Ac\to\Rb \notag \\
+ &\alpha\mapsto \Eb\left[\int_0^T\int_{\Rb^{d'}} r(s, X_s^{x,\alpha},\alpha_s)N(\de e, \de s) \right] \notag
+\end{align}$$
+
 
 
 
