@@ -356,6 +356,8 @@ and it remains to bound $\Vert\dre\Vert_\infty$. This is achieved through regula
 
 Theorem .... goes here
 
+Diagram of numerical approximation.
+
 
 
 ## Other Aspects
@@ -370,9 +372,9 @@ In the context of another project page, we studied the extension to the reinforc
 
 There are some interesting extensions that would merit consideration in this setting.
 
-First, some matters of generalisation. The lynchpin of this method is the approximation of the generator $\Lc$ of the pure-jump process by $\bar\Lc$, insofar as they are applied to $\bar V$. These are the only terms that differ between the two HJB equation. The analysis above should then be applicable to any process for which we can bound the difference $\vert \Lc -\bar\Lc\vert \bar V$. There are many possible candidates for extensions here, whose inventory would be interesting from a probabilistic standpoint. Another generalisation would of course involve the study of different control problems, such as optimal stopping. 
+First, some matters of generalisation. The lynchpin of this method is the approximation of the generator $\Lc$ of the pure-jump process by $\bar\Lc$, insofar as they are applied to $\bar V$. These are the only terms that differ between the two HJB equations. The analysis above should then be applicable to any process for which we can bound the difference $\vert \Lc -\bar\Lc\vert \bar V$. There are many possible candidates for extensions here, whose inventory would be interesting from a probabilistic standpoint. Another generalisation would of course involve the study of different control problems, such as optimal stopping. 
 
-Second, there is the interesting point of the iterated error correction. Suppose the rescaled error term $\ve^{\frac\gamma2}\dre$ is regular, and consider the equation.
+Second, there is the interesting point of the iterated error correction. Suppose the rescaled error term $\ve^{-\frac\gamma2}\dre$ is regular, and consider the equation.
 \\[ \partial_{t} \bar v +\eta_\ve\sup_{\bar a\in \Ab}\left( \int \bar v(\cdot,\cdot+b_\ve(\cdot,\bar a,e))-\bar v\nu(\de e)+\ve^{\frac\gamma2}\dre(\cdot,\bar a)\right)=0 \\]
 If the solution remains bounded and regular, we can construct an approximation $\bar V + \ve^{\frac\gamma2}\bar  v$ which improves the rate. In particular, if the solution $\bar v$ is $\delta\gamma$ Hölder, then 
 \\[ \Vert V_\ve - (\bar V + \ve^{\frac\gamma2}\bar  v)\Vert_\infty \le \ve^{\frac{\gamma+\delta\gamma}{2}}\\]
@@ -380,8 +382,6 @@ In theory, if the resulting error is smooth enough we could repeat the process. 
 
 
 Finally, from a practical perspective there is a question over the learning of coefficients, see also [cite other project], and especially the possibility of estimating $\ve$ in real systems. There might be some connections here to the estimation of Hurst-coefficients in fractional Brownian motions.
-
-estimation of epsilon and parameters/impossibility results
 
 
 ## Conclusion
