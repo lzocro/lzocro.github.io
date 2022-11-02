@@ -1,10 +1,17 @@
 ---
-layout: page
+layout: distill
 title: Diffusive Limit Control
 description: Efficient approximation of high-frequency pure jump problems.
 img: assets/img/12.jpg
+authors:
+  - name: Lorenzo Croissant
+    affiliations:
+      name: CEREMADE
+  - name: Bruno Bouchard
+    affiliations:
+      name: CEREMADE  
 importance: 7
-category: work
+category: Control Theory
 ---
 
 <div style="display:none">
@@ -262,6 +269,9 @@ category: work
   \)
 </div>
 
+
+
+
 Control problems are omnipresent in industrial applications of online decision making. In many of these application time evolves in a naturally discrete manner. While discrete time problems are well studied and are relatively easily solved by Dynamic Programming, the frequencies of real-world applications often make this an infeasible approach. This problem is generally avoided using some time-aggregation approximation, such as a continuous time limit. A standard example of this situation is in financial markets: at the microscopic scale there are only order books, which evolve only when the asset is traded; control problems however are often formulated on a (continuous time) diffusion process.
 
 In this project the goal is to assess quantitatively the benefits of such changes of scale in terms of the control problem. More precisely my coauthors and I focus on two directions:
@@ -270,6 +280,8 @@ In this project the goal is to assess quantitatively the benefits of such change
   <li>Can we use the continuous approximation to create efficient numerical solvers for the discrete problem?</li>
 </ol> 
 Below I will detail in what precise sense the answer to both is yes, but first I would like to highlight the practical implications of these answers. From i. one can identify if the error in the value of the control problem is of acceptable order for the application, and therefore determine via ii. into which problems to invest the time and energy of a proper resolution.  
+
+
 
 ## The Setting
 
