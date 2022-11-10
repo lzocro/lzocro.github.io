@@ -2,7 +2,7 @@
 layout: distill
 title: Reinforcement Learning with Control tools
 description: Efficient approximation of high-frequency pure jump problems.
-img: assets/img/12.jpg
+img: assets/img/IMG_5210.jpg
 authors:
   - name: Lorenzo Croissant
     affiliations:

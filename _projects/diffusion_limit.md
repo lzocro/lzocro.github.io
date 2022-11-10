@@ -2,7 +2,7 @@
 layout: distill
 title: Diffusive Limit Control
 description: Efficient approximation of high-frequency pure jump problems.
-img: assets/img/12.jpg
+img: assets/img/IMG_2987.jpg
 authors:
   - name: Lorenzo Croissant
     affiliations:

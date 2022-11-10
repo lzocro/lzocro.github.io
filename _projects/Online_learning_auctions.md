@@ -2,7 +2,7 @@
 layout: distill
 title: Online Learning in Online Auctions
 description: Dynamics in markets
-img: assets/img/12.jpg
+img: assets/img/IMG_4044.jpg
 authors:
   - name: Lorenzo Croissant
     affiliations:
