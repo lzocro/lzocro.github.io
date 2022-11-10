@@ -3,8 +3,8 @@ layout: page
 permalink: /events/
 title: Events
 description: I helped organise the following events in various capacities.
-nav: true
-nav_order: 5
+nav: false
+nav_order: 
 display_categories: [Seminars, Reading Groups, Conferences]
 horizontal: false
 ---

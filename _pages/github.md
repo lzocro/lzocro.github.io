@@ -3,8 +3,7 @@ layout: page
 permalink: /repositories/
 title: GitHub
 description: This page collects my public code stored on github.
-nav: true
-nav_order: 3
+nav: false
 ---
 
 ## GitHub users

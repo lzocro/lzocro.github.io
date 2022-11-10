@@ -5,12 +5,12 @@ nav: true
 nav_order: 6
 dropdown: true
 children: 
-    - title: Blog
-      permalink: /blog/
+    - title: Projects
+      permalink: /projects/
+    - title: divider
+    - title: Events
+      permalink: /events/
     - title: divider
     - title: GitHub
       permalink: /github/
-    - title: divider
-    - title: Events
-      permalink: /Events/
 ---
