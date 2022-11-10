@@ -5,7 +5,7 @@ permalink: /projects/
 description: 
 nav: true
 nav_order: 2
-display_categories: [ Control Theory, RL, Online Learning]
+display_categories: [Control Theory, Reinforcement Learning, Online Learning]
 horizontal: false
 ---
 

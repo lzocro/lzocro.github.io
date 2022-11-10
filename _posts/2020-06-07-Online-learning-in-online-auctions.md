@@ -1,12 +1,12 @@
 ---
 layout: distill
 title: Online Learning in Online Auctions
-description: Learning to price for the high-traffic world
-date: 2021-05-22
+description: Learning to price for the high frequency world
+date: 2020-01-15
 
+# Distill style options
 authors:
   - name: Lorenzo Croissant
-    url: "https://en.wikipedia.org/wiki/Albert_Einstein"
     affiliations:
       name: Criteo AI Lab
 
@@ -24,4 +24,10 @@ bibliography: OnlineLearningAuctions.bib
     # subsections:
     #   - name: Example Child Subsection 1
     #   - name: Example Child Subsection 2
+
+
+
+comments: true
+tags: [Online Learning]
+categories: 
 ---

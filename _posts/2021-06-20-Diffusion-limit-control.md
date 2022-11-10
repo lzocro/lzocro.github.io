@@ -1,14 +1,14 @@
 ---
 layout: distill
-title: Online Learning in Online Auctions
-description: Learning to price for the high-traffic world
-date: 2021-05-22
+title: Diffusion Limit Stochastic Control
+description: Efficient approximation for heavy traffic pure-jump problems
+date: 2021-06-20
 
+# Distill style options
 authors:
   - name: Lorenzo Croissant
-    url: "https://en.wikipedia.org/wiki/Albert_Einstein"
     affiliations:
-      name: Criteo AI Lab
+      name: Université Paris-Dauphine, Criteo AI Lab
 
 bibliography: DiffusionLimit1.bib
 
@@ -24,4 +24,15 @@ bibliography: DiffusionLimit1.bib
     # subsections:
     #   - name: Example Child Subsection 1
     #   - name: Example Child Subsection 2
+
+
+
+comments: true
+tags: [Control Theory]
+categories: 
 ---
+
+The citation is presented inline like this: <d-cite key="gregor2015draw"></d-cite> (a number that displays more information on hover).
+
+Just wrap the text you would like to show up in a footnote in a `<d-footnote>` tag.
+The number of the footnote will be automatically generated.<d-footnote>This will become a hoverable footnote.</d-footnote>

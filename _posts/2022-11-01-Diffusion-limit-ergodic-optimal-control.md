@@ -1,14 +1,14 @@
 ---
 layout: distill
-title: Online Learning in Online Auctions
-description: Learning to price for the high-traffic world
-date: 2021-05-22
+title: Ergodic Control with diffusion Limits
+description: Pure-jump processes in their limit, the ergodic case.
+date: 2022-11-01
 
+# Distill style options
 authors:
   - name: Lorenzo Croissant
-    url: "https://en.wikipedia.org/wiki/Albert_Einstein"
     affiliations:
-      name: Criteo AI Lab
+      name: Université Paris-Dauphine, Criteo AI Lab
 
 bibliography: DiffusionLimitErgodic1.bib
 
@@ -24,4 +24,10 @@ bibliography: DiffusionLimitErgodic1.bib
     # subsections:
     #   - name: Example Child Subsection 1
     #   - name: Example Child Subsection 2
+
+
+
+comments: true
+tags: [Control Theory]
+categories: 
 ---

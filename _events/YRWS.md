@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Young Researcher's Winter School
-description: Dauphine Ph.D. and Postdoc retreat. 
+description: CEREMADE Ph.D.+Postdoc retreat. 
 importance: 4
-category: conference
+category: Conferences
 ---
 

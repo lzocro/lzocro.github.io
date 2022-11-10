@@ -5,7 +5,7 @@ title: Events
 description: I helped organise the following events in various capacities.
 nav: true
 nav_order: 5
-display_categories: [ seminar, reading_group, conference]
+display_categories: [Seminars, Reading Groups, Conferences]
 horizontal: false
 ---
 

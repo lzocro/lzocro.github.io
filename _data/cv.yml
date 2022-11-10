@@ -16,27 +16,12 @@
       year: 2020-23
       description:
         - Approximation of pure-jump processes by diffusions. Error bounds in terms of value and control, numerical resolution methods, in finite horizon and ergodic settings.
-        - Application to real-time bidding in online ad auctions.
-        - title: Publications
-          contents: 
-            - paper 1.
-            - paper 2.
-        - Leveraging continuous time stochastic control theory in Exploration-Exploitation dilemmas in RL.
-        - title: Publications
-          contents:
-            - WIP paper
     - title: M2 Masters - MVA (Très Bien)
-      institution: ENS Paris-Saclay
+      institution: Ecole Normale Supérieure Paris-Saclay
       year: 2018-19
-      description:
-        - Summer research interneship at Criteo AI Lab, focused on online learning in auctions.
-        - Courses in Game Theory, Bandits, RL, etc.
     - title: Msci Masters in Mathematics & statistics (First Class Honours)
       institution: University of Lancaster
       year: 2014-18
-      description:
-        - Masters thesis on Multi-Armed Bandits (supervised by Azadeh Khaleghi)
-        - Third year abroad at University of Waterloo, Canada.
 
 - title: Experience
   type: time_table
@@ -46,23 +31,6 @@
       year: 2019-2020
       description:
         - Focused on real-time pricing and bidding in online second price auctions.
-        - Smoothed gradient based methods for online learning under gradient bias (discontinuous empirical objective), highlighting a bias-variance trade-off. Extension to non-stationary regret.
-        - title: Publications
-          contents:
-            - paper 1.
-
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Stochastic Control Theory
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Reinforcement Learning
-      items:
-        - Description 1.
-        - Description 2.
 
 - title: Other Interests
   type: list
