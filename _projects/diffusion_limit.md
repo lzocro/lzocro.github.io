@@ -18,7 +18,8 @@ category: [Control Theory]
 ---
 
 <div style="display:none">
-  \(
+  $$
+  <!-- \( -->
     %\newcommand{\CB}{\mathbb{C}}
     \def\CB{\mathbb{C}}
     \newcommand{\CC}{\mathcal{C}}
@@ -269,7 +270,8 @@ category: [Control Theory]
     \def\xf{\mathfrak{x}}
     \def\yf{\mathfrak{y}}
     \def\zf{\mathfrak{z}}
-  \)
+  $$ 
+  <!-- \) -->
 </div>
 
  
