@@ -21,7 +21,8 @@ category: [Control Theory]
 </div> -->
 
 <div>
-$$ \def\de{\mathrm{d}}
+  $$ 
+    \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
     \def\x{\times}
     \def\ve{\varepsilon}
@@ -30,8 +31,10 @@ $$ \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
     \def\x{\times}
     \def\ve{\varepsilon}
-    \def\dre{\delta r^\ve}
-    %% Blackboard Bolds %%
+    \def\dre{\delta r^\ve} 
+  $$
+    <!-- %% Blackboard Bolds %% -->
+  $$
     \def\Ab{\mathbb{A}}
     \def\Bb{\mathbb{B}}
     \def\Cb{\mathbb{C}}
@@ -58,7 +61,9 @@ $$ \def\de{\mathrm{d}}
     \def\Xb{\mathbb{X}}
     \def\Yb{\mathbb{Y}}
     \def\Zb{\mathbb{Z}}
-    %% Caligraphics %%
+  $$
+    <!-- %% Caligraphics %% -->
+  $$
     \def\Ac{\mathcal{A}}
     \def\Bc{\mathcal{B}}
     \def\Cc{\mathcal{C}}
@@ -85,7 +90,9 @@ $$ \def\de{\mathrm{d}}
     \def\Xc{\mathcal{X}}
     \def\Yc{\mathcal{Y}}
     \def\Zc{\mathcal{Z}}
-    %% Romans %%
+  $$
+    <!-- %% Romans %% -->
+  $$
     \def\Ar{\mathrm{A}}
     \def\Br{\mathrm{B}}
     \def\Cr{\mathrm{C}}
@@ -112,6 +119,8 @@ $$ \def\de{\mathrm{d}}
     \def\Xr{\mathrm{X}}
     \def\Yr{\mathrm{Y}}
     \def\Zr{\mathrm{Z}}
+  $$
+  $$
     \def\ar{\mathrm{a}}
     \def\br{\mathrm{b}}
     \def\cr{\mathrm{c}}
@@ -138,7 +147,9 @@ $$ \def\de{\mathrm{d}}
     \def\xr{\mathrm{x}}
     \def\yr{\mathrm{y}}
     \def\zr{\mathrm{z}}
-    %% Scripts %%
+  $$
+    <!-- %% Scripts %% -->
+  $$
     \def\As{\mathscr{A}}
     \def\Bs{\mathscr{B}}
     \def\Cs{\mathscr{C}}
@@ -164,8 +175,10 @@ $$ \def\de{\mathrm{d}}
     \def\Ws{\mathscr{W}}
     \def\Xs{\mathscr{X}}
     \def\Ys{\mathscr{Y}}
-    \def\Zs{\mathscr{Z}}  
-    %% Bold face %%
+    \def\Zs{\mathscr{Z}}
+  $$  
+    <!-- %% Bold face %% -->
+  $$
     \def\Abf{\mathbf{A}}
     \def\Bbf{\mathbf{B}}
     \def\Cbf{\mathbf{C}}
@@ -192,6 +205,8 @@ $$ \def\de{\mathrm{d}}
     \def\Xbf{\mathbf{X}}
     \def\Ybf{\mathbf{Y}}
     \def\Zbf{\mathbf{Z}}
+  $$
+  $$
     \def\abf{\mathbf{a}}
     \def\bbf{\mathbf{b}}
     \def\cbf{\mathbf{c}}
@@ -218,7 +233,9 @@ $$ \def\de{\mathrm{d}}
     \def\xbf{\mathbf{x}}
     \def\ybf{\mathbf{y}}
     \def\zbf{\mathbf{z}}
-    %% Fraktur %%
+  $$
+    <!-- %% Fraktur %% -->
+  $$
     \def\Af{\mathfrak{A}}
     \def\Bf{\mathfrak{B}}
     \def\Cf{\mathfrak{C}}
@@ -245,6 +262,8 @@ $$ \def\de{\mathrm{d}}
     \def\Xf{\mathfrak{X}}
     \def\Yf{\mathfrak{Y}}
     \def\Zf{\mathfrak{Z}}
+  $$
+  $$
     \def\af{\mathfrak{a}}
     \def\bf{\mathfrak{b}}
     \def\cf{\mathfrak{c}}
@@ -270,7 +289,8 @@ $$ \def\de{\mathrm{d}}
     \def\wf{\mathfrak{w}}
     \def\xf{\mathfrak{x}}
     \def\yf{\mathfrak{y}}
-    \def\zf{\mathfrak{z}} $$
+    \def\zf{\mathfrak{z}} 
+  $$
 <\div>
 
 
