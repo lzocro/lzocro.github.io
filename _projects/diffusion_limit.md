@@ -11,7 +11,7 @@ authors:
     affiliations:
       name: CEREMADE
   - name: Marc Abeille
-    affiliation:
+    affiliations:
       name: Criteo AI Lab 
 importance: 7
 category: [Control Theory]
@@ -283,6 +283,8 @@ category: [Control Theory]
   $$
 </div>
 
+
+
 Control problems are omnipresent in industrial applications of online decision making. In many of these application time evolves in a naturally discrete manner. While discrete time problems are well studied and are relatively easily solved by Dynamic Programming, the frequencies of real-world applications often make this an infeasible approach. This problem is generally avoided using some time-aggregation approximation, such as a continuous time limit. A standard example of this situation is in financial markets: at the microscopic scale there are only order books, which evolve only when the asset is traded; control problems however are often formulated on a (continuous time) diffusion process.
 
 In this project the goal is to assess quantitatively the benefits of such changes of scale in terms of the control problem. More precisely my coauthors and I focus on two directions:
@@ -377,7 +379,17 @@ on $[0,T)\x \Rb^d$. From here the probabilistic interpretation gives us
 
 and it remains to bound $\Vert\dre\Vert_\infty$. This is achieved through regularity analysis of solutions of \eqref{eq: PDE bar V}. Details can be found in the various articles attached to this project.
 
-Theorem .... goes here
+<div class="theorem">
+Under the following assumptions
+<ul>
+<li> $(r,b)$ is Lipschitz uniformly in the control variable</li> 
+<li> there is $\lambda$ $\sigma\sigma^\top\ge \lambda>0$ </li> 
+<li> </li> 
+</ul>
+there is $C>0$ 
+$$ \Vert\dre\Vert_\infty \le C \ve^{\frac12}$$ 
+</div>
+
 
 Diagram of numerical approximation.
 
