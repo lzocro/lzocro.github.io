@@ -16,11 +16,7 @@ authors:
 importance: 7
 category: [Control Theory]
 ---
-
-<!-- <div style="display:none">
-</div> -->
-
-<div>
+<div style="display:none">
   $$ 
     \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
@@ -33,7 +29,6 @@ category: [Control Theory]
     \def\ve{\varepsilon}
     \def\dre{\delta r^\ve} 
   $$
-    <!-- %% Blackboard Bolds %% -->
   $$
     \def\Ab{\mathbb{A}}
     \def\Bb{\mathbb{B}}
@@ -61,8 +56,7 @@ category: [Control Theory]
     \def\Xb{\mathbb{X}}
     \def\Yb{\mathbb{Y}}
     \def\Zb{\mathbb{Z}}
-  $$
-    <!-- %% Caligraphics %% -->
+  $$<!-- %% Caligraphics %% -->
   $$
     \def\Ac{\mathcal{A}}
     \def\Bc{\mathcal{B}}
@@ -90,8 +84,7 @@ category: [Control Theory]
     \def\Xc{\mathcal{X}}
     \def\Yc{\mathcal{Y}}
     \def\Zc{\mathcal{Z}}
-  $$
-    <!-- %% Romans %% -->
+  $$<!-- %% Romans %% -->
   $$
     \def\Ar{\mathrm{A}}
     \def\Br{\mathrm{B}}
@@ -147,8 +140,7 @@ category: [Control Theory]
     \def\xr{\mathrm{x}}
     \def\yr{\mathrm{y}}
     \def\zr{\mathrm{z}}
-  $$
-    <!-- %% Scripts %% -->
+  $$ <!-- %% Scripts %% -->
   $$
     \def\As{\mathscr{A}}
     \def\Bs{\mathscr{B}}
@@ -176,8 +168,7 @@ category: [Control Theory]
     \def\Xs{\mathscr{X}}
     \def\Ys{\mathscr{Y}}
     \def\Zs{\mathscr{Z}}
-  $$  
-    <!-- %% Bold face %% -->
+  $$<!-- %% Bold face %% -->
   $$
     \def\Abf{\mathbf{A}}
     \def\Bbf{\mathbf{B}}
@@ -233,8 +224,7 @@ category: [Control Theory]
     \def\xbf{\mathbf{x}}
     \def\ybf{\mathbf{y}}
     \def\zbf{\mathbf{z}}
-  $$
-    <!-- %% Fraktur %% -->
+  $$<!-- %% Fraktur %% -->
   $$
     \def\Af{\mathfrak{A}}
     \def\Bf{\mathfrak{B}}
@@ -293,9 +283,6 @@ category: [Control Theory]
   $$
 </div>
 
-
-
- 
 Control problems are omnipresent in industrial applications of online decision making. In many of these application time evolves in a naturally discrete manner. While discrete time problems are well studied and are relatively easily solved by Dynamic Programming, the frequencies of real-world applications often make this an infeasible approach. This problem is generally avoided using some time-aggregation approximation, such as a continuous time limit. A standard example of this situation is in financial markets: at the microscopic scale there are only order books, which evolve only when the asset is traded; control problems however are often formulated on a (continuous time) diffusion process.
 
 In this project the goal is to assess quantitatively the benefits of such changes of scale in terms of the control problem. More precisely my coauthors and I focus on two directions:
