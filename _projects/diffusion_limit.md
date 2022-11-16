@@ -17,15 +17,15 @@ importance: 7
 category: [Control Theory]
 ---
 
+<!-- <div style="display:none">
+</div> -->
 
+<div>
 $$ \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
     \def\x{\times}
     \def\ve{\varepsilon}
-    \def\dre{\delta r^\ve} $$
-
-<span style="display:none">
-  \(
+    \def\dre{\delta r^\ve}
     \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
     \def\x{\times}
@@ -270,12 +270,10 @@ $$ \def\de{\mathrm{d}}
     \def\wf{\mathfrak{w}}
     \def\xf{\mathfrak{x}}
     \def\yf{\mathfrak{y}}
-    \def\zf{\mathfrak{z}}
-  \)
-</span>
+    \def\zf{\mathfrak{z}} $$
+<\div>
 
-<!-- <div style="display:none">
-</div> -->
+
 
  
 Control problems are omnipresent in industrial applications of online decision making. In many of these application time evolves in a naturally discrete manner. While discrete time problems are well studied and are relatively easily solved by Dynamic Programming, the frequencies of real-world applications often make this an infeasible approach. This problem is generally avoided using some time-aggregation approximation, such as a continuous time limit. A standard example of this situation is in financial markets: at the microscopic scale there are only order books, which evolve only when the asset is traded; control problems however are often formulated on a (continuous time) diffusion process.
