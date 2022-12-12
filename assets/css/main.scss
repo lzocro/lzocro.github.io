@@ -40,13 +40,13 @@ body {
 }
 .proposition:before {
   counter-increment: proposition;
-  content: "Proposition" counter(proposition) ". ";
+  content: "Proposition " counter(proposition) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .proposition[name]:before {
   counter-increment: proposition;
-  content: "Proposition" counter(proposition) "." attr(name) ". ";
+  content: "Proposition " counter(proposition) "." attr(name) ". ";
   font-weight: bold;
   font-style: normal;
 }
@@ -58,13 +58,13 @@ body {
 }
 .lemma:before {
   counter-increment: lemma;
-  content: "Lemma" counter(lemma) ". ";
+  content: "Lemma " counter(lemma) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .lemma[name]:before {
   counter-increment: lemma;
-  content: "Lemma" counter(lemma) "." attr(name) ". ";
+  content: "Lemma " counter(lemma) "." attr(name) ". ";
   font-weight: bold;
   font-style: normal;
 }
@@ -89,13 +89,13 @@ body {
 }
 .definition:before {
   counter-increment: definition;
-  content: "Definition" counter(definition) ". ";
+  content: "Definition " counter(definition) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .definition[name]:before {
   counter-increment: definition;
-  content: "Definition" counter(definition) "." attr(name) ". ";
+  content: "Definition " counter(definition) "." attr(name) ". ";
   font-weight: bold;
   font-style: normal;
 }
@@ -106,7 +106,7 @@ body {
 }
 .example:before {
   counter-increment: example;
-  content: "Example" counter(example) ". ";
+  content: "Example " counter(example) ". ";
   font-weight: bold;
   font-style: normal;
 }
