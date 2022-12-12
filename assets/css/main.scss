@@ -13,14 +13,40 @@ $max-content-width: {{ site.max_width }};
   "base",
   "distill"
 ;
+body {
+  counter-reset:theorem;
+  counter-reset:lemma;
+  counter-reset:proposition;
+  counter-reset:definition;
+  counter-reset:example;
+}
 
-.theorem {
+.theorem:before {
+  counter-increment: theorem; 
+  content: "Theorem " counter(theorem) ".";
+  font-weight: bold;
+  font-style: normal;
+}
+.theorem[name]:before {
+  content: "Theorem " counter(theorem) ". " attr(name) ". ";
+  font-weight: bold;
+  font-style: normal;
+} /* for nammed theorems, pass name="...", doesn't work :'(*/
+
+.proposition {
   display: block;
   margin: 12px 0;
   font-style: italic;
 }
-.theorem:before {
-  content: "Theorem.";
+.proposition:before {
+  counter-increment: proposition;
+  content: "Proposition" counter(proposition) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+.proposition[name]:before {
+  counter-increment: proposition;
+  content: "Proposition" counter(proposition) "." attr(name) ". ";
   font-weight: bold;
   font-style: normal;
 }
@@ -31,11 +57,17 @@ $max-content-width: {{ site.max_width }};
   font-style: italic;
 }
 .lemma:before {
-  content: "Lemma.";
+  counter-increment: lemma;
+  content: "Lemma" counter(lemma) ". ";
   font-weight: bold;
   font-style: normal;
 }
-
+.lemma[name]:before {
+  counter-increment: lemma;
+  content: "Lemma" counter(lemma) "." attr(name) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
 .proof {
   display: block;
   margin: 12px 0;
@@ -56,7 +88,25 @@ $max-content-width: {{ site.max_width }};
   font-style: normal;
 }
 .definition:before {
-  content: "Definition.";
+  counter-increment: definition;
+  content: "Definition" counter(definition) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+.definition[name]:before {
+  counter-increment: definition;
+  content: "Definition" counter(definition) "." attr(name) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+.example {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.example:before {
+  counter-increment: example;
+  content: "Example" counter(example) ". ";
   font-weight: bold;
   font-style: normal;
 }

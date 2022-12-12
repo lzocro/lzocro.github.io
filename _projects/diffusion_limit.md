@@ -15,6 +15,7 @@ authors:
       name: Criteo AI Lab 
 importance: 7
 category: [Control Theory]
+bibliography: DiffusionLimit1.bib
 ---
 <div style="display:none">
   $$ 
@@ -331,7 +332,7 @@ $$\begin{align}
 
 This equation is integro-differential, so it is rather unpleasant to solve numerically. The real issue in high-frequency applications is the multiplicative term in the frequency of jumps $\eta$ in front of the integral. This scaling implies that errors are blown up, and therefore that the numerical approximation of the integral must be very fine, and increasingly so as $\eta\to+\infty$.
 
-However, there are certain instances where the death sentence given by this intuition can be avoided. In many applications a \emph{diffusion limit} problem is solved efficiently as an approximation. In this project we seek to investigate precise convergence rates for this approximation. The remainder of this post gives an overview of the approach, starting with the details of the diffusion limit and continuing with some high-level results, and then a quick review of explored aspects of the problem and possible extensions.
+However, there are certain instances where the death sentence given by this intuition can be avoided. In many applications a <i>diffusion limit</i> problem is solved efficiently as an approximation. In this project we seek to investigate precise convergence rates for this approximation. The remainder of this post gives an overview of the approach, starting with the details of the diffusion limit and continuing with some high-level results, and then a quick review of explored aspects of the problem and possible extensions.
 
 ## The Diffusion Limit 
 
@@ -353,7 +354,7 @@ for all $(x,a)\in \Rb^d \x \Ab$. The solution to this SDE exists and is unique u
 
 Then, given some regularity on $r$, we can define the diffusive control problem
 
-\\[ \bar V(t,x):=\sup_{\bar\alpha \in \bar \Ac^{t}} \bar \Eb\left[\int_{t}^{T}r(\bar X^{t,x, \bar\alpha}_s, \bar\alpha_s) \de s\right]\,, \\]
+\\[ \bar V(t,x):=\sup_{\bar\alpha \in \bar \Ac^{t}}  \Eb\left[\int_{t}^{T}r(\bar X^{t,x, \bar\alpha}_s, \bar\alpha_s) \de s\right]\,, \\]
 for any $(t,x)\in [0,T]\x \Rb$. As in the pure-jump case, it is well known that $\bar V$ is the unique bounded viscosity solution of the PDE
 
 $$\begin{align}
@@ -361,7 +362,7 @@ $$\begin{align}
 &\bar V(T,\cdot)=0,\; \mbox{on } \Rb^d. \notag
 \end{align}$$
 
-The diffusive PDE \eqref{eq: PDE bar V} is still non-linear but it doesn't involve an expectation anymore, and it has been studied at great length. This advantage is both analytic (regularity results and methods are readily found in the litterature), and numeric (there is a plethora of well studied schemes for \eqref{eq: PDE bar V}). Nevertheless, it is non-trivial to ascertain that in this general framework the control problems converge as $\ve\to0^+$ and the rate of convergence isn't known. Such approximation certificates would provide the rigourous grounding of the use of numerical resolution of the much simpler equation \eqref{eq: PDE bar V} for high-frequency control problems.
+The diffusive PDE \eqref{eq: PDE bar V} is still non-linear but it doesn't involve an integral anymore, and it has been studied at great length. This advantage is both analytic (regularity results and methods are readily found in the litterature), and numeric (there is a plethora of well studied schemes for \eqref{eq: PDE bar V}). Nevertheless, it is non-trivial to ascertain that in this general framework the control problems converge as $\ve\to0^+$ and the rate of convergence isn't known. Such approximation certificates would provide the rigourous grounding of the use of numerical resolution of the simpler equation \eqref{eq: PDE bar V} for high-frequency control problems.
 
 ## Approximation results
 
@@ -377,30 +378,37 @@ on $[0,T)\x \Rb^d$. From here the probabilistic interpretation gives us
 
 \\[ \vert \bar V - V_\ve \vert \le \sup_{\alpha\in \Ac}\Eb\left[ \int_0^T \vert \dre \vert (X^{t,x, \alpha}_s, \alpha_s)\de N_s \right] \\]
 
-and it remains to bound $\Vert\dre\Vert_\infty$. This is achieved through regularity analysis of solutions of \eqref{eq: PDE bar V}. Details can be found in the various articles attached to this project.
+and it remains to bound $\Vert\dre\Vert_\infty$. This is achieved through regularity analysis of solutions of \eqref{eq: PDE bar V}, see Proposition 1 below. Details can be found in the various articles attached to this project. Theorem 1 below gives a result from <d-cite key="ABC21"></d-cite> as the simplest illustration. 
 
-<div class="theorem">
+<div class="proposition">
 Under the following assumptions
 <ul>
-<li> $(r,b)$ is Lipschitz uniformly in the control variable</li> 
-<li> there is $\lambda$ $\sigma\sigma^\top\ge \lambda>0$ </li> 
-<li> </li> 
+<li> $d=1$</li> 
+<li> $(r,b_1,b_2)$ is Lipschitz and bounded uniformly in the control variable</li> 
+<li> there is $\lambda>0$ such that $\sigma\sigma^\top\ge \lambda$ </li> 
 </ul>
 there is $C>0$ 
 $$ \Vert\dre\Vert_\infty \le C \ve^{\frac12}$$ 
 </div>
 
+Therefore, we can conclude about the approximation with Theorem 2.
 
-Diagram of numerical approximation.
+<div class="theorem" name="L's thm">
+Under the above assumptions, there is $C>0$ such that for all $t\le T$
+$$ \vert\vert \bar V - V_\ve \vert \le C \ve^{\frac12}$$
+and moreover, any optimal control $\bar\alpha$ for $\bar V$ satisfies 
+$$ V_\ve - J_\ve(\bar\alpha)\le C \ve^{\frac12}\,.$$
+</div>
 
+## Conclusion
 
+Theorem 1 represents only the essential first step in this line of work. It serves to illustrate the motivation behind the work: Controlling pure-jump processes in the high-frequency regime is costly and any analysis is complicated by the non-local nature of the HJB equation. We characterise the convergence rate of control problems along a particular small jump limit regime as the frequency of jumps $\eta\to+\infty$. This gives a principled motivation to the use of this diffusive limit approximation in practice. It also gives principles numerical schemes "for free". From an analytic standpoint we have essentially reduced the problem of analysis to the question of the regularity of the limit problem. 
 
-## Other Aspects
+There are many technical points which I haven't highlighted here for the sake of brevity, and many interesting directions beyond this first result. For instance, I presented here a 1D finite horizon control problem but in <d-cite key="ABC22"></d-cite> we extended this study to the finite dimensional ergodic setting and also from bounded growth to $b_1$ of linear growth (at the cost of extra assumptions). We also studied the possibility of correcting the error by repeating this procedure to higher orders involving a set of (possibly coupled) differential equations. 
 
-Theorem ... represents only the essential first step in this line of work. There are many technical points which I haven't highlighted here for the sake of brevity, and some interesting directions beyond this first result. For instance, I considered here a finite horizon control problem but in [cite] we extended this study to the ergodic setting and also from bounded growth to $b$ of linear growth. We also studied the possibility of correcting the error by repeating this procedure to higher orders involving a set of (possibly coupled) differential equations. 
+In the context of another [project page](/projects/RL_diff_limit), I present the extension to the reinforcement learning problem, i.e. where $b$ and $r$ are unknown a priori and are learned from sequential interaction.
 
-In the context of another project page, we studied the extension to the reinforcement learning problem, i.e. where $b$ and $r$ are unknown a priori and are learned from sequential interaction.
-
+From a more involved analytic perspective, I have written up some thoughts under another [project page](/projects/process_approximation_in_control) about a promising generalisation of this approach which is also elaborated on in [this blog post](/_posts/2022-12-12-Generator-approximation-in-control)
 
 
 ## Extensions
@@ -418,17 +426,12 @@ In theory, if the resulting error is smooth enough we could repeat the process. 
 
 Finally, from a practical perspective there is a question over the learning of coefficients, see also [cite other project], and especially the possibility of estimating $\ve$ in real systems. There might be some connections here to the estimation of Hurst-coefficients in fractional Brownian motions.
 
-
-## Conclusion
-
+## See also
 
 
+[Application to Reinforcement Learning.](/projects/RL_diff_limit)
 
-## Bibliography
-
-
-
-
+[A more general analytic framework for process approximations in control.](/projects/process_approximation_in_control)
 
 
 

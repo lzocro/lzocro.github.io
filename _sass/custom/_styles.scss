@@ -1,10 +1,34 @@
+
+
+
+
+/* unsued, edit main.scss instead! */
+
+
 .theorem {
     display: block;
     margin: 12px 0;
     font-style: italic;
 }
 .theorem:before {
-    content: "Theorem.";
+    counter-increment: theorem; 
+    content: "Theorem " counter(theorem) ".";
+    font-weight: bold;
+    font-style: normal;
+}
+.theorem[name]:before {
+    content: "Theorem " counter(theorem) ". " attr(name) ". ";
+    font-weight: bold;
+    font-style: normal;
+  } /* for nammed theorems, pass name="...", doesn't work :'(*/
+
+.proposition {
+    display: block;
+    margin: 12px 0;
+    font-style: italic;
+}
+.proposition:before {
+    content: "Proposition.";
     font-weight: bold;
     font-style: normal;
 }
