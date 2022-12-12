@@ -393,11 +393,11 @@ $$ \Vert\dre\Vert_\infty \le C \ve^{\frac12}$$
 
 Therefore, we can conclude about the approximation with Theorem 2.
 
-<div class="theorem" name="L's thm">
+<div class="theorem">
 Under the above assumptions, there is $C>0$ such that for all $t\le T$
-$$ \vert\vert \bar V - V_\ve \vert \le C \ve^{\frac12}$$
+$$ \vert\vert \bar V - V_\ve \vert \le C(T-t) \ve^{\frac12}$$
 and moreover, any optimal control $\bar\alpha$ for $\bar V$ satisfies 
-$$ V_\ve - J_\ve(\bar\alpha)\le C \ve^{\frac12}\,.$$
+$$ V_\ve - J_\ve(\bar\alpha)\le C(T-t) \ve^{\frac12}\,.$$
 </div>
 
 ## Conclusion
@@ -415,7 +415,7 @@ From a more involved analytic perspective, I have written up some thoughts under
 
 There are some interesting extensions that would merit consideration in this setting.
 
-First, some matters of generalisation. The lynchpin of this method is the approximation of the generator $\Lc$ of the pure-jump process by $\bar\Lc$, insofar as they are applied to $\bar V$. These are the only terms that differ between the two HJB equations. The analysis above should then be applicable to any process for which we can bound the difference $\vert \Lc -\bar\Lc\vert \bar V$. There are many possible candidates for extensions here, whose inventory would be interesting from a probabilistic standpoint. Another generalisation would of course involve the study of different control problems, such as optimal stopping. 
+First, some matters of generalisation. The lynchpin of this method is the approximation of the generator $\Lc$ of the pure-jump process by $\bar\Lc$, insofar as they are applied to $\bar V$. These are the only terms that differ between the two HJB equations. This discussion is the topic of [this project page](/_projects/Process_approximation_in_control.md). Another generalisation would of course involve the study of different control problems, such as optimal stopping. 
 
 Second, there is the interesting point of the iterated error correction. Suppose the rescaled error term $\ve^{-\frac\gamma2}\dre$ is regular, and consider the equation.
 \\[ \partial_{t} \bar v +\eta_\ve\sup_{\bar a\in \Ab}\left( \int \bar v(\cdot,\cdot+b_\ve(\cdot,\bar a,e))-\bar v\nu(\de e)+\ve^{\frac\gamma2}\dre(\cdot,\bar a)\right)=0 \\]
