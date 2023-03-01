@@ -2,6 +2,7 @@
 layout: distill
 title: Online Learning in Online Auctions
 description: Dynamics in markets
+date: 2020-12-01
 img: assets/img/IMG_4044.jpg
 authors:
   - name: Lorenzo Croissant
@@ -15,6 +16,14 @@ authors:
       name: Criteo AI Lab
 importance: 3
 category: [Online Learning]
+toc:
+  - name: Introduction
+  - name: The Second Price Auction
+  - name: A Peculiar ERM
+  - name: Smoothed Gradient Descent
+  - name: Convergence Notions
+  - name: Conclusion
+  - name: Extensions
 ---
 <div style="display:none">
   $$ 
@@ -285,4 +294,55 @@ category: [Online Learning]
 
 
 
-## Title
+## Introduction
+
+How complicated can it possibly be to sell a bottle of wine? 
+
+From this surprisingly straightforward question has arisen the fertile, if somewhat obscure, field of Auction Theory<d-footnote> This theory is more properly referred to as Mechanism Design, but this generalisation is not relevant here so I will use Auction Theory for clarity.</d-footnote>. It is fertile in part because it sits neatly at the confluence of mathematics, computer science, economics, sociology and psychology, very much like the related field of Game Theory. It has led to several economics Nobel prizes, influenced real-world market design for public tenders in telecom and other sectors, and it underpins key questions regarding the funding model of the internet.
+
+Indeed, almost all ads on the internet are sold at auction in a highly automated manner (all of it happens while your page is loading, in about $50$ ms). Whether these auctions are priced efficiently, fairly, and transparently, is therefore a key, if largely ignored, question concerning our daily lives. 
+
+I won't go into fairness here, only into questions of efficiency. In particular, I would like to answer the following questions:
+ <ol type='i'>
+  <li>How can I accurately determine the price to sell each bottle of wine to a buyer if I have, say, $10^{10}$ bottles? </li>
+  <li>If I have $50$ ms between each sale to determine the price, can I still price effectively</li>
+</ol> 
+
+## The Second Price Auction
+
+To begin to answer i. we need to start by thinking about the design of the auction itself. Having collected prospective buyers, do I ask them to submit rising bids publicly? Do I ask them to submit sealed envelopes and take the highest bid? Do I name descending prices until someone accepts? How much should the winner pay? Why shouldn't I charge losers pay too? 
+
+The answers to the last two questions probably seem obvious, but they are surprisingly complex, and they heavily impact the equilibrium behaviour of the bidders. The choice of the seller often lands on the <i>second price</i> auction, in which the highest bidder wins and pays the smallest bid which still wins her the auction. Unlike the <i>first price</i> auction, in which you pay your own bid, this format incentivises players to bid according to the true value they assign to the item. 
+
+We will therefore study a second price auction, but in order to avoid large losses, we will set a minimum price of sale, a <i>reserve price</i>, for each item and bidder, and announce them publically. Setting an individualised reserve price is particularly important when there is strong asymmetry amongst the buyer's value for the item, leading the second-highest bid to be much lower than the winning bid and therefore poor pricing.
+
+## A Peculiar ERM
+
+discontinuous function + plot, ERM can have many minima
+SGD can't converge properly on it.
+
+
+## Smoothed Gradient Descent
+
+remove discontinuity, swap integral and gradient
+what functions preserve pseudo-conv by convolution? old paper by Ibragimov
+
+
+## Convergence Notions
+
+trade-off between bias and variance for rate + plot from paper
+
+
+## Conclusion
+
+Real-time alg, fully online 
+
+All in all, it is surprisingly hard to sell a bottle of wine properly!
+
+## Extensions
+
+First price auctions, stationary bandit, optimal rate or no optimal rate at $O(1)$ alg?
+
+Question of pseudo-concavity when adding a model in higher dimensions
+
+Newton methods?

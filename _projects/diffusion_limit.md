@@ -362,7 +362,7 @@ for any $(t,x)\in [0,T]\x \Rb$.
 
 As in the pure-jump case, $\bar V$ is the unique (bounded) viscosity solution of the PDE
 $$\begin{align}
-&0=\partial_{t} \bar V +\sup_{\bar a\in \Ab}\left\{\mu(\cdot,\bar a)\cdot\partial_{x} \bar V  +\frac12 \Tr[\sigma\sigma^\top(\cdot,\bar a) \partial^{2}_{xx}\bar V] +r(\cdot,\bar a)\right\}\mbox{ on } [0,T)\x \Rb^d,\label{eq: PDE bar V}\\
+&0=\partial_{t} \bar V +\sup_{\bar a\in \Ab}\left\{\mu(\cdot,\bar a)\cdot\partial_{x} \bar V  +\frac12 \Tr[\sigma\sigma^\top(\cdot,\bar a) \partial^{2}_{xx}\bar V] +r(\cdot,\bar a)\right\}\mbox{ on } [0, T)\x \Rb^d,\label{eq: PDE bar V}\\
 &0=\bar V(T,\cdot)\; \mbox{on } \Rb^d. \notag
 \end{align}$$
 
