@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Diffusion Limit Stochastic Control
+title: Generator approximations in control
 description: Efficient approximation for heavy traffic pure-jump problems
 date: 2022-12-12
 

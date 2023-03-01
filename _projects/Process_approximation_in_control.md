@@ -282,7 +282,7 @@ bibliography: DiffusionLimit1.bib
 
 ## Background
 
-This technical note assumes extensive control theory and functional analysis background, to provide a higher level overview extending [this project on diffusion limits of pure jump processes](/_projects/Diffusion_limit.md). 
+This technical note assumes extensive control theory and functional analysis background, to provide a higher level overview extending [this project on diffusion limits of pure jump processes](/projects/Diffusion_limit/). 
 
 In optimisation theory in $\Rb^d$ it is common to study a difficult optimisation problem via a surrogate objective, which has more desirable properties (typically convexity) but has an optimum near or identical to the original objective. However, in functional optimisation and in particular in control theory this is perhaps a less popular angle of attack into practical problems. 
 
