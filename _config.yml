@@ -200,7 +200,7 @@ defaults:
   - scope:
       path: "assets/**/*.*"
     values:
-      sitemap: false
+      sitemap: true
 
 # -----------------------------------------------------------------------------
 # Jekyll Minifier
