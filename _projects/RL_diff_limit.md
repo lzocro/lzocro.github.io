@@ -29,13 +29,13 @@ bibliography: RLdifflimit.bib
     \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
     \def\x{\times}
-    \def\ve{\varepsilon}
-    \def\dre{\delta r^\ve}
+    \def\varepsilon{\varepsilon}
+    \def\dre{\delta r^\varepsilon}
     \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
     \def\x{\times}
-    \def\ve{\varepsilon}
-    \def\dre{\delta r^\ve} 
+    \def\varepsilon{\varepsilon}
+    \def\dre{\delta r^\varepsilon} 
   $$
   $$
     \def\Ab{\mathbb{A}}
@@ -298,9 +298,9 @@ The Reinforcement Learning (RL) problem can be generally understood as the probl
 In order to focus on the control/learning interplay, I will choose a very restrictive RL framework which I call non-episodic online model-based RL. Let us consider a family of $\Rb^d$-valued controlled stochastic processes $(X^{\alpha})\_{\alpha\in\Ac}$, and a reward function $r:\Rb^d\x\Ab\to\Rb$, in which $\Ab$ is the set of control values. To represent the uncertainty, we consider a finite-dimensional collection of models $\theta\in\Theta\subset\Rb^{d\_\Theta}$, amongst which lies an unknown real value $\theta^*$. For each $\theta\in\Theta$, we denote by $(X^{\theta,\alpha})\_{\alpha\in\Ac}$ the corresponding family of controlled processes whose dynamics are parametrised by $\theta$. Our objective<d-footnote>We consider measurability requirements, e.g. in admissible controls $\Ac$, w.r.t $X^{\theta^*,\alpha}$ henceforth.</d-footnote> is to solve 
 
 $$\begin{align}
-    rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1T\Eb\left[\sum_{s=0}^T r(X^{\theta^*,\alpha}_s,\alpha_s)\right],\label{eq:rho*}
+    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1T\Eb\left[\sum_{s=0}^T r(X^{\theta^*,\alpha}_s,\alpha_s)\right],\label{eq:rho*}
 \end{align}$$
-in which $m$ is a measure (typically the counting measure), without a priori knowledge of $\theta^*. 
+in which $m$ is a measure (typically the counting measure), without a priori knowledge of $\theta^*$. 
 
 The use of an ergodic (i.e. long-term average) criterion is motivated by 
 <ol type='i'>
@@ -331,9 +331,9 @@ Therefore, in this project, I strive to generalise the OFU principle to non-line
 
 ## Methodology
 
-When considering general non-linear problems on continuous state spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta\_\varepsilon:=\varepsilon^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
+When considering general non-linear problems on continuous state spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta_:=\ve^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
 $$\begin{align}
-    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1{T\eta_\ve}\Eb\left[\int_0^T r(X^{\theta^*,\alpha}_{s-},\alpha_{s-})\de N_s\right].\label{eq:rho*CT}
+    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1{T\eta_\varepsilon}\Eb\left[\int_0^T r(X^{\theta^*,\alpha}_{s-},\alpha_{s-})\de N_s\right].\label{eq:rho*CT}
 \end{align}$$
 
 In order to write the learning problem more clearly, let's specify the model structure a bit by assuming that the dynamics of $X^{\theta,\alpha}$ are the solution to the Stochastic Difference Equation:
@@ -352,6 +352,15 @@ Uniformly in $(\theta,a)\in\Theta\times\Ab$
 </ol>
 </div>
 
+<div class='assumption'>
+    There is $(\ell_\Vs,L_\Vs,\cf_\Vs,M_\Vs,M_\Vs')\in\Rb_+^5$  and a Lyapunov function $\Vs\in\Cc^{2}(\Rb^d_*;\Rb_+)$ satisfying, for any $(x,x',a,\theta)\in\Rb^d\x\Rb^d\x\Ab\x\Theta$, $x\neq x'$, and $\varepsilon \in (0,1)$:
+$$\begin{align}
+    &%\text{{\rm{(i.)}}}\qquad\qquad\quad \ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert\,,\notag\\
+    %&\text{{\rm{(ii.)}}}\quad\quad \sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'\,,\notag\\
+    %&\text{{\rm{(iii.)}}}\quad \Vs(x+ \varepsilon\bar\mu(x,a)-x'-\varepsilon\bar\mu(x',a))\le (1-\varepsilon \cf_\Vs)\Vs(x-x')\,. \notag%\label{eq:lyapunov asmp joint on jump problem}
+\end{align}$$
+</div>
+
 Using ergodic control results, we can characterise the optimal value of this problem as the unique solution of the Hamilton-Jacobi-Bellman (HJB) equation associated with the ergodic control problem. This integral equation also characterises an optimal control. To apply OFU to this class we still need a learning methodology to build confidence sets for non-linear systems. This can be done in the framework of <d-cite key='russo_eluder_2013'></d-cite> using Non-Linear Least-Square, in which 
 
 $$\begin{align}
@@ -364,7 +373,7 @@ $$\begin{align}
 \end{align}$$
 for a suitable choice of $\beta_t(\delta)$ which is of the order of $\sqrt{\log(N_T)}$ up to complexity metrics.
 
-With these two components, up to the analysis we should be able to apply the OFU principle to generic non-linear problems.
+With these two components, up to the analysis, we should be able to apply the OFU principle to generic non-linear problems.
 
 ## Results
 
@@ -375,14 +384,14 @@ Unfortunately, the analysis can't quite be extended as is from the literature fo
     <li>  We need some improved concentration bounds beyond simple ergodicity to ensure the regret from the process trying to escape to infinity is small. </li>
 </ol>
 
-In <d-cite key="CAB23"></d-cite> we solve the first problem by localising complexity measures to only consider regions effectively traversed instead of the whole space. This clips the complexity bounds in terms of the concentration of the process and makes the regret meaningful again, since we also solve the third problem by deriving a concentration inequality from a Stochastic Lyapunov Condition. The second problem is solved by using a functional inequality to enrich the results of <d-cite key="russo_eluder_2013"></d-cite>. The resulting regret bound is given by Theorem 1, details can be found in the paper.
+In <d-cite key="CAB23"></d-cite> we solve the first problem by localising complexity measures to only consider regions effectively traversed instead of the whole space. This clips the complexity bounds in terms of the concentration of the process and makes the regret meaningful again since we also solve the third problem by deriving a concentration inequality from a Stochastic Lyapunov Condition. The second problem is solved by using a functional inequality to enrich the results of <d-cite key="russo_eluder_2013"></d-cite>. The resulting regret bound is given by Theorem 1, details can be found in the paper.
 
 <div class="theorem">
-Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\Rb_+$ independent of $\ve$ such that our algorithm $\alpha$ achieves 
+Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\Rb_+$ independent of $\varepsilon$ such that our algorithm $\alpha$ achieves 
     $$\begin{align}
-        R_T(\alpha) \le  C\sqrt{\mathrm{d}_{E,N_T}\log(\Ns_{N_T}^\ve) T\log(T\delta^{-1})} 
+        R_T(\alpha) \le  C\sqrt{\mathrm{d}_{E,N_T}\log(\Ns_{N_T}^\varepsilon) T\log(T\delta^{-1})} 
     \end{align}$$
-    with probability at least $1-\delta$, in which $\mathrm{d}_{E,N_T}$ is the effective<d-footnote>Meaning the eluder dimension of the set of restrictions to the ball of radius $\sup\_{s\le t}\lVert X^{\theta^*,\alpha}_s\rVert$.</d-footnote> $2\ve/\sqrt{T}$-eluder dimension and $\log(\Ns_{N_T}^\ve)$ is the effective<d-footnote>Essentially likewise.</d-footnote> $\ve^{2}\lVert\bar\Sigma\rVert_{\rm{op}}^2/T$-log-covering number.
+    with probability at least $1-\delta$, in which $\mathrm{d}_{E,N_T}$ is the effective<d-footnote>Meaning the eluder dimension of the set of restrictions to the ball of radius $\sup\_{s\le t}\lVert X^{\theta^*,\alpha}_s\rVert$.</d-footnote> $2\varepsilon/\sqrt{T}$-eluder dimension and $\log(\Ns_{N_T}^\varepsilon)$ is the effective<d-footnote>Essentially likewise.</d-footnote> $\varepsilon^{2}\lVert\bar\Sigma\rVert_{\rm{op}}^2/T$-log-covering number.
 <div>
 
 
