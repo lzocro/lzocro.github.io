@@ -25,6 +25,11 @@ body {
   counter-reset:assumption;
 }
 
+.theorem {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
 .theorem:before {
   counter-increment: theorem; 
   content: "Theorem " counter(theorem) ".";
@@ -32,10 +37,13 @@ body {
   font-style: normal;
 }
 .theorem[name]:before {
+  counter-increment: theorem; 
   content: "Theorem " counter(theorem) ". " attr(name) ". ";
   font-weight: bold;
   font-style: normal;
 } /* for nammed theorems, pass name="...", doesn't work :'(*/
+
+
 
 .proposition {
   display: block;

@@ -1,8 +1,8 @@
 ---
 layout: page
-permalink: /repositories/
+permalink: /github/
 title: GitHub
-description: This page collects my public code stored on github.
+description: This page collects my public code stored on github. There isn't a lot of it and it isn't very good, but you may pilfer it as you please.
 nav: false
 ---
 

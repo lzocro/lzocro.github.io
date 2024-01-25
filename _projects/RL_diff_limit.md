@@ -390,8 +390,6 @@ Unfortunately, the analysis can't quite be extended as is from the literature fo
 
 In <d-cite key="CAB23"></d-cite> we solve the first problem by localising complexity measures to only consider regions effectively traversed instead of the whole space. This clips the complexity bounds in terms of the concentration of the process and makes the regret meaningful again since we also solve the third problem by deriving a concentration inequality from a Stochastic Lyapunov Condition. The second problem is solved by using a functional inequality to enrich the results of <d-cite key="russo_eluder_2013"></d-cite>. The resulting regret bound is given by Theorem 1, details can be found in the paper <d-cite key='CAB23'></d-cite> which is being published at ALT2024 and also appeared in the EWRL workshop as <d-cite key='CAB23EWRL'></d-cite>.
 
-
-
 <div class="theorem">
 Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\Rb_+$ independent of $\ve$ such that our algorithm $\alpha$ achieves 
     $$\begin{align}
@@ -399,7 +397,6 @@ Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\R
     \end{align}$$
     with probability at least $1-\delta$, in which $\mathrm{d}_{E,N_T}$ is the $2\ve/\sqrt{T}$-effective<d-footnote>Meaning the eluder dimension of the set of restrictions to the ball of radius $\sup_{s\le T}\lVert X^{\theta^*,\alpha}_s\rVert$.</d-footnote> eluder dimension and $\log(\Ns_{N_T}^\ve)$ is the $\ve^{2}\lVert\bar\Sigma\rVert_{\rm{op}}^2/T$-effective<d-footnote>Essentially likewise.</d-footnote> log-covering number.
 </div>
-
 
 ## Ongoing and future work
 
