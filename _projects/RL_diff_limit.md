@@ -28,14 +28,13 @@ bibliography: RLdifflimit.bib
   $$ 
     \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
+    \def\ve{\varepsilon}
     \def\x{\times}
-    \def\varepsilon{\varepsilon}
-    \def\dre{\delta r^\varepsilon}
+    \def\dre{\delta r^\ve}
     \def\de{\mathrm{d}}
     \def\De{\mathrm{D}}
     \def\x{\times}
-    \def\varepsilon{\varepsilon}
-    \def\dre{\delta r^\varepsilon} 
+    \def\dre{\delta r^\ve} 
   $$
   $$
     \def\Ab{\mathbb{A}}
@@ -300,13 +299,13 @@ In order to focus on the control/learning interplay, I will choose a very restri
 $$\begin{align}
     \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1T\Eb\left[\sum_{s=0}^T r(X^{\theta^*,\alpha}_s,\alpha_s)\right],\label{eq:rho*}
 \end{align}$$
-in which $m$ is a measure (typically the counting measure), without a priori knowledge of $\theta^*$. 
+ without a priori knowledge of $\theta^*$. 
 
 The use of an ergodic (i.e. long-term average) criterion is motivated by 
 <ol type='i'>
     <li> The absence of episodes: it allows the learning game to run forever along the same trajectory, </li>
     <li> Analytical reasons: absence of terminal times forces us to rely only on the inherent regularity of the process</li>
-    <li> The existence of turnpike properties, which will allow us to move back to finite horizon systems, in some learnable regimes.</li>
+    <li> The existence of turnpike properties, which will allow us to move back to finite-horizon systems, in some learnable regimes.</li>
 </ol>
 
 As usual in RL theory, we use the regret as a performance measure, which is defined, for any $\alpha\in\Ac$ as
@@ -318,7 +317,7 @@ This is natural for studying the interplay of decisions and learning since it pr
 
 ## The OFU principle
 
-The study of optimal exploration in non-episodic online RL problems has been underpinned since <d-cite></d-cite> by the optimism in the face of uncertainty (OFU) principle. This principle states that optimal exploration is obtained by playing greedily with respect to $\tilde\theta\_t$, the most optimistic<d-footnote>In terms of $\rho^*_{\tilde\theta_t}$, defined by analogy to \eqref{eq:rho*}.</d-footnote> estimate of $\theta^*$ at time $t$ inside some reasonable confidence region. 
+The study of optimal exploration in non-episodic online RL problems has been underpinned since <d-cite key='auer_finite-time_2002'></d-cite> by the optimism in the face of uncertainty (OFU) principle. This principle states that optimal exploration is obtained by playing greedily with respect to $\tilde\theta\_t$, the most optimistic<d-footnote>In terms of $\rho^*_{\tilde\theta_t}$, defined by analogy to \eqref{eq:rho*}.</d-footnote> estimate of $\theta^*$ at time $t$ inside some reasonable confidence region. 
 
 This methodology originates in bandit theory, see e.g. <d-cite key="lattimore_bandit_2020"></d-cite> and has been applied to the RL setting to finite state Markov Decision Processes (MDPs) <d-cite key='jaksch_near-optimal_2010'></d-cite> and Linear Quadratic Systems <d-cite key='abeille_efficient_2020'></d-cite>. It has generally been shown to be optimal in the sense that it achieves the minimax regret rate, up to logarithmic factors. However, I find this picture quite unsatisfactory for two reasons:
 
@@ -331,9 +330,9 @@ Therefore, in this project, I strive to generalise the OFU principle to non-line
 
 ## Methodology
 
-When considering general non-linear problems on continuous state spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta_:=\ve^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
+When considering general non-linear problems on continuous state spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta_\ve:=\ve^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
 $$\begin{align}
-    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1{T\eta_\varepsilon}\Eb\left[\int_0^T r(X^{\theta^*,\alpha}_{s-},\alpha_{s-})\de N_s\right].\label{eq:rho*CT}
+    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1{T\eta_\ve}\Eb\left[\int_0^T r(X^{\theta^*,\alpha}_{s-},\alpha_{s-})\de N_s\right].\label{eq:rho*CT}
 \end{align}$$
 
 In order to write the learning problem more clearly, let's specify the model structure a bit by assuming that the dynamics of $X^{\theta,\alpha}$ are the solution to the Stochastic Difference Equation:
@@ -353,21 +352,22 @@ Uniformly in $(\theta,a)\in\Theta\times\Ab$
 </div>
 
 <div class='assumption'>
-    There is $(\ell_\Vs,L_\Vs,\cf_\Vs,M_\Vs,M_\Vs')\in\Rb_+^5$  and a Lyapunov function $\Vs\in\Cc^{2}(\Rb^d_*;\Rb_+)$ satisfying, for any $(x,x',a,\theta)\in\Rb^d\x\Rb^d\x\Ab\x\Theta$, $x\neq x'$, and $\varepsilon \in (0,1)$:
-$$\begin{align}
-    &%\text{{\rm{(i.)}}}\qquad\qquad\quad \ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert\,,\notag\\
-    %&\text{{\rm{(ii.)}}}\quad\quad \sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'\,,\notag\\
-    %&\text{{\rm{(iii.)}}}\quad \Vs(x+ \varepsilon\bar\mu(x,a)-x'-\varepsilon\bar\mu(x',a))\le (1-\varepsilon \cf_\Vs)\Vs(x-x')\,. \notag%\label{eq:lyapunov asmp joint on jump problem}
-\end{align}$$
+    There is $(\ell_\Vs,L_\Vs,\cf_\Vs,M_\Vs,M_\Vs')\in\Rb_+^5$  and a Lyapunov function $\Vs\in\Cc^{2}(\Rb^d_*;\Rb_+)$ satisfying, for any $(x,x',a,\theta)\in\Rb^d\x\Rb^d\x\Ab\x\Theta$, $x\neq x'$, and $\ve \in (0,1)$:
+  $$\begin{align}
+      &\mbox{$\rm{(i.)}$}\qquad\qquad \ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert\,,\notag\\
+      &\mbox{$\rm{(ii.)}$}\quad\quad \sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'\,,\notag\\
+      &\mbox{$\rm{(iii.)}$}\quad \Vs(x+ \mu(x,a)-x'-\mu(x',a))\le (1-\ve \cf_\Vs)\Vs(x-x')\,. \notag%\label{eq:lyapunov asmp joint on jump problem}
+  \end{align}$$
+  in which $\Rb^d_*:=\Rb^d\setminus\{0\}$.
 </div>
 
 Using ergodic control results, we can characterise the optimal value of this problem as the unique solution of the Hamilton-Jacobi-Bellman (HJB) equation associated with the ergodic control problem. This integral equation also characterises an optimal control. To apply OFU to this class we still need a learning methodology to build confidence sets for non-linear systems. This can be done in the framework of <d-cite key='russo_eluder_2013'></d-cite> using Non-Linear Least-Square, in which 
 
 $$\begin{align}
-    \hat\theta_t:=\arg\min_{\theta\in\Theta} \sum_{s=0}^{N_t-1} \left\lVert X^{\theta^*,\alpha}_{s+1} - X^{\theta^*,\alpha}_{s} - \mu_{\theta}(X^{\theta,\alpha^*}_{s},\alpha^*_{s})\right\rVert^2.
+    \hat\theta_t:\in\arg\min_{\theta\in\Theta} \sum_{s=0}^{N_t-1} \left\lVert X^{\theta^*,\alpha}_{s+1} - X^{\theta^*,\alpha}_{s} - \mu_{\theta}(X^{\theta,\alpha^*}_{s},\alpha^*_{s})\right\rVert^2.
 \end{align}$$
 
-This estimator can be used to construct a well-calibrated confidence set in the following way 
+This estimator can be used to construct a well-calibrated $\delta$-confidence set in the following way 
 $$\begin{align}
 \Cc_{t}(\delta)&:= \left\{\theta\in\Theta: \sqrt{\sum_{s=0}^{N_t-1} \left\lVert\mu_\theta(X_{s}^{\theta^*,\alpha},\alpha_s)-\mu_{\hat\theta_{t}}(X_{t}^{\theta^*,\alpha},\alpha_s)\right\rVert^2} \le \beta_{t}(\delta)\right\}\,.\label{eq: def conf sets}
 \end{align}$$
@@ -375,27 +375,44 @@ for a suitable choice of $\beta_t(\delta)$ which is of the order of $\sqrt{\log(
 
 With these two components, up to the analysis, we should be able to apply the OFU principle to generic non-linear problems.
 
+
 ## Results
 
 Unfortunately, the analysis can't quite be extended as is from the literature for a handful of reasons:
 <ol type='i'>
-    <li> The complexity measures of the confidence radius $\beta\_t(\delta)$ scale with the boundedness of coefficients and thus are infinite under Assumption 1. Since $\beta_t(\delta)$ appears in the regret bound, this makes the bounds meaningless. </li>
-    <li>  Since the optimal controls we compute are only optimal in the infinite horizon limit, they are arbitrarily bad in finite time, so an efficient algorithm must update its behaviour lazily (i.e. infrequently) through time. This udpate scheme needs to be designed.</li>
-    <li>  We need some improved concentration bounds beyond simple ergodicity to ensure the regret from the process trying to escape to infinity is small. </li>
+    <li> The complexity measures of the confidence radius $\beta_t(\delta)$ scale with the boundedness of coefficients and thus are infinite under Assumption 1. Since $\beta_t(\delta)$ appears in the regret bound, this makes the bounds meaningless. </li>
+    <li>  Since the optimal controls we compute are only optimal in the infinite horizon limit, they are arbitrarily bad in finite time, so an efficient algorithm must update its behaviour lazily (i.e. infrequently) through time. This update scheme needs to be designed.</li>
+    <li>  We need some improved concentration bounds beyond simple ergodicity to ensure the regret from the process of trying to escape to infinity is small. </li>
 </ol>
 
-In <d-cite key="CAB23"></d-cite> we solve the first problem by localising complexity measures to only consider regions effectively traversed instead of the whole space. This clips the complexity bounds in terms of the concentration of the process and makes the regret meaningful again since we also solve the third problem by deriving a concentration inequality from a Stochastic Lyapunov Condition. The second problem is solved by using a functional inequality to enrich the results of <d-cite key="russo_eluder_2013"></d-cite>. The resulting regret bound is given by Theorem 1, details can be found in the paper.
+In <d-cite key="CAB23"></d-cite> we solve the first problem by localising complexity measures to only consider regions effectively traversed instead of the whole space. This clips the complexity bounds in terms of the concentration of the process and makes the regret meaningful again since we also solve the third problem by deriving a concentration inequality from a Stochastic Lyapunov Condition. The second problem is solved by using a functional inequality to enrich the results of <d-cite key="russo_eluder_2013"></d-cite>. The resulting regret bound is given by Theorem 1, details can be found in the paper <d-cite key='CAB23'></d-cite> which is being published at ALT2024 and also appeared in the EWRL workshop as <d-cite key='CAB23EWRL'></d-cite>.
+
+
 
 <div class="theorem">
-Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\Rb_+$ independent of $\varepsilon$ such that our algorithm $\alpha$ achieves 
+Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\Rb_+$ independent of $\ve$ such that our algorithm $\alpha$ achieves 
     $$\begin{align}
-        R_T(\alpha) \le  C\sqrt{\mathrm{d}_{E,N_T}\log(\Ns_{N_T}^\varepsilon) T\log(T\delta^{-1})} 
+        R_T(\alpha) \le  C\sqrt{\mathrm{d}_{E,N_T}\log(\Ns_{N_T}^\ve) T\log(T\delta^{-1})} 
     \end{align}$$
-    with probability at least $1-\delta$, in which $\mathrm{d}_{E,N_T}$ is the effective<d-footnote>Meaning the eluder dimension of the set of restrictions to the ball of radius $\sup\_{s\le t}\lVert X^{\theta^*,\alpha}_s\rVert$.</d-footnote> $2\varepsilon/\sqrt{T}$-eluder dimension and $\log(\Ns_{N_T}^\varepsilon)$ is the effective<d-footnote>Essentially likewise.</d-footnote> $\varepsilon^{2}\lVert\bar\Sigma\rVert_{\rm{op}}^2/T$-log-covering number.
-<div>
+    with probability at least $1-\delta$, in which $\mathrm{d}_{E,N_T}$ is the $2\ve/\sqrt{T}$-effective<d-footnote>Meaning the eluder dimension of the set of restrictions to the ball of radius $\sup_{s\le T}\lVert X^{\theta^*,\alpha}_s\rVert$.</d-footnote> eluder dimension and $\log(\Ns_{N_T}^\ve)$ is the $\ve^{2}\lVert\bar\Sigma\rVert_{\rm{op}}^2/T$-effective<d-footnote>Essentially likewise.</d-footnote> log-covering number.
+</div>
 
 
-## Ongoing and future Work
+## Ongoing and future work
 
-- incorporate rewards
-- working on: lazy updates, max max and instanciation
+While we were able to design an optimal algorithm there are several directions for improvement which I am currently working on:
+<ol>
+    <li> Improving the computational efficiency of the lazy update steps to eliminate the supremum. While I can reduce the complexity of the optimisation problem in one step, it isn't clear if is possible to completely remove the supremum in the lazy updates to replace it with a simpler geometric object. In the linear case, one can use the determinant, but this is only because of the regularity of the map $\theta\mapsto\mu_\theta$. It is apparent that regularity conditions in the parametrisation are required at this step (which they weren't in previous arguments).</li>
+    <li> Efficient optimistic planning remains complicated. While I can show easily how to solve the equivalent of Extended value iteration from <d-cite key='jaksch_near-optimal_2010'></d-cite>, I would like to get some efficient computational complexity bounds on the resolution of this type of HJB  equation. Of course, it would be exponential in the dimension, but I believe it might be possible to obtain fast convergence of the finite horizon value from Assumption 1 if one can inherit the regularity of the continuous equation.</li>
+    <li> Reducing the strength of the Lyapunov assumption (Assumption 2) and studying the concentration properties of ergodic processes in order to generalise to more systems. This might also lead to the reduction of the stability assumption to a controllability assumption. The challenge here is the interplay between the reward's shape and the properties of $X^{\alpha,\theta^*}$ in \eqref{eq:rho*}. </li>
+</ol>
+
+On the other hand, our algorithm and analysis are too general to be useful for practitioners, so I would like to build based on this framework to explore more specific problems. In particular, I am interested in the following:
+
+<ol>
+  <li> Specialisation: deriving learning instances of NLLS which are more effective on specific dynamics. This also applies to the resolution of the HJB equation. </li>
+  <li> Exotic noise structures: the HJB can be solved for more complex noise structures than just additive Gaussian martingale difference sequences such as multiplicative noise. This poses interesting statistical problems from a learning theory perspective (construction of confidence sets). </li>
+  <li> Other kinds of stochastic processes could be considered too, such as self-exciting processes, which could find interesting use cases for RL in some new applications.</li>
+</ol>
+
+

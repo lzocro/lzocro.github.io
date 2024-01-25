@@ -337,7 +337,7 @@ $$\begin{align}
 &0=V(T,\cdot)\mbox{ on $\Rb^d$ }\notag\,.
 \end{align}$$
 
-This equation is integro-differential, so it is rather unpleasant to solve numerically. The real issue in high-frequency applications is the multiplicative term in the frequency of jumps $\eta$ in front of the integral. This scaling implies that errors in numerical integration are blown up, and therefore that this numerical integration must be very fine, and increasingly so as $\eta\to+\infty$.
+This equation is integro-differential, so it is rather unpleasant to solve numerically. The real issue in high-frequency applications is the multiplicative term in the frequency of jumps $\eta$ in front of the integral. This scaling implies that errors in numerical integration are blown up, and therefore this numerical integration must be very fine, and increasingly so as $\eta\to+\infty$.
 
 However, there are certain instances where these problems can be circumvented. In many applications, a <i>diffusion limit</i> problem is solved efficiently as an approximation<d-footnote> This has been known for a long time in queuing theory, where it is known as a <i>heavy-traffic</i> limit, see <d-cite key="kushner_heavy_2001"></d-cite>.</d-footnote><d-footnote> This is not the only limit regime that can be considered either, see <d-cite key="fernandez-tapia_optimal_2016"></d-cite>.</d-footnote>. In this project, we seek to investigate precise convergence rates for this approximation. The remainder of this post gives an overview of the approach, starting with the details of the diffusion limit and continuing with some high-level results, and then a quick review of explored aspects of the problem and possible extensions.
 
