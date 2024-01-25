@@ -1,5 +1,104 @@
 ---
 ---
+@phdthesis{thesis,
+
+  author      = {Croissant, Lorenzo},
+
+  school      = {Université Paris-Dauphine, Université PSL},
+
+  title       = {Diffusion limit control and reinforcement learning, with applications to online auctions},
+
+  year        = {2023},
+
+  url={https://theses.hal.science/tel-04356751/},
+
+  bibtex_show = {true},
+
+  html={https://theses.hal.science/tel-04356751/},
+
+  pdf= {https://theses.hal.science/tel-04356751v1/document},  
+
+  preview={IMG_5515.jpg},
+
+  abstract={
+    We consider the diffusive limit of a generic pure-jump Markov control problem as the intensity of the driving Poisson process tends to infinity. We quantify the convergence speed in terms of the H\"older exponent of the Hessian of the limit problem. This approximation provides an efficient alternative method for the numerical resolution of these problems when the intensity of jumps is large. Considering the control of unknown systems, we extend this approach to the context of online Reinforcement Learning. Under the \acrlong{OFU} paradigm, we leverage the eluder dimension framework for learning and the diffusive limit for approximate resolution of the planning sub-problem. Our algorithm extends existing theory from discrete processes to continuous states and actions. Our study of diffusion limit systems is motivated and illustrated by the bidding problem in a high-frequency online auction against a revenue-maximising seller.
+  }
+
+}
+
+@inproceedings{CAB23,
+
+  author = {Croissant, Lorenzo and Abeille, Marc and Bouchard, Bruno},
+
+  title = {Near-continuous time {Reinforcement} {Learning} for continuous state-action spaces},
+
+  pages = {},
+
+  abstract = {
+        We consider the reinforcement learning problem of controlling an unknown dynamical system to maximise the long-term average reward along a single trajectory. 
+        Most of the literature considers system interactions that occur in discrete time and discrete state-action spaces. 
+        Although this standpoint is suitable for games, it is often inadequate for systems in which interactions occur at a high frequency, if not in continuous time, or those whose state spaces are large if not inherently continuous. 
+        Perhaps the only exception is the linear quadratic framework for which results exist both in discrete and continuous time.  
+        However, its ability to handle continuous states comes with the drawback of a rigid dynamic and reward structure.
+        This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency $\varepsilon^{-1}$ which captures arbitrary time scales from discrete ($\varepsilon=1$) to continuous time ($\varepsilon\downarrow0$). 
+        In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on $\mathbb{R}^d$. 
+        We show that the celebrated optimism protocol applies when the sub-tasks (learning and planning) can be performed effectively. 
+        We tackle learning by extending the eluder dimension framework and propose an approximate planning method based on a diffusive limit ($\varepsilon\downarrow0$) approximation of the jump process.
+        Overall, our algorithm enjoys a regret of order $\tilde{\mathcal{O}}(\sqrt{T})$ or $\tilde{\mathcal{O}}(\varepsilon^{1/2} T+\sqrt{T})$ with the approximate planning. 
+        As the frequency of interactions blows up, the approximation error $\varepsilon^{1/2} T$ vanishes, showing that $\tilde{\mathcal{O}}(\sqrt{T})$ is attainable in near-continuous time.
+  },
+
+  booktitle={Proceedings of the {35\textsuperscript{th}} International Conference on Algorithmic Learning Theory},
+
+  year={2023},
+
+  series = 	 {Proceedings of Machine Learning Research},
+
+  month = 	 {25--28 Feb},
+
+  publisher =    {PMLR},
+
+  url={},
+
+  bibtex_show = {true},
+
+  html={},
+
+  pdf= {},  
+  
+  blog={/blog/2023/Online-non-episodic-RL/},
+
+  project={/projects/RL_diff_limit/},
+
+  preview={IMG_5515.jpg}
+}
+
+@inproceedings{CAB23EWRL,
+  title={Reinforcement Learning in near-continuous time for continuous state-action spaces},
+
+  author={Lorenzo Croissant and Marc Abeille and Bruno Bouchard},
+  
+  booktitle={Sixteenth European Workshop on Reinforcement Learning},
+  
+  year={2023},
+  
+  url={https://openreview.net/forum?id=bqiRIs3fJNk},
+  
+  abstract={We consider the Reinforcement Learning problem of controlling an unknown dynamical system to maximise the long-term average reward along a single trajectory. Most of the literature considers system interactions that occur in discrete time and discrete state-action spaces. Although this standpoint is suitable for games, it is often inadequate for mechanical or digital systems in which interactions occur at a high frequency, if not in continuous time, and whose state spaces are large if not inherently continuous. Perhaps the only exception is the Linear Quadratic framework for which results exist both in discrete and continuous time. However, its ability to handle continuous states comes with the drawback of a rigid dynamic and reward structure. This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency $\varepsilon^{-1}$, which captures arbitrary time scales: from discrete ($\varepsilon=1$) to continuous time ($\varepsilon\downarrow0$). In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on $\mathbb{R}^d$. We show that the celebrated optimism protocol applies when the sub-tasks (learning and planning) can be performed effectively. We tackle learning within the eluder dimension framework and propose an approximate planning method based on a diffusive limit approximation of the jump process. Overall, our algorithm enjoys a regret of order $\tilde{\mathcal{O}}(\varepsilon^{1/2} T+\sqrt{T})$. As the frequency of interactions blows up, the approximation error $\varepsilon^{1/2} T$ vanishes, showing that $\tilde{\mathcal{O}}(\sqrt{T})$ is attainable in near-continuous time.},
+  
+  bibtex_show = {true},
+
+  html={https://openreview.net/forum?id=bqiRIs3fJNk},
+
+  pdf= {https://openreview.net/pdf?id=bqiRIs3fJNk},
+
+  blog={/blog/2023/Online-non-episodic-RL/},
+
+  project={/projects/RL_diff_limit/},
+
+  preview={IMG_5515.jpg}
+}
+
 
 @misc{ABC22,
   doi = {10.48550/ARXIV.2209.15284},
@@ -8,7 +107,7 @@
   
   author = {Abeille, Marc and Bouchard, Bruno and Croissant, Lorenzo},
   
-  keywords = {Optimization and Control (math.OC), FOS: Mathematics, FOS: Mathematics},
+  keywords = {Optimization and Control (math.OC), FOS: Mathematics},
   
   title = {Diffusive limit approximation of pure jump optimal ergodic control problems},
   
@@ -37,7 +136,7 @@
   preview={IMG_4322.jpg}
   }
 
-@misc{ABC21,
+@article{ABC21,
 
   title={Diffusive limit approximation of pure-jump optimal stochastic control problems},
 

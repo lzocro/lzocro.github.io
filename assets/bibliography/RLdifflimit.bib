@@ -1,0 +1,130 @@
+
+@inproceedings{CAB23,
+
+  author = {Croissant, Lorenzo and Abeille, Marc and Bouchard, Bruno},
+
+  title = {Near-continuous time {Reinforcement} {Learning} for continuous state-action spaces},
+
+  pages = {},
+
+  abstract = {
+        We consider the reinforcement learning problem of controlling an unknown dynamical system to maximise the long-term average reward along a single trajectory. 
+        Most of the literature considers system interactions that occur in discrete time and discrete state-action spaces. 
+        Although this standpoint is suitable for games, it is often inadequate for systems in which interactions occur at a high frequency, if not in continuous time, or those whose state spaces are large if not inherently continuous. 
+        Perhaps the only exception is the linear quadratic framework for which results exist both in discrete and continuous time.  
+        However, its ability to handle continuous states comes with the drawback of a rigid dynamic and reward structure.
+        This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency $\varepsilon^{-1}$ which captures arbitrary time scales from discrete ($\varepsilon=1$) to continuous time ($\varepsilon\downarrow0$). 
+        In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on $\mathbb{R}^d$. 
+        We show that the celebrated optimism protocol applies when the sub-tasks (learning and planning) can be performed effectively. 
+        We tackle learning by extending the eluder dimension framework and propose an approximate planning method based on a diffusive limit ($\varepsilon\downarrow0$) approximation of the jump process.
+        Overall, our algorithm enjoys a regret of order $\tilde{\mathcal{O}}(\sqrt{T})$ or $\tilde{\mathcal{O}}(\varepsilon^{1/2} T+\sqrt{T})$ with the approximate planning. 
+        As the frequency of interactions blows up, the approximation error $\varepsilon^{1/2} T$ vanishes, showing that $\tilde{\mathcal{O}}(\sqrt{T})$ is attainable in near-continuous time.
+  },
+
+  booktitle={Proceedings of the {35\textsuperscript{th}} International Conference on Algorithmic Learning Theory},
+
+  year={2023},
+
+  series = 	 {Proceedings of Machine Learning Research},
+
+  month = 	 {25--28 Feb},
+
+  publisher =    {PMLR},
+
+  url={},
+
+  bibtex_show = {true},
+
+  html={},
+
+  pdf= {},  
+  
+  blog={/blog/2023/Online-non-episodic-RL/},
+
+  project={/projects/RL_diff_limit/},
+
+  preview={IMG_5515.jpg}
+}
+
+@inproceedings{CAB23EWRL,
+  title={Reinforcement Learning in near-continuous time for continuous state-action spaces},
+
+  author={Lorenzo Croissant and Marc Abeille and Bruno Bouchard},
+  
+  booktitle={Sixteenth European Workshop on Reinforcement Learning},
+  
+  year={2023},
+  
+  url={https://openreview.net/forum?id=bqiRIs3fJNk},
+  
+  abstract={We consider the Reinforcement Learning problem of controlling an unknown dynamical system to maximise the long-term average reward along a single trajectory. Most of the literature considers system interactions that occur in discrete time and discrete state-action spaces. Although this standpoint is suitable for games, it is often inadequate for mechanical or digital systems in which interactions occur at a high frequency, if not in continuous time, and whose state spaces are large if not inherently continuous. Perhaps the only exception is the Linear Quadratic framework for which results exist both in discrete and continuous time. However, its ability to handle continuous states comes with the drawback of a rigid dynamic and reward structure. This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency $\varepsilon^{-1}$, which captures arbitrary time scales: from discrete ($\varepsilon=1$) to continuous time ($\varepsilon\downarrow0$). In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on $\mathbb{R}^d$. We show that the celebrated optimism protocol applies when the sub-tasks (learning and planning) can be performed effectively. We tackle learning within the eluder dimension framework and propose an approximate planning method based on a diffusive limit approximation of the jump process. Overall, our algorithm enjoys a regret of order $\tilde{\mathcal{O}}(\varepsilon^{1/2} T+\sqrt{T})$. As the frequency of interactions blows up, the approximation error $\varepsilon^{1/2} T$ vanishes, showing that $\tilde{\mathcal{O}}(\sqrt{T})$ is attainable in near-continuous time.},
+  
+  bibtex_show = {true},
+
+  html={https://openreview.net/forum?id=bqiRIs3fJNk},
+
+  pdf= {https://openreview.net/pdf?id=bqiRIs3fJNk},
+
+  blog={/blog/2023/Online-non-episodic-RL/},
+
+  project={/projects/RL_diff_limit/},
+
+  preview={IMG_5515.jpg}
+}
+
+
+@inproceedings{abeille_efficient_2020,
+	title = {Efficient {Optimistic} {Exploration} in {Linear}-{Quadratic} {Regulators} via {Lagrangian} {Relaxation}},
+	url = {https://proceedings.mlr.press/v119/abeille20a.html},
+	language = {en},
+	urldate = {2023-01-04},
+	booktitle = {Proceedings of the 37th {International} {Conference} on {Machine} {Learning}},
+	publisher = {PMLR},
+	author = {Abeille, Marc and Lazaric, Alessandro},
+	month = nov,
+	year = {2020},
+	note = {ISSN: 2640-3498},
+	pages = {23--31},
+    }
+
+
+@book{lattimore_bandit_2020,
+	edition = {1},
+	title = {Bandit {Algorithms}},
+	isbn = {978-1-108-57140-1 978-1-108-48682-8},
+	url = {https://www.cambridge.org/core/product/identifier/9781108571401/type/book},
+	language = {en},
+	urldate = {2021-10-18},
+	publisher = {Cambridge University Press},
+	author = {Lattimore, Tor and Szepesvári, Csaba},
+	month = jul,
+	year = {2020},
+	doi = {10.1017/9781108571401},
+}
+
+
+
+@article{jaksch_near-optimal_2010,
+	title = {Near-optimal {Regret} {Bounds} for {Reinforcement} {Learning}},
+	volume = {11},
+	issn = {1533-7928},
+	url = {http://jmlr.org/papers/v11/jaksch10a.html},
+	number = {51},
+	urldate = {2022-03-18},
+	journal = {Journal of Machine Learning Research},
+	author = {Jaksch, Thomas and Ortner, Ronald and Auer, Peter},
+	year = {2010},
+	pages = {1563--1600},
+}
+
+
+@inproceedings{russo_eluder_2013,
+	title = {Eluder {Dimension} and the {Sample} {Complexity} of {Optimistic} {Exploration}},
+	volume = {26},
+	url = {https://proceedings.neurips.cc/paper_files/paper/2013/file/41bfd20a38bb1b0bec75acf0845530a7-Paper.pdf},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems}},
+	publisher = {Curran Associates, Inc.},
+	author = {Russo, Daniel and Van Roy, Benjamin},
+	editor = {Burges, C. J. and Bottou, L. and Welling, M. and Ghahramani, Z. and Weinberger, K. Q.},
+	year = {2013},
+}

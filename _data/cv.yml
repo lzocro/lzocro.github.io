@@ -11,21 +11,34 @@
 - title: Education
   type: time_table
   contents:
-    - title: PhD (Expected)
-      institution: Université Paris Dauphine-PSL; Criteo AI Lab
+    - title: Ph.D. in Mathematics
+      institution: CEREMADE, Université Paris Dauphine, Université PSL; Criteo AI Lab, \n Under the supervision of Bruno Bouchard and Marc Abeille
       year: 2020-23
       description:
-        - Approximation of pure-jump processes by diffusions. Error bounds in terms of value and control, numerical resolution methods, in finite horizon and ergodic settings.
+        - Stochastic control and diffusive limits of pure jump processes
+        - Partial Differential Equations, HJB equations, viscosity solutions
+        - Online non-episodic Reinforcement Learning
+        - Auction Theory, online auctions
     - title: M2 Masters - Mathematics, Computer Vision, and Learning (MVA)
       institution: Ecole Normale Supérieure Paris-Saclay
       year: 2018-19
-    - title: Msci Masters in Mathematics & Statistics
+      description:
+        - Thesis on Dynamic reserve in Second-Price Auctions
+    - title: Masters in Mathematics & Statistics
       institution: University of Lancaster
       year: 2014-18
+      description:
+        - Thesis on Stochastic bandits.
 
-- title: Experience
+- title: Positions
   type: time_table
   contents:
+    - title: Research and teaching assistant (A.T.E.R.)
+      institution: CREST, ENSAE Paris and Inria (FairPlay team)
+      year: 2023-24
+      description:
+        - Teaching mostly M2 level courses in machine learning, with a bit of probability and optimisation on the side.
+        - Research in the FairPlay Inria team and at CREST, on Reinforcement Learning and Prophet inequalities.
     - title: Researcher
       institution: Criteo AI Lab
       year: 2019-2020
@@ -35,5 +48,5 @@
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Bouldering, photography.
-    - <u>Interests:</u> Tea, cooking, music.
+    - <u>Hobbies:</u> Rock climbing, cooking, photography.
+    - <u>Interests:</u> Tea, mixology, music, literature, social sciences, political philosophy.

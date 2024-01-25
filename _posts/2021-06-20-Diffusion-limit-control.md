@@ -17,6 +17,6 @@ tags: [Control Theory]
 categories: 
 ---
 
-This is the first part of my work on the [diffusion limit project](/_projects/Diffusion_limit.md) which has been published in the Journal of Optimisation Theory and applications<d-cite key="ABC22"></d-cite>. 
+This is the first part of my work on the [diffusion limit project](/_projects/Diffusion_limit.md) which has been published in the Journal of Optimisation Theory and Applications<d-cite key="ABC22"></d-cite>. 
 
 

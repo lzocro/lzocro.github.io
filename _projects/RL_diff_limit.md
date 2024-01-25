@@ -1,7 +1,7 @@
 ---
 layout: distill
-title: Reinforcement Learning with Control tools
-description: Efficient approximation of high-frequency pure jump problems.
+title: Reinforcement Learning with continuous states
+description: Learning to control along a single trajectory.
 img: assets/img/project_covers/IMG_5210.jpg
 authors:
   - name: Lorenzo Croissant
@@ -13,9 +13,17 @@ authors:
   - name: Bruno Bouchard
     affiliations:
       name: CEREMADE
-importance: 5
+toc:
+  - name: Learning to control
+  - name: The OFU principle
+  - name: Methodology
+  - name: Results
+  - name: Ongoing and future work
+importance: 8
 category: [Reinforcement Learning]
+bibliography: RLdifflimit.bib
 ---
+
 <div style="display:none">
   $$ 
     \def\de{\mathrm{d}}
@@ -283,4 +291,75 @@ category: [Reinforcement Learning]
   $$
 </div>
 
-## Title
+## Learning to control
+
+The Reinforcement Learning (RL) problem can be generally understood as the problem of learning to control from the feedback of the controls used. In my opinion, what makes this framework interesting from a mathematical standpoint is the interplay between learning and the control problem. Since feedback is obtained only by visiting state and control pairs, gathering information about the system is itself a control problem, which may conflict with the control problem we're actually trying to solve.
+
+In order to focus on the control/learning interplay, I will choose a very restrictive RL framework which I call non-episodic online model-based RL. Let us consider a family of $\Rb^d$-valued controlled stochastic processes $(X^{\alpha})\_{\alpha\in\Ac}$, and a reward function $r:\Rb^d\x\Ab\to\Rb$, in which $\Ab$ is the set of control values. To represent the uncertainty, we consider a finite-dimensional collection of models $\theta\in\Theta\subset\Rb^{d\_\Theta}$, amongst which lies an unknown real value $\theta^*$. For each $\theta\in\Theta$, we denote by $(X^{\theta,\alpha})\_{\alpha\in\Ac}$ the corresponding family of controlled processes whose dynamics are parametrised by $\theta$. Our objective<d-footnote>We consider measurability requirements, e.g. in admissible controls $\Ac$, w.r.t $X^{\theta^*,\alpha}$ henceforth.</d-footnote> is to solve 
+
+$$\begin{align}
+    rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1T\Eb\left[\sum_{s=0}^T r(X^{\theta^*,\alpha}_s,\alpha_s)\right],\label{eq:rho*}
+\end{align}$$
+in which $m$ is a measure (typically the counting measure), without a priori knowledge of $\theta^*. 
+
+The use of an ergodic (i.e. long-term average) criterion is motivated by 
+<ol type='i'>
+    <li> The absence of episodes: it allows the learning game to run forever along the same trajectory, </li>
+    <li> Analytical reasons: absence of terminal times forces us to rely only on the inherent regularity of the process</li>
+    <li> The existence of turnpike properties, which will allow us to move back to finite horizon systems, in some learnable regimes.</li>
+</ol>
+
+As usual in RL theory, we use the regret as a performance measure, which is defined, for any $\alpha\in\Ac$ as
+$$\begin{align}
+   \Rc_{T}(\alpha):= T\rho^*_{\theta^*} - \sum_{s=1}^T r(X^{\theta^*,\alpha^*}_s,\alpha^*_s),
+\end{align}$$
+
+This is natural for studying the interplay of decisions and learning since it prices ignorance of $\theta^*$ directly in terms of the control problem via $r$.
+
+## The OFU principle
+
+The study of optimal exploration in non-episodic online RL problems has been underpinned since <d-cite></d-cite> by the optimism in the face of uncertainty (OFU) principle. This principle states that optimal exploration is obtained by playing greedily with respect to $\tilde\theta\_t$, the most optimistic<d-footnote>In terms of $\rho^*_{\tilde\theta\_t}$, defined by analogy to \eqref{eq:rho*}.</d-footnote> estimate of $\theta^*$ at time $t$ inside some reasonable confidence region. 
+
+This methodology originates in bandit theory, see e.g. <d-cite key="lattimore_bandit_2020"></d-cite> and has been applied to the RL setting to finite state Markov Decision Processes (MDPs) <d-cite key='jaksch_near-optimal_2010'></d-cite> and Linear Quadratic Systems <d-cite key='abeille_efficient_2020'></d-cite>. It has generally been shown to be optimal in the sense that it achieves the minimax regret rate, up to logarithmic factors. However, I find this picture quite unsatisfactory for two reasons:
+
+<ol type='i'>
+    <li> Arbitrary continuous systems don't translate well into finite MDPs. This is because finite MDPs can't represent structural regularity which exists in non-chaotic continuous systems. Discretising a problem a priori is therefore a bad idea.  </li>
+    <li> Linear-quadratic problems are fully continuous, but unfortunately, they are limited in their application to a single type of problem, which prevents efficient exploration from being employed in non-linear systems. </li>
+</ol>
+
+Therefore, in this project, I strive to generalise the OFU principle to non-linear systems. I would like to highlight that this is primarily an analysis issue and not a new problem. Indeed, the OFU principle is a general methodology and it is expected to work as is in non-linear systems. The main difficulty is to prove that it does, and in particular to adapt/generalise existing analyses and quantities.
+
+## Methodology
+
+When considering general non-linear problems on continuous state-spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta\_\varepsilon:=\varepsilon^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
+$$\begin{align}
+    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1{T\eta_\ve}\Eb\left[\int_0^T r(X^{\theta^*,\alpha}_{s-},\alpha_{s-})\de N_s\right].\label{eq:rho*CT}
+\end{align}$$
+
+In order to write the learning problem more clearly, let's specify the model structure a bit by assuming that the dynamics of $X^{\theta,\alpha}$ are the solution to the Stochastic Difference Equation:
+$$\begin{align}
+    X^{\theta,\alpha}= x+ \sum_{s=0}^{N_\cdot -1} \mu_{\theta}(X^{\theta,\alpha}_{s},\alpha_{s-}) + \Sigma\xi_s \label{eq:SDE}
+\end{align}$$
+in which $(\xi_s)\_{s\in\Nb}$ are $\Rb^d$-valued standard Gaussians independent of everything else, $\Sigma\in\Rb^{d\times d}$
+and $\mu_{\theta}:\Rb^d\x\Ab\to\Rb^d$ is a measurable function.
+
+<div class="assumption">
+Uniformly in $(\theta,a)\in\Theta\times\Ab$
+<ol type='i'>
+  <li> $\mu_{\theta}(\cdot,a)$ is Lipschitz continuous (but not necessarily bounded) </li>
+  <li> $r(\cdot,a)$ is Lipschitz continuous and bounded </li>
+  <li> $\Sigma\Sigma^\top$ is Positive Definite and bounded (non-degenerate noise). </li>
+</ol>
+</div>
+
+Using ergodic control results, we can characterise the optimal value of this problem as the unique solution of the Hamilton-Jacobi-Bellman (HJB) equation associated with the ergodic control problem. This integral equation also characterises an optimal control. We can therefore apply the OFU principle to this general problem class
+
+
+## Results
+
+- generalise complexity measures + ergodic analysis and PDE theory to get the expected regret bound. 
+
+## Ongoing and future Work
+
+- incorporate rewards
+- working on: lazy updates, max max and instanciation

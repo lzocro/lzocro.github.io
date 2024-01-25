@@ -11,9 +11,9 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Lorenzo Croissant's Homepage
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>. 
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website  # add your own keywords or leave empty
+  Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>. 
+  Photos by myself.
+keywords: lorenzo-croissant, lorenzo, croissant, control-theory, RL, reinforcement-learning, auction, auctions, auction-theory, jekyll, jekyll-theme, academic-website  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 🥐 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
@@ -94,7 +94,7 @@ facebook_id: # your facebook id
 discord_id: # your discord id (18-digit unique numerical identifier)
 
 contact_note: >
-  I am best reached by the email, via the widget above.
+  I am best reached by email, via the widget above.
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification

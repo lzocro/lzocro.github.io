@@ -19,6 +19,10 @@ body {
   counter-reset:proposition;
   counter-reset:definition;
   counter-reset:example;
+  counter-reset:proof;
+  counter-reset:remark;
+  counter-reset:corollary;
+  counter-reset:assumption;
 }
 
 .theorem:before {
@@ -47,6 +51,61 @@ body {
 .proposition[name]:before {
   counter-increment: proposition;
   content: "Proposition " counter(proposition) "." attr(name) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+.assumption {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.assumption:before {
+  counter-increment: assumption;
+  content: "Assumption " counter(assumption) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+.assumption[name]:before {
+  counter-increment: assumption;
+  content: "Assumption " counter(assumption) "." attr(name) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+
+.remark {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.remark:before {
+  counter-increment: remark;
+  content: "Remark " counter(remark) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+.remark[name]:before {
+  counter-increment: remark;
+  content: "Remark " counter(remark) "." attr(name) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+
+.corollary {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.corollary:before {
+  counter-increment: corollary;
+  content: "Corollary " counter(corollary) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+.corollary[name]:before {
+  counter-increment: corollary;
+  content: "Corollary " counter(corollary) "." attr(name) ". ";
   font-weight: bold;
   font-style: normal;
 }

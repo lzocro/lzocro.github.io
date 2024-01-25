@@ -1,16 +1,15 @@
 ---
 layout: distill
-title: Generator approximations in control
-description: Efficient approximation for heavy traffic pure-jump problems
-date: 2022-12-12
+title: Online non-episodic RL with continuous states
+description: Learning to control in generic continuous dynamical systems
+date: 2023-07-30
 
 # Distill style options
 authors:
   - name: Lorenzo Croissant
     affiliations:
       name: CEREMADE, Université Paris-Dauphine, Criteo AI Lab
-
-bibliography: DiffusionLimit1.bib
+bibliography: RLdifflimit.bib
 
 # Optionally, you can add a table of contents to your post.
 # NOTES:
@@ -28,8 +27,9 @@ bibliography: DiffusionLimit1.bib
 
 
 comments: true
-tags: [Control Theory]
+tags: [Reinforcement Learning, Control Theory, Online Learning]
 categories: 
----
 
-## Title
+
+
+---
