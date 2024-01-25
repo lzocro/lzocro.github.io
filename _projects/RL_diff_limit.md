@@ -318,7 +318,7 @@ This is natural for studying the interplay of decisions and learning since it pr
 
 ## The OFU principle
 
-The study of optimal exploration in non-episodic online RL problems has been underpinned since <d-cite></d-cite> by the optimism in the face of uncertainty (OFU) principle. This principle states that optimal exploration is obtained by playing greedily with respect to $\tilde\theta\_t$, the most optimistic<d-footnote>In terms of $\rho^*_{\tilde\theta\_t}$, defined by analogy to \eqref{eq:rho*}.</d-footnote> estimate of $\theta^*$ at time $t$ inside some reasonable confidence region. 
+The study of optimal exploration in non-episodic online RL problems has been underpinned since <d-cite></d-cite> by the optimism in the face of uncertainty (OFU) principle. This principle states that optimal exploration is obtained by playing greedily with respect to $\tilde\theta\_t$, the most optimistic<d-footnote>In terms of $\rho^*_{\tilde\theta_t}$, defined by analogy to \eqref{eq:rho*}.</d-footnote> estimate of $\theta^*$ at time $t$ inside some reasonable confidence region. 
 
 This methodology originates in bandit theory, see e.g. <d-cite key="lattimore_bandit_2020"></d-cite> and has been applied to the RL setting to finite state Markov Decision Processes (MDPs) <d-cite key='jaksch_near-optimal_2010'></d-cite> and Linear Quadratic Systems <d-cite key='abeille_efficient_2020'></d-cite>. It has generally been shown to be optimal in the sense that it achieves the minimax regret rate, up to logarithmic factors. However, I find this picture quite unsatisfactory for two reasons:
 
@@ -331,14 +331,14 @@ Therefore, in this project, I strive to generalise the OFU principle to non-line
 
 ## Methodology
 
-When considering general non-linear problems on continuous state-spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta\_\varepsilon:=\varepsilon^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
+When considering general non-linear problems on continuous state spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta\_\varepsilon:=\varepsilon^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
 $$\begin{align}
     \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1{T\eta_\ve}\Eb\left[\int_0^T r(X^{\theta^*,\alpha}_{s-},\alpha_{s-})\de N_s\right].\label{eq:rho*CT}
 \end{align}$$
 
 In order to write the learning problem more clearly, let's specify the model structure a bit by assuming that the dynamics of $X^{\theta,\alpha}$ are the solution to the Stochastic Difference Equation:
 $$\begin{align}
-    X^{\theta,\alpha}= x+ \sum_{s=0}^{N_\cdot -1} \mu_{\theta}(X^{\theta,\alpha}_{s},\alpha_{s-}) + \Sigma\xi_s \label{eq:SDE}
+    X^{\theta,\alpha}= x+ \sum_{s=0}^{N_\cdot -1} \mu_{\theta}(X^{\theta,\alpha}_{s},\alpha_{s}) + \Sigma\xi_{s+1} \label{eq:SDE}
 \end{align}$$
 in which $(\xi_s)\_{s\in\Nb}$ are $\Rb^d$-valued standard Gaussians independent of everything else, $\Sigma\in\Rb^{d\times d}$
 and $\mu_{\theta}:\Rb^d\x\Ab\to\Rb^d$ is a measurable function.
@@ -352,12 +352,39 @@ Uniformly in $(\theta,a)\in\Theta\times\Ab$
 </ol>
 </div>
 
-Using ergodic control results, we can characterise the optimal value of this problem as the unique solution of the Hamilton-Jacobi-Bellman (HJB) equation associated with the ergodic control problem. This integral equation also characterises an optimal control. We can therefore apply the OFU principle to this general problem class
+Using ergodic control results, we can characterise the optimal value of this problem as the unique solution of the Hamilton-Jacobi-Bellman (HJB) equation associated with the ergodic control problem. This integral equation also characterises an optimal control. To apply OFU to this class we still need a learning methodology to build confidence sets for non-linear systems. This can be done in the framework of <d-cite key='russo_eluder_2013'></d-cite> using Non-Linear Least-Square, in which 
 
+$$\begin{align}
+    \hat\theta_t:=\arg\min_{\theta\in\Theta} \sum_{s=0}^{N_t-1} \left\lVert X^{\theta^*,\alpha}_{s+1} - X^{\theta^*,\alpha}_{s} - \mu_{\theta}(X^{\theta,\alpha^*}_{s},\alpha^*_{s})\right\rVert^2.
+\end{align}$$
+
+This estimator can be used to construct a well-calibrated confidence set in the following way 
+$$\begin{align}
+\Cc_{t}(\delta)&:= \left\{\theta\in\Theta: \sqrt{\sum_{s=0}^{N_t-1} \left\lVert\mu_\theta(X_{s}^{\theta^*,\alpha},\alpha_s)-\mu_{\hat\theta_{t}}(X_{t}^{\theta^*,\alpha},\alpha_s)\right\rVert^2} \le \beta_{t}(\delta)\right\}\,.\label{eq: def conf sets}
+\end{align}$$
+for a suitable choice of $\beta_t(\delta)$ which is of the order of $\sqrt{\log(N_T)}$ up to complexity metrics.
+
+With these two components, up to the analysis we should be able to apply the OFU principle to generic non-linear problems.
 
 ## Results
 
-- generalise complexity measures + ergodic analysis and PDE theory to get the expected regret bound. 
+Unfortunately, the analysis can't quite be extended as is from the literature for a handful of reasons:
+<ol type='i'>
+    <li> The complexity measures of the confidence radius $\beta\_t(\delta)$ scale with the boundedness of coefficients and thus are infinite under Assumption 1. Since $\beta_t(\delta)$ appears in the regret bound, this makes the bounds meaningless. </li>
+    <li>  Since the optimal controls we compute are only optimal in the infinite horizon limit, they are arbitrarily bad in finite time, so an efficient algorithm must update its behaviour lazily (i.e. infrequently) through time. This udpate scheme needs to be designed.</li>
+    <li>  We need some improved concentration bounds beyond simple ergodicity to ensure the regret from the process trying to escape to infinity is small. </li>
+</ol>
+
+In <d-cite key="CAB23"></d-cite> we solve the first problem by localising complexity measures to only consider regions effectively traversed instead of the whole space. This clips the complexity bounds in terms of the concentration of the process and makes the regret meaningful again, since we also solve the third problem by deriving a concentration inequality from a Stochastic Lyapunov Condition. The second problem is solved by using a functional inequality to enrich the results of <d-cite key="russo_eluder_2013"></d-cite>. The resulting regret bound is given by Theorem 1, details can be found in the paper.
+
+<div class="theorem">
+Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\Rb_+$ independent of $\ve$ such that our algorithm $\alpha$ achieves 
+    $$\begin{align}
+        R_T(\alpha) \le  C\sqrt{\mathrm{d}_{E,N_T}\log(\Ns_{N_T}^\ve) T\log(T\delta^{-1})} 
+    \end{align}$$
+    with probability at least $1-\delta$, in which $\mathrm{d}_{E,N_T}$ is the effective<d-footnote>Meaning the eluder dimension of the set of restrictions to the ball of radius $\sup\_{s\le t}\lVert X^{\theta^*,\alpha}_s\rVert$.</d-footnote> $2\ve/\sqrt{T}$-eluder dimension and $\log(\Ns_{N_T}^\ve)$ is the effective<d-footnote>Essentially likewise.</d-footnote> $\ve^{2}\lVert\bar\Sigma\rVert_{\rm{op}}^2/T$-log-covering number.
+<div>
+
 
 ## Ongoing and future Work
 
