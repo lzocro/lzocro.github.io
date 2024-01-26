@@ -23,12 +23,12 @@
       institution: Ecole Normale Supérieure Paris-Saclay
       year: 2018-19
       description:
-        - Thesis on Dynamic reserve in Second-Price Auctions
+        - Thesis on Dynamic reserve in second-price auctions
     - title: Masters in Mathematics & Statistics
       institution: University of Lancaster
       year: 2014-18
       description:
-        - Thesis on Stochastic bandits.
+        - Thesis on stochastic bandits.
 
 - title: Positions
   type: time_table

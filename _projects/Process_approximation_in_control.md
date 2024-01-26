@@ -330,7 +330,11 @@ if we have verification for $F_2$. Finally, if we combine this with the linearit
 
 ## Reducing to a Regularity Problem
 
+Thus, obtaining bounds on $(\Lc^a_1 -\Lc^a_2)V_1$ is sufficient to quantify the error in the approximation. This is a marked improvment over requiring bounds on $\Lc^a_1 -\Lc^a_2$ because they are directly applied in $V_1$, which might be quite regular if the approximating process (whose generator is $\Lc^a_1$) is well chosen. 
 
+A good example is when $\Lc^a_2$ is the generator of a finite difference approximation to a diffusion process $\Lc^a_1$. In this case, we can use the regularity of the solution $V_1$ to the HJB equation for the diffusion process to obtain bounds on $(\Lc^a_1 -\Lc^a_2)V_1$ and thus on the error in the approximation, which is the classical methodology of numerical schemes on diffusive HJB equations. 
+
+This can also be used with other approximation methods, as we demonstrated in <d-cite key="ABC23"></d-cite>, in which we approximated a high-frequency pure jump process by its diffusion limit process, whose solutions can be shown to be quite regular. There are probably many interesting examples in which this kind of approximation can be useful, either for numerical approximation or for theoretical analysis.
 
 ## Final Remarks
 
