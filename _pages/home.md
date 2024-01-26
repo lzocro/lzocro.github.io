@@ -2,10 +2,7 @@
 layout: about
 title: Home
 permalink: /
-subtitle: >
- Research and teaching assistant (A.T.E.R.) at <a href='https://www.ensae.fr/recherche/centre-de-recherche-en-economie-et-statistique-crest'>CREST</a> in <a href='https://www.ensae.fr/'>ENSAE</a>. Member of the <a href='https://www.inria.fr/fr/fairplay'>FairPlay</a> Inria team (joint with CREST and <a href='https://ailab.criteo.com/'>Criteo AI Lab</a>)
- Mathematics Ph.D. from <a href='https://www.ceremade.dauphine.fr/en'>Université Paris Dauphine</a> and <a href='https://ailab.criteo.com/'>Criteo AI Lab</a>. :fr: :uk: 
-
+subtitle: 
 profile:
   align: right
   image: portrait.jpg
@@ -19,6 +16,8 @@ news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
+Research and Teaching Assistant (A.T.E.R.) at <a href='https://www.ensae.fr/recherche/centre-de-recherche-en-economie-et-statistique-crest'>CREST</a> in <a href='https://www.ensae.fr/'>ENSAE</a>. Member of the <a href='https://www.inria.fr/fr/fairplay'>FairPlay</a> Inria team (joint with CREST and <a href='https://ailab.criteo.com/'>Criteo AI Lab</a>) under the supervision of Bruno Bouchard and Marc Abeille.
+ Mathematics Ph.D. from <a href='https://www.ceremade.dauphine.fr/en'>Université Paris Dauphine</a> and <a href='https://ailab.criteo.com/'>Criteo AI Lab</a>. :fr: :uk: 
 
 I am an applied mathematician with interests in Analysis and Probability, mostly focused on Control Theory, Reinforcement Learning, Auction Theory, and Optimal Stopping. Currently looking for Postdocs starting around September 2024.
 
