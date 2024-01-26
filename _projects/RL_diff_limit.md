@@ -343,34 +343,26 @@ in which $(\xi_s)\_{s\in\Nb}$ are $\Rb^d$-valued standard Gaussians independent 
 and $\mu_{\theta}:\Rb^d\x\Ab\to\Rb^d$ is a measurable function.
 
 <div class="assumption">
+
 Uniformly in $(\theta,a)\in\Theta\times\Ab$
 <ol type='i'>
   <li> $\mu_{\theta}(\cdot,a)$ is Lipschitz continuous (but not necessarily bounded) </li>
   <li> $r(\cdot,a)$ is Lipschitz continuous and bounded </li>
   <li> $\Sigma\Sigma^\top$ is Positive Definite and bounded (non-degenerate noise). </li>
 </ol>
+
 </div>
 
 <div class='assumption'>
+
     There is $(\ell_\Vs,L_\Vs,\cf_\Vs,M_\Vs,M_\Vs')\in\Rb_+^5$  and a Lyapunov function $\Vs\in\Cc^{2}(\Rb^d_*;\Rb_+)$ satisfying, for any $(x,x',a,\theta)\in\Rb^d\x\Rb^d\x\Ab\x\Theta$, $x\neq x'$, and $\ve \in (0,1)$:
     <ol type='i'>
     <li> $\ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert$ </li>
     <li> $\sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'$ </li>
     <li> $\Vs(x+ \mu(x,a)-x'-\mu(x',a))\le (1-\ve \cf_\Vs)\Vs(x-x')\,.$</li>
     </ol>
-    <!-- \[
-      \begin{align}
-        &\text{$\rm{(i.)}$} \qquad\qquad \ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert\,,\notag\\
-        &\text{$\rm{(ii.)}$} \quad\quad \sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'\,,\notag\\
-        &\text{$\rm{(iii.)}$}\quad \Vs(x+ \mu(x,a)-x'-\mu(x',a))\le (1-\ve \cf_\Vs)\Vs(x-x')\,. \notag%\label{eq:lyapunov asmp joint on jump problem}
-      \end{align}
-    \] -->
-    <!-- $$\begin{align}
-        &\text{$\rm{(i.)}$} \qquad\qquad \ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert\,,\notag\\
-        &\text{$\rm{(ii.)}$} \quad\quad \sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'\,,\notag\\
-        &\text{$\rm{(iii.)}$}\quad \Vs(x+ \mu(x,a)-x'-\mu(x',a))\le (1-\ve \cf_\Vs)\Vs(x-x')\,. \notag%\label{eq:lyapunov asmp joint on jump problem}
-    \end{align}$$ -->
   in which $\Rb^d_*:=\Rb^d\setminus\{0\}$.
+
 </div>
 
 Using ergodic control results, we can characterise the optimal value of this problem as the unique solution of the Hamilton-Jacobi-Bellman (HJB) equation associated with the ergodic control problem. This integral equation also characterises an optimal control. To apply OFU to this class we still need a learning methodology to build confidence sets for non-linear systems. This can be done in the framework of <d-cite key='russo_eluder_2013'></d-cite> using Non-Linear Least-Square, in which 

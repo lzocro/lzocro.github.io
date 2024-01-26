@@ -26,19 +26,18 @@ body {
 }
 
 .theorem {
+  counter-increment: theorem; 
   display: block;
   margin: 12px 0;
   font-style: italic;
 }
 .theorem:before {
-  counter-increment: theorem; 
   content: "Theorem " counter(theorem) ".";
   font-weight: bold;
   font-style: normal;
 }
 .theorem[name]:before {
-  counter-increment: theorem; 
-  content: "Theorem " counter(theorem) ". " attr(name) ". ";
+  content: "Theorem (" attr(name) "). ";
   font-weight: bold;
   font-style: normal;
 } /* for nammed theorems, pass name="...", doesn't work :'(*/
@@ -46,92 +45,87 @@ body {
 
 
 .proposition {
+  counter-increment: proposition;
   display: block;
   margin: 12px 0;
   font-style: italic;
 }
 .proposition:before {
-  counter-increment: proposition;
   content: "Proposition " counter(proposition) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .proposition[name]:before {
-  counter-increment: proposition;
-  content: "Proposition " counter(proposition) "." attr(name) ". ";
+  content: "Proposition (" attr(name) "). ";
   font-weight: bold;
   font-style: normal;
 }
 
 
 .assumption {
+  counter-increment: assumption;
   display: block;
   margin: 12px 0;
   font-style: italic;
 }
 .assumption:before {
-  counter-increment: assumption;
   content: "Assumption " counter(assumption) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .assumption[name]:before {
-  counter-increment: assumption;
-  content: "Assumption " counter(assumption) "." attr(name) ". ";
+  content: "Assumption (" attr(name) "). ";
   font-weight: bold;
   font-style: normal;
 }
 
 .remark {
+  counter-increment: remark;
   display: block;
   margin: 12px 0;
   font-style: italic;
 }
 .remark:before {
-  counter-increment: remark;
   content: "Remark " counter(remark) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .remark[name]:before {
-  counter-increment: remark;
-  content: "Remark " counter(remark) "." attr(name) ". ";
+  content: "Remark (" attr(name) "). ";
   font-weight: bold;
   font-style: normal;
 }
 
 .corollary {
+  counter-increment: corollary;
   display: block;
   margin: 12px 0;
   font-style: italic;
 }
 .corollary:before {
-  counter-increment: corollary;
   content: "Corollary " counter(corollary) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .corollary[name]:before {
-  counter-increment: corollary;
-  content: "Corollary " counter(corollary) "." attr(name) ". ";
+  content: "Corollary (" attr(name) "). ";
   font-weight: bold;
   font-style: normal;
 }
 
 .lemma {
+  counter-increment: lemma;
   display: block;
   margin: 12px 0;
   font-style: italic;
 }
 .lemma:before {
-  counter-increment: lemma;
   content: "Lemma " counter(lemma) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .lemma[name]:before {
-  counter-increment: lemma;
-  content: "Lemma " counter(lemma) "." attr(name) ". ";
+  content: "Lemma (" attr(name) "). ";
   font-weight: bold;
   font-style: normal;
 }
@@ -150,30 +144,34 @@ body {
 }
 
 .definition {
+  counter-increment: definition;
   display: block;
   margin: 12px 0;
   font-style: normal;
 }
 .definition:before {
-  counter-increment: definition;
   content: "Definition " counter(definition) ". ";
   font-weight: bold;
   font-style: normal;
 }
 .definition[name]:before {
-  counter-increment: definition;
-  content: "Definition " counter(definition) "." attr(name) ". ";
+  content: "Definition (" attr(name) "). ";
   font-weight: bold;
   font-style: normal;
 }
 .example {
+  counter-increment: example;
   display: block;
   margin: 12px 0;
   font-style: normal;
 }
 .example:before {
-  counter-increment: example;
   content: "Example " counter(example) ". ";
+  font-weight: bold;
+  font-style: normal;
+}
+.example[name]:before {
+  content: "Example (" attr(example) "). ";
   font-weight: bold;
   font-style: normal;
 }
