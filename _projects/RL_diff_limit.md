@@ -353,11 +353,11 @@ Uniformly in $(\theta,a)\in\Theta\times\Ab$
 
 <div class='assumption'>
     There is $(\ell_\Vs,L_\Vs,\cf_\Vs,M_\Vs,M_\Vs')\in\Rb_+^5$  and a Lyapunov function $\Vs\in\Cc^{2}(\Rb^d_*;\Rb_+)$ satisfying, for any $(x,x',a,\theta)\in\Rb^d\x\Rb^d\x\Ab\x\Theta$, $x\neq x'$, and $\ve \in (0,1)$:
-    \begin{align}
-        &\mbox{$\rm{(i.)}$} \qquad\qquad \ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert\,,\notag\\
-        &\mbox{$\rm{(ii.)}$} \quad\quad \sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'\,,\notag\\
-        &\mbox{$\rm{(iii.)}$}\quad \Vs(x+ \mu(x,a)-x'-\mu(x',a))\le (1-\ve \cf_\Vs)\Vs(x-x')\,. \notag%\label{eq:lyapunov asmp joint on jump problem}
-    \end{align}
+    $$\begin{align}
+        &\text{$\rm{(i.)}$} \qquad\qquad \ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert\,,\notag\\
+        &\text{$\rm{(ii.)}$} \quad\quad \sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'\,,\notag\\
+        &\text{$\rm{(iii.)}$}\quad \Vs(x+ \mu(x,a)-x'-\mu(x',a))\le (1-\ve \cf_\Vs)\Vs(x-x')\,. \notag%\label{eq:lyapunov asmp joint on jump problem}
+    \end{align}$$
   in which $\Rb^d_*:=\Rb^d\setminus\{0\}$.
 </div>
 
