@@ -16,9 +16,9 @@ authors:
       name: Criteo AI Lab 
 toc:
    - name: Introduction
-   - name: The Setting
-   - name: The Control Problem
-   - name: The Diffusion Limit
+   - name: The setting
+   - name: The control problem
+   - name: The diffusion limit
    - name: Approximation results
    - name: Conclusion
    - name: Extensions
@@ -304,7 +304,7 @@ Below I will detail in what precise sense the answer to both is yes, but first I
 
 
 
-## The Setting
+## The setting
 
 In what follows we will consider that the evolution times follow a Poisson process, although it could be interesting to look at extensions to other cases. Let $\Omega:=\Db([0,T];\Rb^d)$ be the Skorohod space on $[0,T]$, for $T>0$ possibly infinite, and consider a positive finite random measure $N$ on $\Rb^{d}\times[0,T]$ and a measure $\Pb$ on $\Omega$ such that $N$ is a $\Pb$-Poisson process with compensator $\eta\nu(\de e)\de t$, for $\eta>0$ and $\nu$ a probability measure on $\Rb^{d'}$. Denote $\Fb$ the augmentation of the natural filtration of the (marked) Poisson process. For ease of notations, we set $N_{t}:=N(\Rb^{d},[0,t])$ for $t\ge 0$. 
 
@@ -323,7 +323,7 @@ $$\begin{align}
 
 where $X^{t,x,\alpha}$ represents a process like \eqref{eq: def pure jump process} started from time $t$ instead of $0$, and $\Ac^t$, $\Fc^t$, and $\Fb^t$ are the corresponding analogues of $\Ac$, $\Fc$, and $\Fb$ respectively.
 
-## The Control Problem
+## The control problem
 
 A control problem is the maximisation of a gain functional ($J$) dependent on a process ($X^{x,\alpha}$) over its driving input process ($\alpha$). Thus, control problems are a specific subcategory of functional optimisation problems. The control problem associated with $J$ is formally given by the value function $V$ defined, for any $(t,x)\in [0,T]\x \Rb^d$, as 
 
@@ -341,7 +341,7 @@ This equation is integro-differential, so it is rather unpleasant to solve numer
 
 However, there are certain instances where these problems can be circumvented. In many applications, a <i>diffusion limit</i> problem is solved efficiently as an approximation<d-footnote> This has been known for a long time in queuing theory, where it is known as a <i>heavy-traffic</i> limit, see <d-cite key="kushner_heavy_2001"></d-cite>.</d-footnote><d-footnote> This is not the only limit regime that can be considered either, see <d-cite key="fernandez-tapia_optimal_2016"></d-cite>.</d-footnote>. In this project, we seek to investigate precise convergence rates for this approximation. The remainder of this post gives an overview of the approach, starting with the details of the diffusion limit and continuing with some high-level results, and then a quick review of explored aspects of the problem and possible extensions.
 
-## The Diffusion Limit 
+## The diffusion limit 
 
 This particular regime consists of problems with the following scaling. Let $\ve\in(0,1)$ and
 \\[ \eta=\eta_\ve := \ve^{-1}\,,\; b=b_\ve:=\ve b_1 + \ve^{\frac12}b_2\,.\\]
@@ -370,7 +370,7 @@ The diffusive PDE \eqref{eq: PDE bar V} is still non-linear but it doesn't invol
 
 Nevertheless, it is non-trivial to ascertain that, in this general framework, the control problems converge as $\ve\to0^+$ and the rate of convergence isn't known. Such approximation certificates would provide the rigorous grounding of the use of the numerical resolution of the simpler equation \eqref{eq: PDE bar V} for high-frequency control problems.
 
-## Approximation Results
+## Approximation results
 
 To quantify the approximation error we employ an analytic-probabilistic method, using the PDE and IDE in analytic arguments to represent the error, and then concluding via the probabilistic formulation to obtain a bound on the error. More precisely we introduce a Taylor remainder 
 
@@ -411,7 +411,7 @@ $$ V_\ve - J_\ve(\cdot;\bar\alpha)\le C(T-t) \ve^{\frac12}\,.$$
 
 Theorem 1 represents only the essential first step in this line of work. It serves to illustrate the motivation behind the work: controlling pure-jump processes in the high-frequency regime is costly and any analysis is complicated by the non-local nature of the HJB equation. We characterise the convergence rate of control problems along a particular small jump limit regime as the frequency of jumps $\eta\to+\infty$. This gives a principled motivation to the use of this diffusive limit approximation in practice. It also gives principles numerical schemes "for free". From an analytic standpoint, we have essentially reduced the problem of analysis to the question of the regularity of the limit problem. 
 
-There are many technical points which I haven't highlighted here for the sake of brevity and many interesting directions beyond this first result. For instance, I presented here a finite-horizon control problem but in <d-cite key="ABC22"></d-cite> we extended this study to the finite-dimensional ergodic setting and also from bounded growth to $b_1$ of linear growth (at the cost of extra assumptions). We also studied the possibility of correcting the error by repeating this procedure to higher orders involving a set of (possibly coupled) differential equations. 
+There are many technical points which I haven't highlighted here for the sake of brevity and many interesting directions beyond this first result. For instance, I presented here a finite-horizon control problem but in <d-cite key="ABC25"></d-cite> we extended this study to the finite-dimensional ergodic setting and also from bounded growth to $b_1$ of linear growth (at the cost of extra assumptions). We also studied the possibility of correcting the error by repeating this procedure to higher orders involving a set of (possibly coupled) differential equations. 
 
 In the context of another [project page](/projects/RL_diff_limit), I present the extension to the reinforcement learning problem, i.e. where $b$ and $r$ are unknown a priori and are learned from sequential interaction.
 

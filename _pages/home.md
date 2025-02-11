@@ -19,6 +19,6 @@ social: true  # includes social icons at the bottom of the page
 Research and Teaching Assistant (A.T.E.R.) at <a href='https://www.ensae.fr/recherche/centre-de-recherche-en-economie-et-statistique-crest'>CREST</a> in <a href='https://www.ensae.fr/'>ENSAE</a>. Member of the <a href='https://www.inria.fr/fr/fairplay'>FairPlay</a> Inria team (joint with CREST and <a href='https://ailab.criteo.com/'>Criteo AI Lab</a>).
  Mathematics Ph.D. from <a href='https://www.ceremade.dauphine.fr/en'>Université Paris Dauphine</a> and <a href='https://ailab.criteo.com/'>Criteo AI Lab</a> under the supervision of Bruno Bouchard and Marc Abeille. :fr: :uk: 
 
-I am an applied mathematician with interests in Analysis and Probability, mostly focused on Control Theory, Reinforcement Learning, Auction Theory, and Optimal Stopping.
+I am an applied mathematician with interests in Analysis and Probability, and in particular in questions of decision theory under uncertainty. I have worked one Control Theory, Optimal Transport, and Optim Reinforcement Learning, Bandits, Control Theory, Reinforcement Learning, Auction Theory, and Optimal Stopping.
 
 Welcome to my Home page! You can find an organised overview of my work in [projects](/projects), or directly visit the list of [publications](/publications). [Events](/events) collects things I organise, and on [blog](/blog) I may post small musings. My CV is available as a [page](/cv) or as a direct download.
