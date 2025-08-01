@@ -35,10 +35,10 @@
   contents:
     - title: Research and teaching assistant (A.T.E.R.)
       institution: CREST, ENSAE Paris and Inria (FairPlay team)
-      year: 2023-24
+      year: 2023-25
       description:
         - Teaching mostly M2 level courses in machine learning, with a bit of probability and optimisation on the side.
-        - Research in the FairPlay Inria team and at CREST, on Reinforcement Learning and Prophet inequalities.
+        - Research in the FairPlay Inria team and at CREST, on Reinforcement Learning, Bandits, Algorithms with predictions and Hawkes processes.
     - title: Researcher
       institution: Criteo AI Lab
       year: 2019-2020
