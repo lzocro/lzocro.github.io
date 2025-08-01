@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 group :jekyll_plugins do
     #gem 'wdm', '>=0.1.0'
+    gem 'uri'#  '>=1.0.3'
     gem 'mini_portile2'
     gem 'jekyll'
     gem 'jekyll-archives'
