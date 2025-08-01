@@ -16,9 +16,9 @@ authors:
       name: Criteo AI Lab 
 toc:
    - name: Introduction
-   - name: The Setting
-   - name: The Control Problem
-   - name: The Diffusion Limit
+   - name: The setting
+   - name: The control problem
+   - name: The diffusion limit
    - name: Approximation results
    - name: Conclusion
    - name: Extensions
