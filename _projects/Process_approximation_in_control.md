@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: Process Approximation Methods in Control Theory
-description: Surrogate stochastic objects
+description: Surrogate stochastic objects.
 img: assets/img/project_covers/IMG_4044.jpg
 authors:
   - name: Lorenzo Croissant
