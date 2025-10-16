@@ -296,7 +296,6 @@ bibliography: OnlineLearningAuctions.bib
 </div>
 
 
-
 ## Introduction
 
 How complicated can it possibly be to sell a bottle of wine? 

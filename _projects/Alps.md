@@ -9,8 +9,8 @@ authors:
     affiliations:
       name: CREST, ENSAE, & Inria FairPlay
 toc:
-  - name: What are algorithms with predictions
-  - name: The one-max-search problem
+  - name: What are the core problems? 
+  - name: Example: the one-max-search problem
   - name: Open questions for learning theorists
 importance: 3
 category: [Online Learning]
@@ -287,110 +287,62 @@ bibliography: ALPS.bib
 
 
 
-## Introduction
+Algorithms with predictions (also called learning‑augmented or prediction‑augmented algorithms) augment classical algorithmic procedures with side information about the future—predictions produced by ML models, domain experts, or simple heuristics. The basic philosophy is pragmatic: predictions are available in many real systems (forecasted demand, estimated user behavior, model outputs used by human operators), and algorithms that can use these signals profit from improved average performance while still providing safeguards against bad forecasts.
 
-How complicated can it possibly be to sell a bottle of wine? 
-
-From this surprisingly straightforward question has arisen the fertile, if somewhat obscure, field of Auction Theory<d-footnote> This theory is more properly referred to as Mechanism Design, but this generalisation is not relevant here so I will use Auction Theory for clarity.</d-footnote>. It is fertile in part because it sits neatly at the confluence of mathematics, computer science, economics, sociology and psychology, very much like the related field of Game Theory. It has led to several Nobel prizes (in economics), influenced real-world market design for public tenders in telecom and other sectors, and underpins key questions regarding the funding model of the internet.
-
-Indeed, almost all ads on the internet are sold at auction in a highly automated manner (all of it happens while your page is loading, in about $50$ ms). Whether these auctions are priced efficiently, fairly, and transparently, is therefore a key, if largely ignored, question concerning our daily lives. 
-
-I won't go into fairness here, but rather into questions of efficiency. In particular, I would like to answer the following questions:
- <ol type='i'>
-  <li>How to accurately determine the price to sell each bottle of wine to a buyer if I have, say, $10^{10}$ bottles? </li>
-  <li>If I have $50$ ms between each sale to determine the price, can I still price effectively?</li>
-</ol> 
-
-## The Second Price Auction
-
-To answer i. we need to start by thinking about the design of the auction itself. Having collected prospective buyers, do I ask them to submit rising bids publicly? Do I ask them to submit sealed envelopes and take the highest bid? Do I name descending prices until someone accepts? How much should the winner pay? Should I charge losers too? 
-
-The answers to the last two questions probably seem obvious, but they are surprisingly complex, and they heavily impact the equilibrium behaviour of the bidders. The choice of the seller often lands on the <i>second price</i> auction, in which the highest bidder wins and pays the smallest bid which still wins them the auction. Unlike the <i>first price</i> auction, in which you pay your own bid, this format incentivises players to bid according to the true value they assign to the item. 
-
-We will study a second price auction, but in order to avoid large losses, we will set a minimum price of sale, known as a <i>reserve price</i>, for each item and bidder, and announce them publicly. Setting an individualised reserve price is particularly important when there is a strong asymmetry in the way buyers value the item, which can lead the second-highest bid to be much lower than the winning bid and therefore to poor pricing.
-
-This format leads to the following model. The seller sets reserve prices, and then the bidders submit bids. The seller takes the highest amongst them and checks that it passes the reserve price, and, if so, awards the item at a price equal to the maximum of the second highest bid and the reserve price of the winning bidder. We are interested in studying how a seller should set reserve prices when facing static (passive) bidders in this type of auction.
-
-From the point of view of pricing, the seller sees a stream of bids $b_t$ drawn according to a random<d-footnote> This randomness models uncertainty in the way buyers value (or bid for) the item. In the absence of uncertainty, the problem is trivial.</d-footnote> variable with CDF $F$ and submits it to the auction. The seller then chooses the reserve price $r_{t+1}\in\Rb_+$ for the next round. Learning to price (i.e. question i.) boils down to whether we can make $r_t$ converge to an optimal value $r^*$, and how fast?
+While this problem is primarily studied in the computer science algorithms community, it should interest learning theorists and statisticians, especially those interested in the interface between learning and decision-making. Indeed, informing traditional decision-making is the main way statistical learning is applied in practice. Whether our concern (as an accademic community) is the quality of decision making by policymakers or how to correctly train students to <it>use</it> ML models, it is crucial to expand our understanding of this aspect of decision-making under uncertainty.
 
 
-## A Peculiar ERM
+# What are the core problems? 
 
-To understand the structure of this problem, we should start by looking at an optimal solution given full access to $F$ instead of just samples $b_t$. The optimal reserve price $r^*$ is given by the <i>monopoly price</i> <d-cite key="paes2016field"></d-cite>, which is defined as the maximiser of the <i>monopoly revenue</i>
-\\[ \Pi^F: r\mapsto \int r\,\1_{r\le b}\,\de F(b) \,.\\]
-Notice that this is the expectation of the revenue $p(r,b)$ gained in one round of our auction if there was only one bidder, i.e. $r$ if $b\ge r$ and $0$ otherwise. This objective is quasi-concave under a mild assumption assumption<d-footnote>Namely that the <i>virtual value</i> of $F$, defined by $\psi:x\mapsto x-(1-F(x))/f(x)$, is increasing. Here $f$ is the PDF of $F$, assuming absolute continuity. </d-footnote>, and can be maximised by gradient ascent. 
+Of course, aspects of algorithm design for specific problems are not within the scope of statistical learning theory. However, several conceptual and technical questions arise naturally at the intersection of learning and decision-making that should interest learning theorists. These stem from the key properties that learning-augmented algorithms aim to achieve:
 
-Given a finite sample, the logical thing to do then is to try and maximise $\Pi^{\hat F}$, where $\hat F:= n^{-1}\sum_i^n \delta_{b_i}$ is the empirical distribution of some finite sample of bids. In doing so, we would be trying to maximise
-\\[\Pi^{\hat F} = \frac r n \sum_t^n \1_{r\le b_t} \\]
-which is a sawtooth-shaped function which has $n$ local maxima (one at each $b_i$), and therefore there isn't much better to do than to keep a sorted list of bids and check $\Pi^{\hat F}$ at each value. This method converges as $\Oc(n^{-1})$ but costs $\Oc(n)$ in both time and memory at each step. 
+<ul>
+<li> Consistency: when predictions are accurate (or calibrated), a good algorithm should (almost) match the performance of an ideal clairvoyant method (fast, low regret, small cost, etc.).</li>
+<li> Robustness: when predictions are catastrophically wrong (worst-case), the algorithm should not be much worse than the classical worst‑case algorithms' guarantees.</li>
+<li> Smoothness: in between these two extremes, an algorithm's performance should degrade smoothly; small prediction error should cause only small performance loss. Smoothness is a necessary condition for actual deployability, as real predictors will never be perfect.</li>
+</ul>
 
-This gives a satisfying answer to question i., but not a satisfying answer in practice. If you are to determine $r^*$ in $50$ ms, and you have billions of bottles to sell, even linear complexity is too expensive, you would have to stagger updates at, say, exponentially growing intervals while running week-long calculations, which will become month-long next time. If you want to be able to update online (after every auction), you need the update cost to be $\Oc(1)$ like a stochastic gradient (SG) method.
+Naturally, each criterion individually is trivial to optimise: always trust the predictor (perfect consistency) or always ignore it (perfect robustness, and smoothness): the challenge is in the multi-objective problem. The opposition between consistency and robustness for example, is quite self-evident: the heart of the problem is in characterising, for a given problem, the shape of the Pareto frontier of achievable trade-offs. Most early work focused only on achieving consistency and robustness, with smoothness being a more recent (but already widely accepted) goal. 
 
-Backtracking one second, why didn't we do SG in the first place? To converge this method needs two things: a sufficiently concave objective, which we have, and an unbiased estimate of the gradient at each step, which we don't. The problem is that $p(r,b)= r\1\_{r\le b}$ is discontinuous and therefore doesn't allow us to commute the derivative and integral:
-\\[ \int \1_{r\le b}\,\de F(b) \neq \frac{\de}{\de r} \int r\,\1\_{r\le b}\,\de F(b) \,.  \\]
-If we want to design a stochastic gradient method for this problem, we need to overcome this difficulty.
+Further reading and a curated overview are available at the Algorithms with Predictions initiative: https://algorithms-with-predictions.github.io/.
 
-## Smoothed Gradient Descent
+# Example: The one-max-search problem
 
-The obvious answer to discontinuity is to smooth the integrand $p$, say by convolution with the kernel $k\in\Cc^1$. Then $p_k(r,b_t)$ is an unbiased estimator for $\Pi_k^F$, where $p_k(\cdot,):=p(\cdot,)\star k$ and $\Pi^F_k:=\Pi^F\star k$. Ascending $\frac\de{\de r} p_k$ from samples $(b_t)_{i\in\Nb}$ should then converge to the optimum $r^*_k$ of $\Pi^F_k$. Or does it? 
+As an illustration of the concepts of algorithms with predictions, this section sumarises the contents of <d-cite key="Benomar25"></d-cite> on the problem of one-max-search.
 
-The subtle stumbling block we have just encountered is that convolution <i>does not</i> preserve the technical concavity condition for almost-sure convergence of iterates of gradient ascent <d-cite key="bottou1998online"></d-cite>, known as <i>pseudo-concavity</i>. A $\Cc^1$ function $f$ is pseudo-concave on $S$ within $\Rb^d$ if for all $(x,x')\in S^2$
-\\[ \langle x-x'\vert \nabla f(x)\rangle \ge 0 \Rightarrow f(x)\ge f(x')\,.\\]
-This class is much larger than the class of concave functions, it is defined by the gradient providing global information for improvement. A good example of a pseudo-convex function is the Gaussian function $x\mapsto e^{-x^2}$.
+The one-max-search problem is a simple online decision problem, but despite its simplicity the prediction augmented problem is already very rich in challenges. One-max-search is an optimal stopping problem generally presented as an optimal execution problem: we have a single asset to sell over a time horizon of $T$ periods, and at each period $t\in[T]$ we observe a price $X_t$ which we can either accept or forfeit to move to $t+1$.  
 
-We have unearthed a highly obscure question of Analysis in this seemingly innocent problem, which thankfully is (partially) solved: which smooth functions preserve pseudo-concavity under convolution? An old paper <d-cite key="ibragimov1956composition"></d-cite> by Ildar Ibragimov (the "I" in the TIS inequality) published in 1956 shows that this is precisely the class of log-concave (unimodal) distributions. Henceforth, we will take $k$ as a Gaussian kernel with mean $0$ and variance $\sigma^2$, which is log-concave. 
+This problem is very similar to the Prophet and Secretary problems, so to clear up any confusion, let's contrast these optimal stopping problems before moving on. A Prophet problem is characterised by the <it>independent</it> between the prices $X_t$. A Secretary problem is characterised by the <it>randomisation of arrival order</it> of the prices $X_t$, which are otherwise adversarially chosen. In contrast, the prices in one-max-search are adversarially chosen, including their order of arrival. Still, these problems are analysed by similar techniques, including the competitive ratio of an algorithm, defined as the worst-case ratio between the algorithm's performance and that of a clairvoyant (a.k.a. offline) who knows all prices in advance<d-footnote>Note that the expectation may be outside the ratio in some analyses, see e.g. <d-cite key="lee1988expectation"></d-cite>,<d-cite key="ezra2023prophet"></d-cite>, and references therein. This is a design choice.</d-footnote>.
+$$\begin{align}
+\text{CR} = \inf_{X_1,\ldots,X_T} \frac{\mathbb{E}[\text{ALG}(X_1,\ldots,X_T)]}{\mathbb{E}[\text{OPT}(X_1,\ldots,X_T)]}.
+\end{align}$$
+The notations $\text{ALG}(X_1,\ldots,X_T)$ and $\text{OPT}(X_1,\ldots,X_T)$ are left intentionally vague in this literature to emphasise that the competitive ratio is a very general concept that can be applied to many different problems and performance metrics (e.g., the value $X_t$ chosen for prophets and one-max-search, vs. the probability of selecting the maximum value in secretary problems). Due to independence, the optimal competitive ratio for Prophet problems is $1/2$<d-cite key="krengel_semiamarts_1977"></d-cite>, while for Secretary problems it is $1/e$<d-cite key="dynkin1963optimum"></d-cite>. In one-max-search, one must assume that the prices are bounded in $[1,\theta]$ for some $\theta>1$ to get non-trivial guarantees, and the optimal competitive ratio is $\theta^{-1/2}$<d-cite key="el-yaniv_competitive_1998"></d-cite>.
 
+What about predictions? How much can they improve this $\theta^{-1/2}$ ratio? The <it>robust</it> algorithm of <d-cite key="el-yaniv_competitive_1998"></d-cite> buys the first price above $\sqrt{\theta}$, which gives us a bound on the robustness achievable. At the other end, given a prediction $Y$ of the maximum price $\max_{t\in[T]} X_t$, a consistent algorithm sets its threhold price at $Y$, achieving a consistency of $1$. In between, <d-cite key="sun_pareto-optimal_2021"></d-cite> already gave the Pareto frontier of achievable trade-offs between consistency and robustness. I will spare you the equations of the front, which aren't very enlightening. 
 
-## Bias-Variance trade-off
+However, the algorithm of <d-cite key="sun_pareto-optimal_2021"></d-cite> is not smooth: a small error in the prediction $Y$ can cause a large drop in performance. In order to obtain smoothness,  <a href='https://scholar.google.com/citations?user=ZhWGR7QAAAAJ&hl=fr'>Ziyad Benomar</a> reanalysed the Pareto frontier to characterise <it>all</it> smooth threshold algorithms through the geometry of the set of Pareto-optimal threshold functions. This formalism allows us to then study the smoothness of these functions to derive competitive ratio bounds in terms of the prediction error 
+$$\begin{align}
+\Ec(Y,X^*):= \min\{\frac Y{X^*}, \frac{X^*}{Y}\},
+\end{align}$$
+where $X^*:=\max_{t\in[T]} X_t$ is the maximum price. Precisely, we show that the competitive ratio degrades as a power of the prediction error which quantifies the smoothness of the algorithm. Finding the optimal smoothness can then be characterised through a triple consistency-robustness-smoothness Pareto front. 
 
-The problem with smoothing is that there is no reason for $\Pi^F$ and $\Pi_k^F$ to have the same minimiser, in other words, $$ r^{*}_k \neq r^* $$ for $\sigma>0$.  So we want $\sigma$ to be as small as possible for the bias $$ \vert r^{*}_k - r^*\vert $$ to be small, but we also know that the gradient estimate breaks as $\sigma\to 0$. What happens will be clear in Figure 1.
+I will leave technical details to the paper, the instructive conclusions in my view are that: 
+<ul>
+<li>answering the multi-objective problem of consistency, robustness, and smoothness is quite difficult even on simple problems</li>
+<li>instead of searching for a single optimal algorithm, a keener understanding of the problem's constraints and geometry is needed to conclusively answer the problem</li>
+<li>while the high-level ideas transfer well, the nitty-gritty of analysis is ad-hoc and problem dependentand it's not clear if a general form akin to dynamic programming can be found.</li>
+</ul>
 
-<div class="row mt-3">
-  <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/projects/online_learning_in_auctions/Gaussian_gradients_bias_variance.jpg" class="img-fluid rounded z-depth-1" zoomable=true%}
-    </div>
-  <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/projects/online_learning_in_auctions/log_norm_exp_revenue_bias1024_1.jpg" class="img-fluid rounded z-depth-1" zoomable=true%}
-    </div>    
-</div>
-<div class="caption">
-    Figure 1. Plots of $\nabla p_k(\cdot,0.5)$ (left) and $\Pi^F_k$ (right) for different values<d-footnote>In decreasing order red (dotted), blue (dashed), green (dashed and dotted).</d-footnote> of $\sigma$, alongside the ground truths $\1_{r\in(0,0.5)}$ and $\Pi^F$ ( in solid purple). 
-</div>
+# Open questions for learning theorists
 
-When $\sigma$ is large the curve is very smooth, and no value of $b$ will lead to a large gradient, which is to say a large change in the iterates $\vert r_{t+1}-r_{t}\vert$. We expect the trajectory of iterates to have very low variance as a consequence, but the bias might be large. Conversely, as the approximation gets better, the gradient of $p_k$ gets arbitrarily large near $r$, which means that a sample landing here can send the iterates very far. In this case, the bias will be very low, since the curves are almost equal, but the variance will be very high. 
+This leaves us with an unpleasant taste: the problem of algorithms with predictions is cool, challenging, and highly relevant for practical applications, but it's ungeneralisability leaves an unpleasant aftertaste. Perhaps a new perspective is needed, and learning theorists and statisticians are well placed to provide it.
+In my view, there are several conceptual and technical questions that are particularly natural for learning theorists and statisticians.
 
-This classical learning theory dilemma is solved by analysing the error $\vert r_t-r^*$ to find how to balance the bias and variance and decrease them both over time at the correct rate. Setting aside the details of the proof, we want to set $\sigma(t)\simeq t^{-\frac12}$ as the schedule for decreasing the variance. You can see in Figure 2. how decreasing $\sigma$ too quickly or too slowly ($t^{-\frac14}$ vs $t^{-\frac34}$) leads to smooth but biased convergence or unbiased but erratic convergence, respectively.
+<ol type='1'>
+<li> <b>Bridging prediction error and generalisation guarantees.</b> In algorithms with predictions, analysis is generally worst-case and purely deterministic: the predictor is just some scalar. In contrast, learning theory has cut its teeth on stochastic generalisation frameworks. Can we bring these together to obtain meaningful performance guarantees?</li>
+<li> <b>From static predictions to control and dynamic programming.</b> Many decision problems are inherently sequential and can be solved via the general dynamic programming principle. The generality of this framework is a huge achievement and a powerful tool, can we find an analogue general decision framework for algorithms with predictions? In the context of control, this has been studied a bit<d-footnote>See, e.g., papers on <it>lookahead</it> in control and reinforcement learning such as <d-cite key='nadav1'></d-cite> and <d-cite key='nadav2'></d-cite>.</d-footnote>, but a general theory is still missing.</li>
+<li> <b>Classifying brittleness and stability of problems.</b> There's an interesting question going around in the community: which problems are inherently brittle, i.e., for which <it>no</it> algorithm can be both robust and consistent, while being smooth? See for example <d-cite key="elenter2024overcoming"></d-cite> for a recent example.  On the one hand, classifying problems into brittle and stable families is an interesting theoretical question but perhaps ill suited to statistics. But, on the other hand, us learning theorists should probably be considering the consequences of this brittleness when predicting information for decision-making problems. </li>
+<li> <b>Distributional predictions.</b> On many problems, point predictions are not the most natural output of a predictor. One would be better served by a prediction about the whole distribution of a key variable, such as $X^*$ in one-max-search. There is a strong demand for the study of this problem from computer scientists, who often find their tools inadequate for the task. There's strong potential for statisticians and applied mathematicials to contribute here. One might hasard to guess conections to questions of calibration in learning theory</li>
+</ol>
 
-
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/projects/online_learning_in_auctions/trajectories.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
-    </div>
-</div>
-<div class="caption">
-    Figure 2. Plots of a sequence of iterates of SG from different decay schemes for $\sigma$, alongside the ground truths $r^*$ (in solid black). 
-</div>
-
-With this choice of $\sigma(t)$ we have therefore designed a method which converges to the optimum and only requires $\Oc(1)$ update cost in time and memory, which answers ii. In the paper, we show that the rate of convergence of this algorithm is $\Oc(t^{-\frac12})$. 
-
-
-## Conclusion
-
-In this project, the objective is to propose learning algorithms specifically tailored to auction theoretic problems, with an eye on computational efficiency. This is motivated by the scale at which internet ad auctions are run, which leaves existing methods computationally obsolete.
-
-In <d-cite key="CAC20"></d-cite> we provided the first real-time (constant time and memory update cost) algorithm for learning reserve prices in a (lazy) second-price auction. This algorithm can be run fully online regardless of the frequency of auctions and comes with a convergence guarantee of $\Oc(t^{-\frac12})$. The standard method in the literature comes at a cost of $\Oc(n)$ in time and memory but achieves a rate of $\Oc(t^{-1})$.
-
-All in all, it is surprisingly complicated to sell a bottle of wine properly!
-
-## Extensions
-
-The mathematical interest of this problem mostly lies first in unusual probabilistic problems, such as the question over which convolutions preserve some relaxed form of convexity, and second in quantifying computational trade-offs.
-
-In the first vein, we have barely scratched the surface of the problem: other auction formats, strategic bidders, bandit/censored feedback, and more exist to complexify the problem. One key extension which is surprisingly difficult is to turn the bid into a function of some public features $x_t\in\Rb^d$ and try and learn a model of this function. It is non-trivial to extend the convolution method above to this problem since composition does not preserve pseudo-concavity. Following Ibragimov, finding the class of functions which preserves pseudo-concavity by composition should tell us something about which functions preserve the unimodality of random variables, which is doubtless an interesting problem for probabilists. 
-
-In the second vein, on the other hand, the tantalising question is whether there is an algorithm which costs only $\Oc(1)$ at each step which achieves the rate $\Oc(t^{-1})$? 
-It might be possible with second-order methods, but the question suggests a notion of convergence hardness under computational constraints which I don't think I have seen explored before. 
-
-However, given some a priori information about $F$, I think it would be possible to find a well-tuned kernel which performs much better than Gaussian. This is suggested by the asymmetry of the problem (because $p$ is highly asymmetrical), which would encourage us to intentionally bias a low variance kernel to counteract its natural bias, for example by using an asymmetrical kernel like a Gumbel distribution. In general, the question of the optimal kernel for a given $F$ might yield interesting insights.
-
-
+This area is still new and emerging, but already very active. If you are interested in any of the above questions, feel free to reach out, I can put you in contact with other researchers in the area. If you want to learn more about algorithms with predictions, I highly recomend the curated Algorithms with Predictions initiative website https://algorithms-with-predictions.github.io/, every research field should have one!
