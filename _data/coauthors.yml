@@ -21,8 +21,8 @@
     url: https://www.cvernade.com/
 "Verronneau":
   - firstname: ["Remi", "R."]
-    url: https://crest.science/user/R%C3%A9mi-VERRONNEAU/
+    url: "https://crest.science/user/R%C3%A9mi-VERRONNEAU/"
 "Vielle":
-  - firstname:["Bartholome", "B."]
-    url: https://crest.science/user/Bartholom%C3%A9-Vieille/
+  - firstname: ["Bartholome", "B."]
+    url: "https://crest.science/user/Bartholom%C3%A9-Vieille/"
 
