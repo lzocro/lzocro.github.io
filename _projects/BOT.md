@@ -1,17 +1,17 @@
 ---
 layout: distill
-title: Bandit Optimal Transport
-description: Is linearity sufficient for OFUL?
+title: Bandits and infinite dimensional statistics
+description: What corner cases can teach us about bandit optimisation
 img: assets/img/project_covers/IMG_5210.jpg
 authors:
   - name: Lorenzo Croissant
     affiliations:
       name: CREST, ENSAE, & Inria FairPlay
 toc:
-  - name: Introduction
-  - name: Optimal transport and setting
-  - name: The solution
-  - name: Open directions
+  - name: Bandit optimisation
+  - name: Bandits Optimal Transport
+  # - name: (Semi-)Bandits with contracts
+  # - name: Geometric aspects of optimism
 importance: 8
 category: [Reinforcement Learning]
 bibliography: BOT.bib
@@ -284,130 +284,44 @@ date: 2025-08-01
   $$
 </div>
 
-## Learning to control
+## Bandit optimisation
 
-The Reinforcement Learning (RL) problem can be generally understood as the problem of learning to control from the feedback of the controls used. In my opinion, what makes this framework interesting from a mathematical standpoint is the interplay between learning and the control problem. Since feedback is obtained only by visiting state and control pairs, gathering information about the system is itself a control problem, which may conflict with the control problem we're actually trying to solve.
-
-In order to focus on the control/learning interplay, I will choose a very restrictive RL framework which I call non-episodic online model-based RL. Let us consider a family of $\Rb^d$-valued controlled stochastic processes $(X^{\alpha})\_{\alpha\in\Ac}$, and a reward function $r:\Rb^d\x\Ab\to\Rb$, in which $\Ab$ is the set of control values. To represent the uncertainty, we consider a finite-dimensional collection of models $\theta\in\Theta\subset\Rb^{d\_\Theta}$, amongst which lies an unknown real value $\theta^*$. For each $\theta\in\Theta$, we denote by $(X^{\theta,\alpha})\_{\alpha\in\Ac}$ the corresponding family of controlled processes whose dynamics are parametrised by $\theta$. Our objective<d-footnote>We consider measurability requirements, e.g. in admissible controls $\Ac$, w.r.t $X^{\theta^*,\alpha}$ henceforth.</d-footnote> is to solve 
-
-$$\begin{align}
-    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1T\Eb\left[\sum_{s=0}^T r(X^{\theta^*,\alpha}_s,\alpha_s)\right],\label{eq:rho*}
-\end{align}$$
- without a priori knowledge of $\theta^*$. 
-
-The use of an ergodic (i.e. long-term average) criterion is motivated by 
-<ol type='i'>
-    <li> The absence of episodes: it allows the learning game to run forever along the same trajectory, </li>
-    <li> Analytical reasons: absence of terminal times forces us to rely only on the inherent regularity of the process</li>
-    <li> The existence of turnpike properties, which will allow us to move back to finite-horizon systems, in some learnable regimes.</li>
-</ol>
-
-As usual in RL theory, we use the regret as a performance measure, which is defined, for any $\alpha\in\Ac$ as
-$$\begin{align}
-   \Rc_{T}(\alpha):= T\rho^*_{\theta^*} - \sum_{s=1}^T r(X^{\theta^*,\alpha^*}_s,\alpha^*_s),
-\end{align}$$
-
-This is natural for studying the interplay of decisions and learning since it prices ignorance of $\theta^*$ directly in terms of the control problem via $r$.
-
-## The OFU principle
-
-The study of optimal exploration in non-episodic online RL problems has been underpinned since <d-cite key='auer_finite-time_2002'></d-cite> by the optimism in the face of uncertainty (OFU) principle. This principle states that optimal exploration is obtained by playing greedily with respect to $\tilde\theta\_t$, the most optimistic<d-footnote>In terms of $\rho^*_{\tilde\theta_t}$, defined by analogy to \eqref{eq:rho*}.</d-footnote> estimate of $\theta^*$ at time $t$ inside some reasonable confidence region. 
-
-This methodology originates in bandit theory, see e.g. <d-cite key="lattimore_bandit_2020"></d-cite> and has been applied to the RL setting to finite state Markov Decision Processes (MDPs) <d-cite key='jaksch_near-optimal_2010'></d-cite> and Linear Quadratic Systems <d-cite key='abeille_efficient_2020'></d-cite>. It has generally been shown to be optimal in the sense that it achieves the minimax regret rate, up to logarithmic factors. However, I find this picture quite unsatisfactory for two reasons:
-
-<ol type='i'>
-    <li> Arbitrary continuous systems don't translate well into finite MDPs. This is because finite MDPs can't represent structural regularity which exists in non-chaotic continuous systems. Discretising a problem a priori is therefore a bad idea.  </li>
-    <li> Linear-quadratic problems are fully continuous, but unfortunately, they are limited in their application to a single type of problem, which prevents efficient exploration from being employed in non-linear systems. </li>
-</ol>
-
-Therefore, in this project, I strive to generalise the OFU principle to non-linear systems. I would like to highlight that this is primarily an analysis issue and not a new problem. Indeed, the OFU principle is a general methodology and it is expected to work as is in non-linear systems. The main difficulty is to prove that it does, and in particular to adapt/generalise existing analyses and quantities.
-
-## Methodology
-
-When considering general non-linear problems on continuous state spaces, problems arise immediately from the definition of $$\rho^*_{\theta^*}$$ due to the limit inferior. This limit exists if the process is ergodic in some meaningful way, which is unpleasant to study for infinite MDPs in discrete time. On the other hand, control theorists and stochastic analysts who work in continuous time have a good grasp of these ideas. Therefore, the first step of my methodology is to translate the problem into a continuous time setting. This is done by considering that arrival times for jumps of the process $X^{\theta,\alpha}$ are given by a Poisson process with intensity $\eta_\ve:=\ve^{-1}$. For the technical details of this formalism, see [this other project](/_projects/diffusion_limit.md). Let $N_t$ be the counting process associated with this Poisson process. Then, the ergodic criterion becomes, for any $\theta\in\Theta$,
-$$\begin{align}
-    \rho^*_{\theta^*}:=\sup_{\alpha\in\Ac} \liminf_{T\to+\infty}\frac1{T\eta_\ve}\Eb\left[\int_0^T r(X^{\theta^*,\alpha}_{s-},\alpha_{s-})\de N_s\right].\label{eq:rho*CT}
-\end{align}$$
-
-In order to write the learning problem more clearly, let's specify the model structure a bit by assuming that the dynamics of $X^{\theta,\alpha}$ are the solution to the Stochastic Difference Equation:
-$$\begin{align}
-    X^{\theta,\alpha}= x+ \sum_{s=0}^{N_\cdot -1} \mu_{\theta}(X^{\theta,\alpha}_{s},\alpha_{s}) + \Sigma\xi_{s+1} \label{eq:SDE}
-\end{align}$$
-in which $(\xi_s)\_{s\in\Nb}$ are $\Rb^d$-valued standard Gaussians independent of everything else, $\Sigma\in\Rb^{d\times d}$
-and $\mu_{\theta}:\Rb^d\x\Ab\to\Rb^d$ is a measurable function.
-
-<div class="assumption">
-
-Uniformly in $(\theta,a)\in\Theta\times\Ab$
-<ol type='i'>
-  <li> $\mu_{\theta}(\cdot,a)$ is Lipschitz continuous (but not necessarily bounded) </li>
-  <li> $r(\cdot,a)$ is Lipschitz continuous and bounded </li>
-  <li> $\Sigma\Sigma^\top$ is Positive Definite and bounded (non-degenerate noise). </li>
-</ol>
-
-</div>
-
-<div class='assumption'>
-
-    There is $(\ell_\Vs,L_\Vs,\cf_\Vs,M_\Vs,M_\Vs')\in\Rb_+^5$  and a Lyapunov function $\Vs\in\Cc^{2}(\Rb^d_*;\Rb_+)$ satisfying, for any $(x,x',a,\theta)\in\Rb^d\x\Rb^d\x\Ab\x\Theta$, $x\neq x'$, and $\ve \in (0,1)$:
-    <ol type='i'>
-    <li> $\ell_\Vs\lVert x-x'\rVert\le \Vs(x-x')\le L_\Vs\lVert x-x'\rVert$ </li>
-    <li> $\sup_{x\in\Rb^d_*}\lVert \nabla \Vs(x) \rVert \le M_\Vs \mbox{ and } \sup_{x\in\Rb^d_*}\lVert \nabla^2\Vs(x)\rVert_{\rm op}\le M_\Vs'$ </li>
-    <li> $\Vs(x+ \mu(x,a)-x'-\mu(x',a))\le (1-\ve \cf_\Vs)\Vs(x-x')\,.$</li>
-    </ol>
-  in which $\Rb^d_*:=\Rb^d\setminus\{0\}$.
-
-</div>
-
-Using ergodic control results, we can characterise the optimal value of this problem as the unique solution of the Hamilton-Jacobi-Bellman (HJB) equation associated with the ergodic control problem. This integral equation also characterises an optimal control. To apply OFU to this class we still need a learning methodology to build confidence sets for non-linear systems. This can be done in the framework of <d-cite key='russo_eluder_2013'></d-cite> using Non-Linear Least-Square, in which 
-
-$$\begin{align}
-    \hat\theta_t:\in\arg\min_{\theta\in\Theta} \sum_{s=0}^{N_t-1} \left\lVert X^{\theta^*,\alpha}_{s+1} - X^{\theta^*,\alpha}_{s} - \mu_{\theta}(X^{\theta,\alpha^*}_{s},\alpha^*_{s})\right\rVert^2.
-\end{align}$$
-
-This estimator can be used to construct a well-calibrated $\delta$-confidence set in the following way 
-$$\begin{align}
-\Cc_{t}(\delta)&:= \left\{\theta\in\Theta: \sqrt{\sum_{s=0}^{N_t-1} \left\lVert\mu_\theta(X_{s}^{\theta^*,\alpha},\alpha_s)-\mu_{\hat\theta_{t}}(X_{t}^{\theta^*,\alpha},\alpha_s)\right\rVert^2} \le \beta_{t}(\delta)\right\}\,.\label{eq: def conf sets}
-\end{align}$$
-for a suitable choice of $\beta_t(\delta)$ which is of the order of $\sqrt{\log(N_T)}$ up to complexity metrics.
-
-With these two components, up to the analysis, we should be able to apply the OFU principle to generic non-linear problems.
-
-
-## Results
-
-Unfortunately, the analysis can't quite be extended as is from the literature for a handful of reasons:
-<ol type='i'>
-    <li> The complexity measures of the confidence radius $\beta_t(\delta)$ scale with the boundedness of coefficients and thus are infinite under Assumption 1. Since $\beta_t(\delta)$ appears in the regret bound, this makes the bounds meaningless. </li>
-    <li>  Since the optimal controls we compute are only optimal in the infinite horizon limit, they are arbitrarily bad in finite time, so an efficient algorithm must update its behaviour lazily (i.e. infrequently) through time. This update scheme needs to be designed.</li>
-    <li>  We need some improved concentration bounds beyond simple ergodicity to ensure the regret from the process of trying to escape to infinity is small. </li>
-</ol>
-
-In <d-cite key="CAB23"></d-cite> we solve the first problem by localising complexity measures to only consider regions effectively traversed instead of the whole space. This clips the complexity bounds in terms of the concentration of the process and makes the regret meaningful again since we also solve the third problem by deriving a concentration inequality from a Stochastic Lyapunov Condition. The second problem is solved by using a functional inequality to enrich the results of <d-cite key="russo_eluder_2013"></d-cite>. The resulting regret bound is given by Theorem 1, details can be found in the paper <d-cite key='CAB23'></d-cite> which is being published at ALT2024 and also appeared in the EWRL workshop as <d-cite key='CAB23EWRL'></d-cite>.
-
-<div class="theorem">
-Under Assumptions 1 and 2, for any $\delta\in(0,1)$, there is a constant $C\in\Rb_+$ independent of $\ve$ such that our algorithm $\alpha$ achieves 
-    $$\begin{align}
-        R_T(\alpha) \le  C\sqrt{\mathrm{d}_{E,N_T}\log(\Ns_{N_T}^\ve) T\log(T\delta^{-1})} 
-    \end{align}$$
-    with probability at least $1-\delta$, in which $\mathrm{d}_{E,N_T}$ is the $2\ve/\sqrt{T}$-effective<d-footnote>Meaning the eluder dimension of the set of restrictions to the ball of radius $\sup_{s\le T}\lVert X^{\theta^*,\alpha}_s\rVert$.</d-footnote> eluder dimension and $\log(\Ns_{N_T}^\ve)$ is the $\ve^{2}\lVert\bar\Sigma\rVert_{\rm{op}}^2/T$-effective<d-footnote>Essentially likewise.</d-footnote> log-covering number.
-</div>
-
-## Ongoing and future work
-
-While we were able to design an optimal algorithm there are several directions for improvement which I am currently working on:
+A (stochastic) bandit problem is, at its heart, an optimisation problem under uncertainty. An agent wishes to minimise some objective function $g:\Ab\to\Rb$, which is unknown to them. They can however query it sequentially at points $a_1,\ldots,a_n\in\Ab$, but crucially only observe noisy values of the function at these points, i.e. they observe $y_i = g(a_i) + \xi_i$ where $\xi_i$ is some noise. These problems exhibit 3 key properties.
 <ol>
-    <li> Improving the computational efficiency of the lazy update steps to eliminate the supremum. While I can reduce the complexity of the optimisation problem in one step, it isn't clear if is possible to completely remove the supremum in the lazy updates to replace it with a simpler geometric object. In the linear case, one can use the determinant, but this is only because of the regularity of the map $\theta\mapsto\mu_\theta$. It is apparent that regularity conditions in the parametrisation are required at this step (which they weren't in previous arguments).</li>
-    <li> Efficient optimistic planning remains complicated. While I can show easily how to solve the equivalent of Extended value iteration from <d-cite key='jaksch_near-optimal_2010'></d-cite>, I would like to get some efficient computational complexity bounds on the resolution of this type of HJB  equation. Of course, it would be exponential in the dimension, but I believe it might be possible to obtain fast convergence of the finite horizon value from Assumption 1 if one can inherit the regularity of the continuous equation.</li>
-    <li> Reducing the strength of the Lyapunov assumption (Assumption 2) and studying the concentration properties of ergodic processes in order to generalise to more systems. This might also lead to the reduction of the stability assumption to a controllability assumption. The challenge here is the interplay between the reward's shape and the properties of $X^{\alpha,\theta^*}$ in \eqref{eq:rho*}. </li>
+<li> Partial information: the agent only observes the value of $g$ at the points they query, and with noise.</li>
+<li> Interactivity: the data is chosen by the agent, rather than received exogenously like in supervised learning. As a consequence, the agent must explore the space $\Ab$ to gather statistical information about $g$. This exploration will introduce long-range dependencies between the data points, which makes the statistical analysis more complex. </li>
+<li> Evaluation through regret: the agent's performance is evaluated through their regret, i.e. the difference between the cumulative value of $g$ at the points they queried, and the cumulative value of $g$ at its optimum. This is a more stringent criterion than classical statistical ones, as it requires both optimisation and statistical efficiency.</li>
 </ol>
-
-On the other hand, our algorithm and analysis are too general to be useful for practitioners, so I would like to build based on this framework to explore more specific problems. In particular, I am interested in the following:
-
-<ol>
-  <li> Specialisation: deriving learning instances of NLLS which are more effective on specific dynamics. This also applies to the resolution of the HJB equation. </li>
-  <li> Exotic noise structures: the HJB can be solved for more complex noise structures than just additive Gaussian martingale difference sequences such as multiplicative noise. This poses interesting statistical problems from a learning theory perspective (construction of confidence sets). </li>
-  <li> Other kinds of stochastic processes could be considered too, such as self-exciting processes, which could find interesting use cases for RL in some new applications.</li>
-</ol>
+Evaluation through regret forces the agent to exploit its knowledge of $g$ as it goes, which comes in tension with the need to explore the space $\Ab$ to learn about $g$. This exploration-exploitation tradeoff is the heart of bandit problems.
 
 
+Because bandits are static, i.e. the function $g$ does not depend on time, they are often used to study [reinforcement learning](/projects/RL_diff_limit/) by stripping away the control component, while retaining most of the statistical complexity. Bandits have a well-documented history going back to the 1930s, which I won't recount here. 
+
+What this project is interested in is the interplay between optimisation and statistics in bandit problems, and in particular I'm interested in situations where $\Ab$ is continuous and possibly infinite-dimensional. From a classical-statistics point of view, this isn't much of an issue, non-parametric statistics is a well-developed field afterall. However, the interplay with optimisation and the nature of regret evaluation muddies this picture. I believe these corner case questions can teach us a lot about the core nature of bandit problems, and more generally of reinforcement learning, which is why I study them. Below are some of the topics on which I've worked in this vein.
+
+## Bandits Optimal Transport
+
+Optimal Transport (OT) is a mathematical theory which studies the problem of transforming one probability distribution into another in an optimal way. It has found applications in many fields, principally logistics and economics more broadly, but also in machine learning<d-footnote>For economics see the survey <d-cite key="galichon_unreasonable_2021">Galichon et al. (2021)</d-cite>, for machine learning, see e.g. <d-cite key="salimans_improving_2018">Salimans et al. (2018)</d-cite>.</d-footnote>. Let $\mu,\nu$ be two probability distributions on $\Rb^d$, and $c^*:\Rb^d\x\Rb^d\to\Rb_+$ a cost function. The Kantorovich OT problem, named after its formaliser, see <d-cite key="kantorovich_translocation_2006">Kantorovich (1960)</d-cite>, consists in finding a coupling<d-footnote>I.e. a joint probability measure with marginals $\mu$ and $\nu$ over its first and second arguments, respectively.</d-footnote>  $\pi$ between $\mu$ and $\nu$ which minimises the expected cost of transporting mass from $\mu$ to $\nu$, i.e.
+\\[
+\inf_{\pi\in\Pi(\mu,\nu)}\int c^\*(x,y)\pi(\de x,\de y),
+\\]
+where $\Pi(\mu,\nu)$ is the set of couplings between $\mu$ and $\nu$. 
+
+
+This problem is interesting beyond its applicability because it lies in a very complex optimisation space, but is also highly regular, see e.g. <d-cite key="villani_optimal_2009">Villani (2008)</d-cite> for a comprehensive treatment. 
+The interesting question from a statistical standpoint is whether we can exploit this regularity, and this is what this paper aims to answer.
+
+What does a Bandit Optimal Transport (BOT) problem look like? The agent knows $\Ab:=\Pi(\mu,\nu)$, but ignores the cost function $c^*$. They can query transport plans $\pi_1,\ldots,\pi_n\in\Ab$, and observe noisy values of the cost 
+\\[
+y_i = \int c^\*(x,y)\pi_i(\de x,\de y) + \xi_i
+\\]
+
+where $\xi_i$ is some noise. Since the functional $g:\pi\to\int c^*\de \pi$ is linear, this is an instance of the well-studied linear bandit problem, see the reference treatment in <d-cite key="abbasi-yadkori_improved_2011">Abbasi-Yadkori et al. (2011)</d-cite>.
+
+However, this is where the corner case comes in: the space $\Pi(\mu,\nu)$ is not a Hilbert space, and in fact is quite complex geometrically, there is no good way to put into an inner product structure with a hypothesis class on the cost $c^*$. This turns out to be a key issue, as it breaks the careful infinite-dimensional analysis of <d-cite key="abbasi-yadkori_improved_2011">Abbasi-Yadkori et al. (2011)</d-cite>, which crucially relies on an inner-product structure. This begs the question, is linearity not sufficient to obtain good regret bounds in infinite dimension? Is the name <it>linear bandits</it> a misnomer?
+
+While a definitive negative answer is not yet established, I have shown that the BOT problem is learnable with sub-linear regret, interpolating all the way from $\Oc(\sqrt{n})$ regret in finite dimension to $\Oc(n)$ in unlearnable instances. The interpolation is obtained through the use of infinite-dimensional statistics tools, in particular functional-regression. See <d-cite key="Croissant_BOT_25">Croissant (2025)</d-cite> for details.
+
+<!-- ## (Semi-)Bandits with contracts
+
+## Geometric aspects of optimism -->

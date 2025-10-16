@@ -1,9 +1,9 @@
 ---
 layout: distill
 title: Algorithms with Predictions
-description: Dynamics in markets
+description: How to use your excel spreadsheet to make decisions.
 date: 2025-07-01
-img: assets/img/project_covers/IMG_4044.jpg
+img: assets/img/project_covers/IMG_2987.jpg
 authors:
   - name: Lorenzo Croissant
     affiliations:
@@ -292,7 +292,7 @@ Algorithms with predictions (also called learning‑augmented or prediction‑au
 While this problem is primarily studied in the computer science algorithms community, it should interest learning theorists and statisticians, especially those interested in the interface between learning and decision-making. Indeed, informing traditional decision-making is the main way statistical learning is applied in practice. Whether our concern (as an accademic community) is the quality of decision making by policymakers or how to correctly train students to <it>use</it> ML models, it is crucial to expand our understanding of this aspect of decision-making under uncertainty.
 
 
-# What are the core problems? 
+## What are the core problems? 
 
 Of course, aspects of algorithm design for specific problems are not within the scope of statistical learning theory. However, several conceptual and technical questions arise naturally at the intersection of learning and decision-making that should interest learning theorists. These stem from the key properties that learning-augmented algorithms aim to achieve:
 
@@ -306,7 +306,7 @@ Naturally, each criterion individually is trivial to optimise: always trust the 
 
 Further reading and a curated overview are available at the Algorithms with Predictions initiative <a href='https://algorithms-with-predictions.github.io/'>website</a>.
 
-# Example: The one-max-search problem
+## Example: The one-max-search problem
 
 As an illustration of the concepts of algorithms with predictions, this section sumarises the contents of <d-cite key="Benomar25"></d-cite> on the problem of one-max-search.
 
@@ -335,7 +335,7 @@ I will leave technical details to the paper, the instructive conclusions in my v
 <li>and that, while the high-level ideas transfer well, the nitty-gritty of analysis is ad-hoc and problem dependent and it's not clear if a general form akin to dynamic programming can be found.</li>
 </ul>
 
-# Open questions for learning theorists
+## Open questions for learning theorists
 
 This leaves us with an awkward feeling: the problem of algorithms with predictions is cool, challenging, and highly relevant for practical applications, but its ungeneralisability leaves an unpleasant aftertaste. Perhaps a new perspective is needed, and learning theorists and statisticians are well equiped to provide it.
 In my view, there are several conceptual and technical questions that are particularly natural for learning theorists and statisticians.
