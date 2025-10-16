@@ -8,6 +8,15 @@ authors:
   - name: Lorenzo Croissant
     affiliations:
       name: CREST, ENSAE, & Inria FairPlay
+  - name: Ziyad Benomar
+    affiliations:
+      name: CREST, ENSAE, & Inria FairPlay
+  - name: Vianney Perchet
+    affiliations:
+      name: CREST, ENSAE, Inria FairPlay, & Criteo AI Lab
+  - name: Spyros Angelopoulos
+    affiliations:
+      name: CNRS and ILLS Montreal
 toc:
   - name: "What are the core problems?"
   - name: "Example: the one-max-search problem"
