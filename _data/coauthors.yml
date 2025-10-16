@@ -16,9 +16,13 @@
 "Benomar":
   - firstname: ["Ziyad"]
     url: https://scholar.google.fr/citations?user=ZhWGR7QAAAAJ&hl=en&oi=ao
-
 "Vernade":
   - firstname: ["Claire", "C."]
     url: https://www.cvernade.com/
-  
+"Verronneau":
+  - firstname: ["Remi", "R."]
+    url: https://crest.science/user/R%C3%A9mi-VERRONNEAU/
+"Vielle":
+  - firstname:["Bartholome", "B."]
+    url: https://crest.science/user/Bartholom%C3%A9-Vieille/
 

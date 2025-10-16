@@ -4,7 +4,7 @@ permalink: /publications/
 title: Publications
 description: 
 
-years: [2025,2024,2023,2022, 2020]
+years: [2025,2024,2023,2022,2020]
 nav: true
 nav_order: 1
 ---
