@@ -25,4 +25,15 @@
 "Vielle":
   - firstname: ["Bartholome", "B."]
     url: "https://crest.science/user/Bartholom%C3%A9-Vieille/"
-
+"Chen":
+  - firstname: ["Yurong", "Y."]
+    url: "https://ruyc.github.io/"
+"Vernade":
+  - firstname: ["Claire", "C."]
+    url: "https://www.cvernade.com/"
+"Neu":
+  - firstname: ["Gergely", "G.", "Gergo"]
+    url: "https://cs.bme.hu/~gergo/"
+"Jonsson":
+  - firstname: ["Anders", "A."]
+    url: "https://www.upf.edu/web/anders-jonsson"

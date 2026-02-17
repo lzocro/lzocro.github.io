@@ -65,8 +65,6 @@
   html={https://proceedings.mlr.press/v237/croissant24a.html},
 
   pdf= {https://proceedings.mlr.press/v237/croissant24a/croissant24a.pdf},  
-  
-  blog={/blog/2023/Online-non-episodic-RL/},
 
   project={/projects/RL_diff_limit/},
 
@@ -93,8 +91,6 @@
   html={https://openreview.net/forum?id=bqiRIs3fJNk},
 
   pdf= {https://openreview.net/pdf?id=bqiRIs3fJNk},
-
-  blog={/blog/2023/Online-non-episodic-RL/},
 
   project={/projects/RL_diff_limit/},
 
@@ -129,8 +125,6 @@
 
   pdf={https://arxiv.org/pdf/2209.15284},
 
-  blog={/blog/2022/Diffusion-limit-ergodic-optimal-control/},
-
   project={/projects/diffusion_limit/},
 
   selected={false},
@@ -156,8 +150,6 @@
   pdf={https://arxiv.org/pdf/2209.15284},
   arxiv = {2209.15284},
   bibtex_show = {true},
-
-  blog={/blog/2022/Diffusion-limit-ergodic-optimal-control/},
 
   project={/projects/diffusion_limit/},
 
@@ -198,8 +190,6 @@
 
   pdf= {https://arxiv.org/pdf/2106.12848},
 
-  blog={/blog/2021/Diffusion-limit-control/},
-
   project={/projects/diffusion_limit/},
 
   preview={IMG_5515.jpg}
@@ -227,8 +217,6 @@
 
   pdf= {https://arxiv.org/pdf/2010.10070},
 
-  blog={/blog/2020/Online-learning-in-online-auctions/},
-
   project={/projects/Online_learning_auctions/},
 
   preview={IMG_5318.jpg}
@@ -253,8 +241,6 @@
 
   pdf={https://arxiv.org/pdf/2502.05720},
 
-  blog={},
-
   project={/projects/Alps/},
 
   preview={IMG_5318.jpg},
@@ -266,21 +252,17 @@
 
 @misc{Croissant_BOT_25,
 	title = {Bandit {Optimal} {Transport}},
-	abstract = {Despite the impressive progress in statistical Optimal Transport (OT) in recent years, there has been little interest in the study of the {\textbackslash}emph\{sequential learning\} of OT. Surprisingly so, as this problem is both practically motivated and a challenging extension of existing settings such as linear bandits. This article considers (for the first time) the stochastic bandit problem of learning to solve generic Kantorovich and entropic OT problems from repeated interactions when the marginals are known but the cost is unknown. We provide $\tilde{O}(\sqrt{T})$ regret algorithms for both problems by extending linear bandits on Hilbert spaces. These results provide a reduction to infinite-dimensional linear bandits. To deal with the dimension, we provide a method to exploit the intrinsic regularity of the cost to learn, yielding corresponding regret bounds which interpolate between $\tilde{O}(\sqrt{T})$ and $\tilde{O}(T)$.},
+	abstract = {Linear bandits have long been a central topic in online learning, with applications ranging from recommendation systems to adaptive clinical trials. Their general learnability has been established when the objective is to minimise the inner product between a cost parameter and the decision variable. While this is highly general, this reliance on an inner product structure belies the name of \emph{linear} bandits, and fails to account for problems such as Optimal Transport. Using the Kantorovich formulation of Optimal Transport as an example, we show that an inner product structure is \emph{not} necessary to achieve efficient learning in linear bandits. We propose a refinement of the classical OFUL algorithm that operates by embedding the action set into a Hilbertian subspace, where confidence sets can be built via least-squares estimation. Actions are then constrained to this subspace by penalising optimism. The analysis is completed by leveraging convergence results from penalised (entropic) transport to the Kantorovich problem. Up to this approximation term, the resulting algorithm achieves the same trajectorial regret upper bounds as the OFUL algorithm, which we turn into worst-case regret using functional regression techniques. Its regret interpolates between $\tilde{\mathcal{O}}(\sqrt{T})$ and $\mathcal{O}(T)$, depending on the regularity of the cost function, and recovers the parametric rate $\tilde{\mathcal{O}}(\sqrt{dT})$ in finite-dimensional settings. },
 	author = {Croissant, Lorenzo},
 	month = feb,
-	year = {2025},
+	year = {2026},
 	keywords = {Bandit Algorithms, Optimal transport},
 
-  arxiv = {https://hal.science/hal-04938170v1/document},
-  
   bibtex_show = {true},
 
   html={https://hal.science/hal-04938170},
 
-  pdf= {https://hal.science/hal-04938170v1/document},
-
-  blog={},
+  pdf= {https://hal.science/hal-04938170v2/document},
 
   project={/projects/BOT/},
 
@@ -295,17 +277,15 @@
   author = {Verronneau, Remi and Croissant, Lorenzo and Vieille, Bartholome and Perchet, Vianney},
   URL = {https://hal.science/hal-05284437},
   NOTE = {working paper or preprint},
-  YEAR = {2025},
-  MONTH = Sep,
-  PDF = {https://hal.science/hal-05284437v1/file/FeatHawkes.pdf},
+  YEAR = {2026},
+  MONTH = Feb,
+  PDF = {https://hal.science/hal-05284437v2/document},
   HAL_ID = {hal-05284437},
-  HAL_VERSION = {v1},
+  HAL_VERSION = {v2},
   keywords={},
-  arxiv={https://hal.science/hal-05284437},
   bibtex_show = {true},
   html={https://hal.science/hal-05284437},
-  blog={},
-  project={},
   selected={false},
-  preview={IMG_5515.jpg}
+  preview={IMG_5515.jpg},
+  abstract={Attribution, the problem of assigning proportional responsibility for an outcome to each event in a temporal sequence, is central to diverse applications ranging from marketing and seismology to sports analytics. While incorporating exogenous features substantially enhances the expressiveness of attribution models, existing approaches lack the scalability required to integrate modern machine learning. We introduce FeatHawkes, a feature-augmented Hawkes process framework for event-level attribution in continuous time. Our core contribution is a novel first-order optimization routine for Hawkes processes that leverages stochastic gradient methods, scaling favorably with both dataset size and feature dimensionality. This gradient-based formulation enables compatibility with automatic differentiation and end-to-end machine learning pipelines. We release FeatHawkes as an open-source Python library and demonstrate its effectiveness through synthetic experiments and a case study on professional football data, where the framework supports scenario-based analyses, such as evaluating the modelled effect of player substitutions in a lineup. }
 }

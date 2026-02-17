@@ -1,7 +1,7 @@
 ---
 layout: page
 title: FairPlay Winter School
-description: Work Retreat of the Inria FairPlay team
+description: Work Retreat of the Inria FairPlay team.
 importance: 4
 category: Conferences
 ---

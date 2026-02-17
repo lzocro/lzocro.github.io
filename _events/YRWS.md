@@ -1,8 +1,8 @@
 ---
 layout: page
 title: CEREMADE Winter School
-description: CEREMADE Ph.D. + Postdoc retreat 
-importance: 4
+description: CEREMADE young researchers' retreat.
+importance: 3
 category: Conferences
 ---
 

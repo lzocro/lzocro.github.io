@@ -33,6 +33,11 @@
 - title: Positions
   type: time_table
   contents:
+    - title : Ramon-Llull Postdoctoral Fellow
+      institution: Universitat Pompeu Fabra, Barcelona
+      year: 2026-
+      description:
+        - Research on Reinforcement Learning, Bandits, and optimisation.
     - title: Research and teaching assistant (A.T.E.R.)
       institution: CREST, ENSAE Paris and Inria (FairPlay team)
       year: 2023-25
@@ -48,5 +53,5 @@
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Rock climbing, cooking, photography.
-    - <u>Interests:</u> Tea, mixology, music, literature, social sciences, political philosophy.
+    - <u>Hobbies:</u> Sports (climbing, trail, hiking, canyoning), cooking, photography.
+    - <u>Interests:</u> Tea, music, literature, social sciences, political philosophy.

@@ -8,7 +8,7 @@ middle_name:
 last_name: Croissant
 email: mailto:croissant@ceremade.dauphine.fr
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Personal Webpage of Lorenzo Croissant, PhD in mathematics from Universite Paris Dauphine. Currently working at CREST, ENSAE Paris, and Inria (FairPlay team).
+  Personal Webpage of Lorenzo Croissant.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>. 
@@ -112,7 +112,7 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 
 blog_name: Bakery Math # blog_name will be displayed in your blog page
 blog_nav_title: Blog # your blog must have a title for it to be displayed in the nav bar
-blog_description: For the sake of simplicity this is a croissant themed blog. No other baked goods will be discussed.
+blog_description: For the sake of simplicity, this is a croissant themed blog. No other baked goods will be discussed.
 permalink: /blog/:year/:title/
 
 # Pagination

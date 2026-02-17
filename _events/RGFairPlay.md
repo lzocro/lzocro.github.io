@@ -1,7 +1,7 @@
 ---
 layout: page
 title: FairPlay reading groups
-description: At ENSAE, running 2022-present
+description: At ENSAE, 2022-2025.
 importance: 3
 category: Reading Groups
 ---
@@ -20,3 +20,8 @@ Over the years, we have read the following books:
 I have been the organiser of the reading group since July 2023, and have thus been in charge of the following books:
 - An Introduction to Queueing Theory: Modeling and Analysis in Applications, U. N. Bhat
 - Introduction to Random Graphs, A. Frieze & M. Karonski
+- Assorted papers on diffusion models, misc.
+- Statistical Optimal Transport, S. Chewi, J. Niles-Weed, & P. Rigollet
+- Information and Learning in Economic Theory, Annie Liang.
+- Algorithmic contract theory, P. Duetting, M. Feldmand, I. Talgam-Cohen.
+ 

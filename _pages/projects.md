@@ -3,8 +3,8 @@ layout: page
 title: Projects
 permalink: /projects/
 description: 
-nav: false
-nav_order: 
+nav: true
+nav_order: 2
 display_categories: [Reinforcement Learning, Online Learning, Control Theory]
 horizontal: false
 ---
