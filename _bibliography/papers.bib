@@ -21,7 +21,7 @@
   preview={IMG_5515.jpg},
 
   abstract={
-    We consider the diffusive limit of a generic pure-jump Markov control problem as the intensity of the driving Poisson process tends to infinity. We quantify the convergence speed in terms of the H\"older exponent of the Hessian of the limit problem. This approximation provides an efficient alternative method for the numerical resolution of these problems when the intensity of jumps is large. Considering the control of unknown systems, we extend this approach to the context of online Reinforcement Learning. Under the \acrlong{OFU} paradigm, we leverage the eluder dimension framework for learning and the diffusive limit for approximate resolution of the planning sub-problem. Our algorithm extends existing theory from discrete processes to continuous states and actions. Our study of diffusion limit systems is motivated and illustrated by the bidding problem in a high-frequency online auction against a revenue-maximising seller.
+    We consider the diffusive limit of a generic pure-jump Markov control problem as the intensity of the driving Poisson process tends to infinity. We quantify the convergence speed in terms of the Hölder exponent of the Hessian of the limit problem. This approximation provides an efficient alternative method for the numerical resolution of these problems when the intensity of jumps is large. Considering the control of unknown systems, we extend this approach to the context of online Reinforcement Learning. Under the OFU paradigm, we leverage the eluder dimension framework for learning and the diffusive limit for approximate resolution of the planning sub-problem. Our algorithm extends existing theory from discrete processes to continuous states and actions. Our study of diffusion limit systems is motivated and illustrated by the bidding problem in a high-frequency online auction against a revenue-maximising seller.
   }
 
 }
@@ -40,12 +40,12 @@
         Although this standpoint is suitable for games, it is often inadequate for systems in which interactions occur at a high frequency, if not in continuous time, or those whose state spaces are large if not inherently continuous. 
         Perhaps the only exception is the linear quadratic framework for which results exist both in discrete and continuous time.  
         However, its ability to handle continuous states comes with the drawback of a rigid dynamic and reward structure.
-        This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency $\varepsilon^{-1}$ which captures arbitrary time scales from discrete ($\varepsilon=1$) to continuous time ($\varepsilon\downarrow0$). 
-        In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on $\mathbb{R}^d$. 
+        This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency \(\varepsilon^\{-1\}\,\)  which captures arbitrary time scales from discrete (\(\varepsilon=1\))  to continuous time (\(\varepsilon\downarrow0\)). 
+        In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on \(R^d\). 
         We show that the celebrated optimism protocol applies when the sub-tasks (learning and planning) can be performed effectively. 
-        We tackle learning by extending the eluder dimension framework and propose an approximate planning method based on a diffusive limit ($\varepsilon\downarrow0$) approximation of the jump process.
-        Overall, our algorithm enjoys a regret of order $\tilde{\mathcal{O}}(\sqrt{T})$ or $\tilde{\mathcal{O}}(\varepsilon^{1/2} T+\sqrt{T})$ with the approximate planning. 
-        As the frequency of interactions blows up, the approximation error $\varepsilon^{1/2} T$ vanishes, showing that $\tilde{\mathcal{O}}(\sqrt{T})$ is attainable in near-continuous time.
+        We tackle learning by extending the eluder dimension framework and propose an approximate planning method based on a diffusive limit (\(\varepsilon\downarrow0\))  approximation of the jump process.
+        Overall, our algorithm enjoys a regret of order \(\tilde\{O\}(\sqrt\{T\})\,\)  or \(\tilde\{O\}(\varepsilon^\{1/2\} T+\sqrt\{T\})\,\)  with the approximate planning. 
+        As the frequency of interactions blows up, the approximation error \(\varepsilon^\{1/2\} \,T\,\)  vanishes, showing that \(\tilde\{O\}(\sqrt\{T\})\,\)  is attainable in near-continuous time.
   },
 
   booktitle={Proceedings of the {35th} International Conference on Algorithmic Learning Theory},
@@ -81,10 +81,23 @@
   booktitle={Sixteenth European Workshop on Reinforcement Learning},
   
   year={2023},
+
+  month={Sep},
   
   url={https://openreview.net/forum?id=bqiRIs3fJNk},
   
-  abstract={We consider the Reinforcement Learning problem of controlling an unknown dynamical system to maximise the long-term average reward along a single trajectory. Most of the literature considers system interactions that occur in discrete time and discrete state-action spaces. Although this standpoint is suitable for games, it is often inadequate for mechanical or digital systems in which interactions occur at a high frequency, if not in continuous time, and whose state spaces are large if not inherently continuous. Perhaps the only exception is the Linear Quadratic framework for which results exist both in discrete and continuous time. However, its ability to handle continuous states comes with the drawback of a rigid dynamic and reward structure. This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency $\varepsilon^{-1}$, which captures arbitrary time scales: from discrete ($\varepsilon=1$) to continuous time ($\varepsilon\downarrow0$). In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on $\mathbb{R}^d$. We show that the celebrated optimism protocol applies when the sub-tasks (learning and planning) can be performed effectively. We tackle learning within the eluder dimension framework and propose an approximate planning method based on a diffusive limit approximation of the jump process. Overall, our algorithm enjoys a regret of order $\tilde{\mathcal{O}}(\varepsilon^{1/2} T+\sqrt{T})$. As the frequency of interactions blows up, the approximation error $\varepsilon^{1/2} T$ vanishes, showing that $\tilde{\mathcal{O}}(\sqrt{T})$ is attainable in near-continuous time.},
+  abstract={
+        We consider the reinforcement learning problem of controlling an unknown dynamical system to maximise the long-term average reward along a single trajectory. 
+        Most of the literature considers system interactions that occur in discrete time and discrete state-action spaces. 
+        Although this standpoint is suitable for games, it is often inadequate for systems in which interactions occur at a high frequency, if not in continuous time, or those whose state spaces are large if not inherently continuous. 
+        Perhaps the only exception is the linear quadratic framework for which results exist both in discrete and continuous time.  
+        However, its ability to handle continuous states comes with the drawback of a rigid dynamic and reward structure.
+        This work aims to overcome these shortcomings by modelling interaction times with a Poisson clock of frequency \(\varepsilon^\{-1\}\,\) which captures arbitrary time scales from discrete (\(\varepsilon=1\,\)) to continuous time (\(\varepsilon\downarrow0\)). 
+        In addition, we consider a generic reward function and model the state dynamics according to a jump process with an arbitrary transition kernel on \(R^d\). 
+        We show that the celebrated optimism protocol applies when the sub-tasks (learning and planning) can be performed effectively. 
+        We tackle learning by extending the eluder dimension framework and propose an approximate planning method based on a diffusive limit (\(\varepsilon\downarrow0\))  approximation of the jump process.
+        Overall, our algorithm enjoys a regret of order \(\tilde\{O\}(\sqrt\{T\})\,\)  or \(\tilde\{O\}(\varepsilon^\{1/2\} T+\sqrt\{T\})\,\)  with the approximate planning. 
+        As the frequency of interactions blows up, the approximation error \(\varepsilon^\{1/2\} \,T\,\)  vanishes, showing that \(\tilde\{O\}(\sqrt\{T\})\,\)  is attainable in near-continuous time.},
   
   bibtex_show = {false},
 
@@ -97,40 +110,6 @@
   preview={IMG_5515.jpg}
 }
 
-
-@misc{ABC22,
-  doi = {10.48550/ARXIV.2209.15284},
-  
-  url = {https://arxiv.org/abs/2209.15284},
-  
-  author = {Abeille, Marc and Bouchard, Bruno and Croissant, Lorenzo},
-  
-  keywords = {Optimization and Control (math.OC), FOS: Mathematics},
-  
-  title = {Diffusive limit approximation of pure jump optimal ergodic control problems},
-  
-  publisher = {arXiv},
-  
-  year = {2022},
-  
-  copyright = {arXiv.org perpetual, non-exclusive license},
-
-  abstract = {Motivated by the design of fast reinforcement learning algorithms, we study the diffusive limit of a class of pure jump ergodic stochastic control problems. We show that, whenever the intensity of jumps is large enough, the approximation error is governed by the H{\"o}lder continuity of the Hessian matrix of the solution to the limit ergodic partial differential equation. This extends to this context the results of [1] obtained for finite horizon problems. We also explain how to construct a first order error correction term under appropriate smoothness assumptions. Finally, we quantify the error induced by the use of the Markov control policy constructed from the numerical finite difference scheme associated to the limit diffusive problem, this seems to be new in the literature and of its own interest. This approach permits to reduce very significantly the numerical resolution cost.},
-
-  arxiv = {2209.15284},
-  
-  bibtex_show = {false},
-
-  html={https://arxiv.org/abs/2209.15284},
-
-  pdf={https://arxiv.org/pdf/2209.15284},
-
-  project={/projects/diffusion_limit/},
-
-  selected={false},
-
-  preview={IMG_4322.jpg}
-  }
 
 
 @article{ABC25,
@@ -155,7 +134,9 @@
 
   selected={true},
 
-  preview={IMG_4322.jpg}
+  preview={IMG_4322.jpg},
+
+  abstract={Motivated by the design of fast reinforcement learning algorithms, see (Croissant <i>et al</i>., 2024), we study the diffusive limit of a class of pure jump ergodic stochastic control problems. We show that, whenever the intensity of jumps \(\varepsilon\,\) is large enough, the approximation error is governed by the Hölder regularity of the Hessian matrix of the solution to the limit ergodic partial differential equation and is, indeed, of order \(\varepsilon^{\frac{\gamma}{2}}\,\) for all \(\gamma\in(0,1)\). This extends to this context the results of Abeille <i>et al</i>. (2023) obtained for finite horizon problems. Using the limit as an approximation, instead of directly solving the pre-limit problem, allows for a very significant reduction in the numerical resolution cost of the control problem. Additionally, we explain how error correction terms of this approximation can be constructed under appropriate smoothness assumptions. Finally, we quantify the error induced by the use of the Markov control policy constructed from the numerical finite difference scheme associated to the limit diffusive problem, which seems to be new in the literature and of independent interest.}
 
   }
 
@@ -182,11 +163,13 @@
   
   abstract = {We consider the diffusive limit of a typical pure-jump Markovian control problem as the intensity of the driving Poisson process tends to infinity. We show that the convergence speed is provided by the Hölder constant of the Hessian of the limit problem, and explain how correction terms can be constructed. This provides an alternative efficient method for the numerical approximation of the optimal control of a pure-jump problem in situations with very high intensity of jump. We illustrate this approach in the context of a display advertising auction problem.},
 
+  month={},
+
   arxiv = {2106.12848},
   
   bibtex_show = {true},
 
-  html={https://arxiv.org/abs/2106.12848},
+  html={https://link.springer.com/article/10.1007/s10957-022-02135-7},
 
   pdf= {https://arxiv.org/pdf/2106.12848},
 
@@ -207,7 +190,7 @@
   series = 	 {Proceedings of Machine Learning Research},
   month = 	 {13--18 Jul},
   publisher =    {PMLR},
-  abstract = 	 {In display advertising, a small group of sellers and bidders face each other in up to $10^{12}$ auctions a day. In this context, revenue maximisation via monopoly price learning is a high-value problem for sellers. By nature, these auctions are online and produce a very high frequency stream of data. This results in a computational strain that requires algorithms be real-time. Unfortunately, existing methods inherited from the batch setting suffer $O(\sqrt{t})$ time/memory complexity at each update, prohibiting their use. In this paper, we provide the first algorithm for online learning of monopoly prices in online auctions whose update is constant in time and memory.},
+  abstract = 	 {In display advertising, a small group of sellers and bidders face each other in up to \(10^\{12\}\)  auctions a day. In this context, revenue maximisation via monopoly price learning is a high-value problem for sellers. By nature, these auctions are online and produce a very high frequency stream of data. This results in a computational strain that requires algorithms be real-time. Unfortunately, existing methods inherited from the batch setting suffer \(O(\sqrt\{t\})\)  time/memory complexity at each update, prohibiting their use. In this paper, we provide the first algorithm for online learning of monopoly prices in online auctions whose update is constant in time and memory.},
 
   arxiv = {2010.10070},
   
@@ -222,37 +205,39 @@
   preview={IMG_5318.jpg}
 }
 
-@misc{Benomar25,
-	title = {Pareto-{Optimality}, {Smoothness}, and {Stochasticity} in {Learning}-{Augmented} {One}-{Max}-{Search}},
-	copyright = {All rights reserved},
-	abstract = {One-max search is a classic problem in online decision-making, in which a trader acts on a sequence of revealed prices and accepts one of them irrevocably to maximise its profit. The problem has been studied both in probabilistic and in worst-case settings, notably through competitive analysis, and more recently in learning-augmented settings in which the trader has access to a prediction on the sequence. However, existing approaches either lack smoothness, or do not achieve optimal worst-case guarantees: they do not attain the best possible trade-off between the consistency and the robustness of the algorithm. We close this gap by presenting the first algorithm that simultaneously achieves both of these important objectives. Furthermore, we show how to leverage the obtained smoothness to provide an analysis of one-max search in stochastic learning-augmented settings which capture randomness in both the observed prices and the prediction.},
-	urldate = {2025-02-11},
-	publisher = {arXiv},
-	author = {Benomar, Ziyad and Croissant, Lorenzo and Perchet, Vianney and Angelopoulos, Spyros},
-	month = feb,
-	year = {2025},
-	keywords = {Computer Science - Artificial Intelligence, Computer Science - Data Structures and Algorithms},
 
-  arxiv = {2502.05720},
-  
+@InProceedings{Benomar25,
+  title = 	 {Pareto-Optimality, Smoothness, and Stochasticity in Learning-Augmented One-Max-Search},
+  author =       {Benomar, Ziyad and Croissant, Lorenzo and Perchet, Vianney and Angelopoulos, Spyros},
+  booktitle = 	 {Proceedings of the 42nd International Conference on Machine Learning},
+  pages = 	 {3776--3805},
+  year = 	 {2025},
+  editor = 	 {Singh, Aarti and Fazel, Maryam and Hsu, Daniel and Lacoste-Julien, Simon and Berkenkamp, Felix and Maharaj, Tegan and Wagstaff, Kiri and Zhu, Jerry},
+  volume = 	 {267},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {13--19 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v267/main/assets/benomar25a/benomar25a.pdf},
+  url = 	 {https://proceedings.mlr.press/v267/benomar25a.html},
+  abstract = 	 {One-max search is a classic problem in online decision-making, in which a trader acts on a sequence of revealed prices and accepts one of them irrevocably to maximise its profit. The problem has been studied both in probabilistic and in worst-case settings, notably through competitive analysis, and more recently in learning-augmented settings in which the trader has access to a prediction on the sequence. However, existing approaches either lack smoothness, or do not achieve optimal worst-case guarantees: they do not attain the best possible trade-off between the consistency and the robustness of the algorithm. We close this gap by presenting the first algorithm that simultaneously achieves both of these important objectives. Furthermore, we show how to leverage the obtained smoothness to provide an analysis of one-max search in stochastic learning-augmented settings which capture randomness in both the observed prices and the prediction.},
+
   bibtex_show = {true},
 
-  html={http://arxiv.org/abs/2502.05720},
+  html={https://proceedings.mlr.press/v267/benomar25a.html},
 
-  pdf={https://arxiv.org/pdf/2502.05720},
+  pdf={https://raw.githubusercontent.com/mlresearch/v267/main/assets/benomar25a/benomar25a.pdf},
 
   project={/projects/Alps/},
 
   preview={IMG_5318.jpg},
   
   selected={true}
-
 }
 
 
 @misc{Croissant_BOT_25,
 	title = {Bandit {Optimal} {Transport}},
-	abstract = {Linear bandits have long been a central topic in online learning, with applications ranging from recommendation systems to adaptive clinical trials. Their general learnability has been established when the objective is to minimise the inner product between a cost parameter and the decision variable. While this is highly general, this reliance on an inner product structure belies the name of \emph{linear} bandits, and fails to account for problems such as Optimal Transport. Using the Kantorovich formulation of Optimal Transport as an example, we show that an inner product structure is \emph{not} necessary to achieve efficient learning in linear bandits. We propose a refinement of the classical OFUL algorithm that operates by embedding the action set into a Hilbertian subspace, where confidence sets can be built via least-squares estimation. Actions are then constrained to this subspace by penalising optimism. The analysis is completed by leveraging convergence results from penalised (entropic) transport to the Kantorovich problem. Up to this approximation term, the resulting algorithm achieves the same trajectorial regret upper bounds as the OFUL algorithm, which we turn into worst-case regret using functional regression techniques. Its regret interpolates between $\tilde{\mathcal{O}}(\sqrt{T})$ and $\mathcal{O}(T)$, depending on the regularity of the cost function, and recovers the parametric rate $\tilde{\mathcal{O}}(\sqrt{dT})$ in finite-dimensional settings. },
+	abstract = {Linear bandits have long been a central topic in online learning, with applications ranging from recommendation systems to adaptive clinical trials. Their general learnability has been established when the objective is to minimise the inner product between a cost parameter and the decision variable. While this is highly general, this reliance on an inner product structure belies the name of <i>linear</i> bandits, and fails to account for problems such as Optimal Transport. Using the Kantorovich formulation of Optimal Transport as an example, we show that an inner product structure is <i>not</i> necessary to achieve efficient learning in linear bandits. We propose a refinement of the classical OFUL algorithm that operates by embedding the action set into a Hilbertian subspace, where confidence sets can be built via least-squares estimation. Actions are then constrained to this subspace by penalising optimism. The analysis is completed by leveraging convergence results from penalised (entropic) transport to the Kantorovich problem. Up to this approximation term, the resulting algorithm achieves the same trajectorial regret upper bounds as the OFUL algorithm, which we turn into worst-case regret using functional regression techniques. Its regret interpolates between \(\tilde\{O\}(\sqrt\{T\})\,\)    and \(\{O\}(T)\), depending on the regularity of the cost function, and recovers the parametric rate \(\tilde\{O\}(\sqrt\{dT\})\,\) in finite-dimensional settings. },
 	author = {Croissant, Lorenzo},
 	month = feb,
 	year = {2026},
